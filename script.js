@@ -1,16 +1,13 @@
 /* ============================================
-   Wedding Invitation — ديما ❤️ محمد
-   Particles · Music · Countdown · Reveals
+   Wedding Invitation — Mohammad & Dima
    ============================================ */
 
 (function () {
   "use strict";
 
-  /* ---- Wedding date: 15 September, current year (or next if passed) ---- */
   function getWeddingDate() {
     const now = new Date();
     let year = now.getFullYear();
-    // 15/09 at 20:00 local time
     let target = new Date(year, 8, 15, 20, 0, 0);
     if (now > target) {
       target = new Date(year + 1, 8, 15, 20, 0, 0);
@@ -19,18 +16,74 @@
   }
 
   const WEDDING_DATE = getWeddingDate();
+  let revealsReady = false;
 
-  /* ---- Reveal animations ---- */
+  function initEnvelope() {
+    const screen = document.getElementById("envelope-screen");
+    const openBtn = document.getElementById("open-envelope");
+    const invitation = document.getElementById("invitation");
+    const musicBtn = document.getElementById("music-btn");
+    const audio = document.getElementById("bg-music");
+
+    if (!screen || !openBtn) return;
+
+    let opening = false;
+
+    function openInvitation() {
+      if (opening) return;
+      opening = true;
+      screen.classList.add("opening");
+
+      if (audio) {
+        audio.play()
+          .then(() => {
+            if (musicBtn) {
+              musicBtn.hidden = false;
+              musicBtn.classList.add("playing");
+              musicBtn.setAttribute("aria-label", "إيقاف حكايتنا كملت");
+            }
+          })
+          .catch(() => {
+            if (musicBtn) musicBtn.hidden = false;
+          });
+      } else if (musicBtn) {
+        musicBtn.hidden = false;
+      }
+
+      window.setTimeout(() => {
+        screen.classList.add("hidden");
+        document.body.classList.remove("locked");
+        document.body.classList.add("opened");
+        if (invitation) invitation.setAttribute("aria-hidden", "false");
+
+        window.setTimeout(() => {
+          screen.remove();
+          initReveals();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 700);
+      }, 900);
+    }
+
+    openBtn.addEventListener("click", openInvitation);
+    openBtn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openInvitation();
+      }
+    });
+  }
+
   function initReveals() {
-    const els = document.querySelectorAll(".reveal");
+    if (revealsReady) return;
+    revealsReady = true;
 
+    const els = document.querySelectorAll(".reveal");
     els.forEach((el) => {
       const delay = el.getAttribute("data-delay");
       if (delay) el.style.setProperty("--delay", delay);
     });
 
-    // Hero entrance immediately
-    const heroReveals = document.querySelectorAll(".hero .reveal");
+    const heroReveals = document.querySelectorAll(".invite-hero .reveal");
     requestAnimationFrame(() => {
       heroReveals.forEach((el) => el.classList.add("visible"));
     });
@@ -53,21 +106,21 @@
     );
 
     els.forEach((el) => {
-      if (!el.closest(".hero")) observer.observe(el);
+      if (!el.closest(".invite-hero")) observer.observe(el);
     });
   }
 
-  /* ---- Countdown ---- */
   function pad(n) {
     return String(n).padStart(2, "0");
   }
 
   function updateCountdown() {
-    const now = Date.now();
-    let diff = WEDDING_DATE.getTime() - now;
+    const daysEl = document.getElementById("days");
+    if (!daysEl) return;
 
+    let diff = WEDDING_DATE.getTime() - Date.now();
     if (diff <= 0) {
-      document.getElementById("days").textContent = "00";
+      daysEl.textContent = "00";
       document.getElementById("hours").textContent = "00";
       document.getElementById("minutes").textContent = "00";
       document.getElementById("seconds").textContent = "00";
@@ -82,7 +135,7 @@
     diff %= 60000;
     const seconds = Math.floor(diff / 1000);
 
-    document.getElementById("days").textContent = pad(days);
+    daysEl.textContent = pad(days);
     document.getElementById("hours").textContent = pad(hours);
     document.getElementById("minutes").textContent = pad(minutes);
     document.getElementById("seconds").textContent = pad(seconds);
@@ -93,56 +146,34 @@
     setInterval(updateCountdown, 1000);
   }
 
-  /* ---- Background music ---- */
   function initMusic() {
     const btn = document.getElementById("music-btn");
     const audio = document.getElementById("bg-music");
     if (!btn || !audio) return;
 
-    let unlocked = false;
-
-    function toggle() {
+    btn.addEventListener("click", () => {
       if (audio.paused) {
-        const playPromise = audio.play();
-        if (playPromise && typeof playPromise.then === "function") {
-          playPromise
-            .then(() => {
-              unlocked = true;
-              btn.classList.add("playing");
-              btn.setAttribute("aria-label", "إيقاف الموسيقى");
-            })
-            .catch(() => {
-              /* Autoplay blocked — user must tap again */
-            });
-        }
+        audio.play()
+          .then(() => {
+            btn.classList.add("playing");
+            btn.setAttribute("aria-label", "إيقاف حكايتنا كملت");
+          })
+          .catch(() => {});
       } else {
         audio.pause();
         btn.classList.remove("playing");
-        btn.setAttribute("aria-label", "تشغيل الموسيقى");
+        btn.setAttribute("aria-label", "تشغيل حكايتنا كملت");
       }
-    }
-
-    btn.addEventListener("click", toggle);
-
-    // Soft unlock on first user gesture (does not auto-start music)
-    const unlock = () => {
-      if (unlocked) return;
-      audio.load();
-    };
-    document.addEventListener("touchstart", unlock, { once: true, passive: true });
-    document.addEventListener("click", unlock, { once: true });
+    });
   }
 
-  /* ---- Golden particles ---- */
   function initParticles() {
     const canvas = document.getElementById("particles");
     if (!canvas) return;
-
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       canvas.style.display = "none";
       return;
     }
@@ -175,9 +206,7 @@
     function spawn() {
       const count = width < 640 ? 28 : 48;
       particles = [];
-      for (let i = 0; i < count; i++) {
-        particles.push(createParticle(true));
-      }
+      for (let i = 0; i < count; i++) particles.push(createParticle(true));
     }
 
     function createParticle(randomY) {
@@ -198,7 +227,6 @@
       if (!last) last = ts;
       const dt = Math.min((ts - last) / 16.67, 2);
       last = ts;
-
       ctx.clearRect(0, 0, width, height);
 
       for (let i = 0; i < particles.length; i++) {
@@ -217,14 +245,6 @@
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = p.color.replace(/[\d.]+\)$/, a + ")");
         ctx.fill();
-
-        // Soft glow for larger particles
-        if (p.r > 1.6) {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r * 2.2, 0, Math.PI * 2);
-          ctx.fillStyle = p.color.replace(/[\d.]+\)$/, a * 0.2 + ")");
-          ctx.fill();
-        }
       }
 
       rafId = requestAnimationFrame(draw);
@@ -244,7 +264,6 @@
     });
   }
 
-  /* ---- Smooth scroll for in-page links ---- */
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
       link.addEventListener("click", (e) => {
@@ -258,9 +277,8 @@
     });
   }
 
-  /* ---- Boot ---- */
   document.addEventListener("DOMContentLoaded", () => {
-    initReveals();
+    initEnvelope();
     initCountdown();
     initMusic();
     initParticles();

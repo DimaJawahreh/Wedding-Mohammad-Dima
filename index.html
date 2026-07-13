@@ -5,168 +5,208 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#D4AF37" />
 
-  <!-- Primary Meta -->
   <title>دعوة زفاف ديما ومحمد</title>
-  <meta name="description" content="نتشرف بدعوتكم لحضور حفل زفاف ديما ومحمد في فندق الشيراتون بتاريخ 15/09 من الساعة 8 مساءً وحتى 11 مساءً." />
+  <meta name="description" content="نتشرف بدعوتكم لحضور حفل زفاف محمد وديما في قاعات النعمان، عمّان بتاريخ 15/09 من الساعة 8 مساءً وحتى 11 مساءً." />
 
-  <!-- Open Graph / WhatsApp / Facebook / Telegram -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ar_AR" />
   <meta property="og:title" content="دعوة زفاف ديما ومحمد" />
-  <meta property="og:description" content="نتشرف بدعوتكم لحضور حفل زفاف ديما ومحمد في فندق الشيراتون بتاريخ 15/09 من الساعة 8 مساءً وحتى 11 مساءً." />
+  <meta property="og:description" content="نتشرف بدعوتكم لحضور حفل زفاف محمد وديما في قاعات النعمان، عمّان بتاريخ 15/09 من الساعة 8 مساءً وحتى 11 مساءً." />
   <meta property="og:image" content="https://YOUR-VERCEL-URL.vercel.app/assets/cover.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://YOUR-VERCEL-URL.vercel.app/" />
   <meta property="og:site_name" content="دعوة زفاف ديما ومحمد" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="دعوة زفاف ديما ومحمد" />
-  <meta name="twitter:description" content="نتشرف بدعوتكم لحضور حفل زفاف ديما ومحمد في فندق الشيراتون بتاريخ 15/09 من الساعة 8 مساءً وحتى 11 مساءً." />
+  <meta name="twitter:description" content="نتشرف بدعوتكم لحضور حفل زفاف محمد وديما في قاعات النعمان، عمّان بتاريخ 15/09 من الساعة 8 مساءً وحتى 11 مساءً." />
   <meta name="twitter:image" content="https://YOUR-VERCEL-URL.vercel.app/assets/cover.jpg" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;1,400&family=Cairo:wght@200;300;400;500;600&family=Great+Vibes&family=Tajawal:wght@200;300;400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💍</text></svg>" />
 </head>
-<body>
-  <!-- Golden Particles Canvas -->
+<body class="locked">
   <canvas id="particles" aria-hidden="true"></canvas>
 
-  <!-- Floating Music Button -->
-  <button id="music-btn" class="music-btn" aria-label="تشغيل أو إيقاف الموسيقى" type="button">
+  <div id="envelope-screen" class="envelope-screen" role="dialog" aria-modal="true" aria-labelledby="envelope-title">
+    <div class="envelope-bg"></div>
+    <button type="button" id="open-envelope" class="envelope-wrap" aria-label="اضغط لفتح الدعوة">
+      <div class="envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-pocket"></div>
+        <div class="envelope-card">
+          <p class="envelope-ornament">✦</p>
+          <p id="envelope-title" class="envelope-names">محمد <span>❤️</span> ديما</p>
+          <p class="envelope-label">دعوة زفاف</p>
+        </div>
+        <div class="envelope-seal">❀</div>
+      </div>
+      <p class="envelope-hint"><span class="hint-pulse">اضغط لفتح الدعوة</span></p>
+    </button>
+  </div>
+
+  <button id="music-btn" class="music-btn" aria-label="تشغيل حكايتنا كملت" type="button" hidden title="حكايتنا كملت — هيثم شاكر">
     <span class="music-icon" aria-hidden="true">♪</span>
     <span class="music-rings" aria-hidden="true"></span>
   </button>
-  <audio id="bg-music" loop preload="none">
-    <source src="assets/music.mp3" type="audio/mpeg" />
+  <audio id="bg-music" loop preload="auto">
+    <source src="assets/hakayatna-kamlat.mp3" type="audio/mpeg" />
   </audio>
 
-  <!-- Hero -->
-  <header class="hero" id="home">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-ornament reveal" data-delay="0">✦</p>
-      <h1 class="couple-names reveal" data-delay="100">
-        ديما <span class="heart" aria-hidden="true">❤️</span> محمد
-      </h1>
-      <div class="divider reveal" data-delay="200">
-        <span></span><i>❀</i><span></span>
-      </div>
-      <h2 class="main-title reveal" data-delay="300">دعوة لحضور حفل زفاف</h2>
-      <p class="subtitle reveal" data-delay="450">
-        يسعدنا دعوتكم لمشاركتنا أجمل ليلة في حياتنا
-      </p>
-      <a href="#details" class="scroll-hint reveal" data-delay="600" aria-label="انتقل إلى التفاصيل">
-        <span>اكتشف التفاصيل</span>
-        <span class="chevron" aria-hidden="true">⌄</span>
-      </a>
-    </div>
-  </header>
+  <div id="invitation" class="invitation" aria-hidden="true">
+    <section class="hero invite-hero" id="home">
+      <div class="hero-overlay"></div>
+      <div class="invite-card">
+        <p class="bismillah reveal" data-delay="0">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
 
-  <main>
-    <!-- Countdown -->
-    <section class="section countdown-section" id="countdown" aria-labelledby="countdown-heading">
-      <div class="container">
-        <p class="section-ornament reveal">✦</p>
-        <h2 id="countdown-heading" class="section-title reveal">العد التنازلي ليوم الفرح</h2>
-        <div class="countdown" id="countdown" role="timer" aria-live="polite">
-          <div class="countdown-item reveal" data-delay="100">
-            <span class="countdown-value" id="days">00</span>
-            <span class="countdown-label">يوم</span>
-          </div>
-          <div class="countdown-item reveal" data-delay="200">
-            <span class="countdown-value" id="hours">00</span>
-            <span class="countdown-label">ساعة</span>
-          </div>
-          <div class="countdown-item reveal" data-delay="300">
-            <span class="countdown-value" id="minutes">00</span>
-            <span class="countdown-label">دقيقة</span>
-          </div>
-          <div class="countdown-item reveal" data-delay="400">
-            <span class="countdown-value" id="seconds">00</span>
-            <span class="countdown-label">ثانية</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Event Details -->
-    <section class="section details-section" id="details" aria-labelledby="details-heading">
-      <div class="container">
-        <p class="section-ornament reveal">✦</p>
-        <h2 id="details-heading" class="section-title reveal">تفاصيل الحفل</h2>
-        <p class="section-lead reveal">ننتظركم في أجمل أمسية</p>
-
-        <div class="event-cards">
-          <article class="event-card reveal" data-delay="100">
-            <div class="card-icon" aria-hidden="true">📅</div>
-            <h3>التاريخ</h3>
-            <p>15/09</p>
-          </article>
-          <article class="event-card reveal" data-delay="200">
-            <div class="card-icon" aria-hidden="true">🕗</div>
-            <h3>الوقت</h3>
-            <p>من الساعة 8:00 مساءً<br />حتى 11:00 مساءً</p>
-          </article>
-          <article class="event-card reveal" data-delay="300">
-            <div class="card-icon" aria-hidden="true">📍</div>
-            <h3>المكان</h3>
-            <p>فندق الشيراتون</p>
-          </article>
+        <div class="ayah-block reveal" data-delay="80">
+          <p class="ayah">
+            ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ﴾
+          </p>
+          <p class="ayah-ref">سورة الروم — آية ٢١</p>
         </div>
 
-        <!-- Replace # with your Google Maps URL -->
-        <a
-          class="maps-btn reveal"
-          data-delay="400"
-          href="https://maps.google.com/?q=Sheraton+Hotel"
-          id="maps-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          افتح الموقع على خرائط Google
+        <div class="divider reveal" data-delay="140">
+          <span></span><i>❀</i><span></span>
+        </div>
+
+        <div class="hosts-block reveal" data-delay="200">
+          <p class="hosts-intro">بكل الحبّ والودّ والسرور</p>
+          <p class="hosts-title">يتشرّف</p>
+          <p class="host-name">السيد سلطان أكرم سلطان</p>
+          <p class="hosts-and">&amp;</p>
+          <p class="host-name">السيد ناجح محمد جواهرة</p>
+        </div>
+
+        <p class="invite-line reveal" data-delay="280">بدعوتكم لحضور حفل زفاف</p>
+        <h1 class="couple-names reveal" data-delay="340">
+          محمد <span class="heart">❤️</span> ديما
+        </h1>
+
+        <figure class="couple-photo reveal" data-delay="400">
+          <img src="assets/couple.jpg" alt="Mohammad & Dima" width="480" height="600" />
+        </figure>
+
+        <div class="event-meta reveal" data-delay="480">
+          <div class="meta-item">
+            <span class="meta-label">اليوم</span>
+            <span class="meta-value">الثلاثاء</span>
+          </div>
+          <div class="meta-sep" aria-hidden="true">✦</div>
+          <div class="meta-item">
+            <span class="meta-label">التاريخ</span>
+            <span class="meta-value">١٥ / ٠٩</span>
+          </div>
+          <div class="meta-sep" aria-hidden="true">✦</div>
+          <div class="meta-item">
+            <span class="meta-label">الوقت</span>
+            <span class="meta-value">٨ — ١١ م</span>
+          </div>
+        </div>
+
+        <div class="venue-block reveal" data-delay="540">
+          <span class="venue-label">المكان</span>
+          <p class="venue-name">قاعات النعمان</p>
+          <p class="venue-detail">دوار الواحة — عمّان</p>
+        </div>
+
+        <a href="#countdown" class="scroll-hint reveal" data-delay="600" aria-label="انتقل للأسفل">
+          <span>تابع التفاصيل</span>
+          <span class="chevron" aria-hidden="true">⌄</span>
         </a>
       </div>
     </section>
 
-    <!-- Gallery -->
-    <section class="section gallery-section" id="gallery" aria-labelledby="gallery-heading">
+    <section class="section countdown-section" id="countdown" aria-labelledby="countdown-heading">
       <div class="container">
         <p class="section-ornament reveal">✦</p>
-        <h2 id="gallery-heading" class="section-title reveal">لحظاتنا</h2>
-        <p class="section-lead reveal">ذكريات تسبق ليلة العمر</p>
+        <h2 id="countdown-heading" class="section-title en-title reveal">Countdown to our promising day</h2>
+        <p class="section-lead reveal">Until we say forever</p>
 
-        <div class="gallery-grid">
-          <figure class="gallery-item reveal" data-delay="100">
-            <img src="assets/gallery1.jpg" alt="صورة من ذكريات ديما ومحمد 1" loading="lazy" width="600" height="750" />
-          </figure>
-          <figure class="gallery-item reveal" data-delay="200">
-            <img src="assets/gallery2.jpg" alt="صورة من ذكريات ديما ومحمد 2" loading="lazy" width="600" height="750" />
-          </figure>
-          <figure class="gallery-item reveal" data-delay="300">
-            <img src="assets/gallery3.jpg" alt="صورة من ذكريات ديما ومحمد 3" loading="lazy" width="600" height="750" />
-          </figure>
+        <div class="countdown-shell reveal">
+          <div class="countdown" role="timer" aria-live="polite">
+            <div class="countdown-item">
+              <span class="countdown-value" id="days">00</span>
+              <span class="countdown-label">Days</span>
+            </div>
+            <span class="countdown-colon" aria-hidden="true">:</span>
+            <div class="countdown-item">
+              <span class="countdown-value" id="hours">00</span>
+              <span class="countdown-label">Hours</span>
+            </div>
+            <span class="countdown-colon" aria-hidden="true">:</span>
+            <div class="countdown-item">
+              <span class="countdown-value" id="minutes">00</span>
+              <span class="countdown-label">Mins</span>
+            </div>
+            <span class="countdown-colon" aria-hidden="true">:</span>
+            <div class="countdown-item">
+              <span class="countdown-value" id="seconds">00</span>
+              <span class="countdown-label">Secs</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="divider reveal">
-        <span></span><i>❀</i><span></span>
+    <section class="section location-section" id="location" aria-labelledby="location-heading" lang="en" dir="ltr">
+      <div class="container">
+        <p class="section-ornament reveal">✦</p>
+        <h2 id="location-heading" class="section-title en-title reveal">Location</h2>
+        <p class="section-lead cute-line reveal">Hearts full, seats saved — see you there</p>
+        <p class="venue-en reveal">Al-Nu'man Halls · Amman</p>
+
+        <div class="location-panel reveal">
+          <div class="map-frame">
+            <iframe
+              id="map-embed"
+              title="قاعات النعمان عمان"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://maps.google.com/maps?q=Numman+Halls+Amman+Waha+Circle&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <a
+            class="maps-btn"
+            href="https://www.google.com/maps/dir/?api=1&destination=Numman+Halls+Amman"
+            id="maps-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get Directions
+          </a>
+        </div>
       </div>
-      <p class="footer-message reveal">بانتظار حضوركم ومشاركتكم فرحتنا ❤️</p>
-      <p class="footer-names reveal">ديما &amp; محمد</p>
-    </div>
-  </footer>
+    </section>
+
+    <section class="section notice-section" id="notice">
+      <div class="container">
+        <div class="notice-card reveal">
+          <div class="notice-icon" aria-hidden="true">🚫👶</div>
+          <h2 class="notice-title">تنويه هام</h2>
+          <p class="notice-text">يُمنع الدخول منعاً باتاً للأطفال</p>
+          <p class="notice-sub">نعتذر عن إزعاجكم، ونتمنى تفهّمكم بكل حب</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" lang="en" dir="ltr">
+      <div class="container">
+        <div class="divider reveal">
+          <span></span><i>❀</i><span></span>
+        </div>
+        <p class="footer-message reveal" lang="ar" dir="rtl">بانتظار حضوركم ومشاركتكم فرحتنا ❤️</p>
+        <p class="footer-names-en reveal">Mohammad <span>&amp;</span> Dima</p>
+      </div>
+    </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
