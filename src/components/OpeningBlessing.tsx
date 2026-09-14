@@ -27,6 +27,24 @@ export function OpeningBlessing() {
       <motion.blockquote className="ayah" {...fade(0.32)}>
         {wedding.copy.quranVerse}
       </motion.blockquote>
+
+      <motion.a
+        href="#invitation"
+        className="scroll-hint"
+        aria-label="Scroll down"
+        {...fade(0.55)}
+      >
+        <span className="scroll-hint-line" aria-hidden="true" />
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M6 9.5 12 15.5 18 9.5"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </motion.a>
     </section>
   );
 }

@@ -3,7 +3,7 @@ import { Reveal } from "./Reveal";
 
 export function InvitationCard() {
   return (
-    <section className="section invite-card-section" aria-label="Invitation">
+    <section className="section invite-card-section" id="invitation" aria-label="Invitation">
       <Reveal>
         <article className="glass-card invite-card">
           <p className="eyebrow">{wedding.copy.ceremonyTitle}</p>

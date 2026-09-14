@@ -322,6 +322,42 @@ a {
   color: var(--ink);
 }
 
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1.8rem;
+  color: var(--sage-deep);
+  text-decoration: none;
+  opacity: 0.78;
+}
+
+.scroll-hint-line {
+  width: 1px;
+  height: 1.15rem;
+  background: var(--sage-deep);
+  opacity: 0.45;
+}
+
+.scroll-hint svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  animation: scroll-nudge 1.8s ease-in-out infinite;
+}
+
+@keyframes scroll-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
 .eyebrow,
 .section-title {
   font-family: var(--font-ui);
