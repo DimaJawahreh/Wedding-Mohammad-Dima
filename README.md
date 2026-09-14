@@ -1,4 +1,4 @@
-# Muhammad & Dima — Wedding Invitation
+# Mohammad & Dima — Wedding Invitation
 
 A luxury digital wedding invitation. Mobile-first, Arabic-first, ready for Vercel.
 

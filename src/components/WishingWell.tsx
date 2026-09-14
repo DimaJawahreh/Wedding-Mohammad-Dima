@@ -14,7 +14,7 @@ export function WishingWell({ open, onOpen, onClose }: WishingWellProps) {
 
   return (
     <section className="section wishing-section" lang="en" dir="ltr">
-      <Reveal>
+      <Reveal className="wishing-inner">
         <p className="section-title wishing-heading">{wedding.copy.wishingWellTitle}</p>
         <button
           type="button"

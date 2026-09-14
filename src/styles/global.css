@@ -709,8 +709,18 @@ a {
 }
 
 /* ---------- Wishing well ---------- */
+.wishing-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 .wishing-heading {
   margin-bottom: 1.1rem;
+  width: 100%;
+  text-align: center;
 }
 
 .gift-btn {
@@ -719,7 +729,9 @@ a {
   cursor: pointer;
   display: grid;
   justify-items: center;
+  justify-content: center;
   gap: 0.55rem;
+  margin-inline: auto;
 }
 
 .gift-img,
@@ -746,8 +758,8 @@ a {
   z-index: 40;
   background: rgba(35, 44, 37, 0.28);
   display: grid;
-  place-items: start center;
-  padding: 1.1rem 1rem 2rem;
+  place-items: center;
+  padding: 1.1rem 1rem;
 }
 
 .wish-modal {

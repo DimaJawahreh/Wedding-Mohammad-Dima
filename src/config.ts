@@ -1,10 +1,10 @@
 export const wedding = {
   couple: {
-    groomEn: "Muhammad",
+    groomEn: "Mohammad",
     brideEn: "Dima",
     groomAr: "محمد",
     brideAr: "ديما",
-    displayEn: "Muhammad & Dima",
+    displayEn: "Mohammad & Dima",
     displayAr: "محمد و ديما",
     displayArInvite: "محمد وديما",
     initials: "M & D",
@@ -27,12 +27,12 @@ export const wedding = {
     weddingYear: 2026,
   },
   venue: {
-    name: "Sheraton Amman Al Nabil Hotel",
+    name: "Sheraton Amman Hotel",
     city: "Amman, Jordan",
     mapsSearchUrl:
-      "https://www.google.com/maps/search/?api=1&query=Sheraton+Amman+Al+Nabil+Hotel",
+      "https://www.google.com/maps/search/?api=1&query=Sheraton+Amman+Hotel",
     mapsEmbedUrl:
-      "https://maps.google.com/maps?q=Sheraton+Amman+Al+Nabil+Hotel,+Amman,+Jordan&z=16&ie=UTF8&output=embed",
+      "https://maps.google.com/maps?q=Sheraton+Amman+Hotel,+Amman,+Jordan&z=16&ie=UTF8&output=embed",
   },
   hosts: {
     first: "السيد سلطان أكرم سلطان",
@@ -89,9 +89,9 @@ export const wedding = {
     gift: "/assets/images/gift-box.png",
   },
   meta: {
-    title: "Muhammad & Dima — Wedding Invitation",
+    title: "Mohammad & Dima — Wedding Invitation",
     description:
-      "You are invited to celebrate the wedding of Muhammad & Dima. Saturday, October 10, 2026, 8:00 PM – 10:30 PM at Sheraton Amman Al Nabil Hotel, Amman.",
+      "You are invited to celebrate the wedding of Mohammad & Dima. Saturday, October 10, 2026, 8:00 PM – 10:30 PM at Sheraton Amman Hotel, Amman.",
   },
 } as const;
 
