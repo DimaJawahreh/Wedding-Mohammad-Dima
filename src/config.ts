@@ -7,7 +7,7 @@ export const wedding = {
     displayEn: "Muhammad & Dima",
     displayAr: "محمد و ديما",
     displayArInvite: "محمد وديما",
-    initials: "M & D",
+    initials: "D & M",
   },
   date: {
     iso: "2026-10-10T20:00:00+03:00",

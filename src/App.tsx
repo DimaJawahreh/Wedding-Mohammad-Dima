@@ -43,7 +43,7 @@ export default function App() {
     if (opened) return;
     setOpened(true);
     void playMusic();
-    window.setTimeout(() => setRevealed(true), reduce ? 60 : 720);
+    window.setTimeout(() => setRevealed(true), reduce ? 60 : 1250);
   }
 
   function toggleMusic() {
