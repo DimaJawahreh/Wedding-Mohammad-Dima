@@ -15,7 +15,7 @@ export const wedding = {
     weekdayEn: "Saturday",
     weekdayAr: "السبت",
     dateEn: "October 10, 2026",
-    dateAr: "10 أكتوبر 2026",
+    dateAr: "10/10/2026",
     timeEn: "8:00 PM – 10:30 PM",
     timeStartEn: "8:00 PM",
     timeEndEn: "10:30 PM",
