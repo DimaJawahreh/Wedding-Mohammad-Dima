@@ -467,6 +467,14 @@ a {
   font-size: 1.15rem;
 }
 
+.invite-guests {
+  margin-top: 1.05rem;
+  font-size: 0.95rem;
+  color: var(--sage-deep);
+  unicode-bidi: isolate;
+  direction: rtl;
+}
+
 /* ---------- Couple ---------- */
 .portrait-frame {
   width: min(100%, 17.5rem);

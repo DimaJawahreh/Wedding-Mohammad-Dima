@@ -66,9 +66,11 @@ export const wedding = {
     wishingWellHint: "Tap to open",
     wishingWellMessage: "Your presence would mean the world to us.",
     wishingWellMessageAr: "حضوركم هو أغلى هدية",
-    childrenTitle: "تنويه هام",
+    childrenTitle: "تنويه",
     childrenNote:
-      "بناءً على تعليمات الفندق، يُمنع حضور الأطفال منعًا باتًا. من يصطحب أطفالًا لن يُسمح له بالدخول، وذلك تحت طائلة المسؤولية.",
+      "يسعدنا حضوركم واحتفالكم معنا، ونرجو الالتزام بعدم اصطحاب الأطفال.",
+    guestCount: 1,
+    guestCountNote: "عدد الحضور لهذه البطاقة: 1",
     closing: "Together",
     credit: "By Pride",
   },

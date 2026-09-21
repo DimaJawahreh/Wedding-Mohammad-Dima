@@ -22,11 +22,58 @@ export default function App() {
   const [audioReady, setAudioReady] = useState(false);
   const [wishOpen, setWishOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const stopAutoScroll = useRef(false);
   const reduce = usePrefersReducedMotion();
 
   useEffect(() => {
     document.body.classList.toggle("is-locked", !revealed || wishOpen);
   }, [revealed, wishOpen]);
+
+  useEffect(() => {
+    if (!revealed || reduce || wishOpen || stopAutoScroll.current) return;
+
+    let raf = 0;
+    let start = 0;
+    let cancelled = false;
+
+    const halt = () => {
+      cancelled = true;
+      stopAutoScroll.current = true;
+      window.clearTimeout(delay);
+      cancelAnimationFrame(raf);
+    };
+
+    const delay = window.setTimeout(() => {
+      const distance = () =>
+        Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const duration = Math.min(42000, Math.max(26000, distance() * 5.5));
+
+      const tick = (now: number) => {
+        if (cancelled) return;
+        if (!start) start = now;
+        const t = Math.min(1, (now - start) / duration);
+        window.scrollTo(0, distance() * t);
+        if (t < 1) raf = requestAnimationFrame(tick);
+      };
+
+      raf = requestAnimationFrame(tick);
+    }, 1600);
+
+    window.addEventListener("wheel", halt, { passive: true });
+    window.addEventListener("touchstart", halt, { passive: true });
+    window.addEventListener("pointerdown", halt);
+    window.addEventListener("keydown", halt);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(delay);
+      cancelAnimationFrame(raf);
+      window.removeEventListener("wheel", halt);
+      window.removeEventListener("touchstart", halt);
+      window.removeEventListener("pointerdown", halt);
+      window.removeEventListener("keydown", halt);
+    };
+  }, [revealed, reduce, wishOpen]);
 
   async function playMusic() {
     const audio = audioRef.current;

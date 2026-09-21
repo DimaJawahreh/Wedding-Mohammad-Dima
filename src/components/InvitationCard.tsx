@@ -37,6 +37,7 @@ export function InvitationCard() {
           <p className="invite-place" lang="en" dir="ltr">
             {wedding.venue.name}
           </p>
+          <p className="invite-guests">{wedding.copy.guestCountNote}</p>
         </article>
       </Reveal>
     </section>
