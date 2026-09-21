@@ -63,7 +63,7 @@ function downloadIcs() {
     "VERSION:2.0",
     "BEGIN:VEVENT",
     `DTSTART:20261010T170000Z`,
-    `DTEND:20261010T193000Z`,
+    `DTEND:20261010T203000Z`,
     `SUMMARY:Wedding of ${wedding.couple.displayEn}`,
     `LOCATION:${wedding.venue.name}\\, ${wedding.venue.city}`,
     "END:VEVENT",

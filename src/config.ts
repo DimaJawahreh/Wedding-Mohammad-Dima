@@ -11,15 +11,15 @@ export const wedding = {
   },
   date: {
     iso: "2026-10-10T20:00:00+03:00",
-    endIso: "2026-10-10T22:30:00+03:00",
+    endIso: "2026-10-10T23:30:00+03:00",
     weekdayEn: "Saturday",
     weekdayAr: "السبت",
     dateEn: "October 10, 2026",
     dateAr: "10/10/2026",
-    timeEn: "8:00 PM – 10:30 PM",
+    timeEn: "8:00 PM – 11:30 PM",
     timeStartEn: "8:00 PM",
-    timeEndEn: "10:30 PM",
-    timeAr: "8:00 مساءً – 10:30 مساءً",
+    timeEndEn: "11:30 PM",
+    timeAr: "8:00 مساءً – 11:30 مساءً",
     short: "10.10.2026",
     calendarMonthLabel: "October 2026",
     weddingDay: 10,
@@ -77,7 +77,7 @@ export const wedding = {
   timeline: [
     { time: "8:00 PM", title: "Arrival & Welcome" },
     { time: "8:30 PM", title: "Wedding Celebration" },
-    { time: "10:30 PM", title: "End of Celebration" },
+    { time: "11:30 PM", title: "End of Celebration" },
   ],
   music: {
     src: "/assets/music/wedding.mp4",
@@ -94,7 +94,7 @@ export const wedding = {
   meta: {
     title: "Mohammad & Dima — Wedding Invitation",
     description:
-      "You are invited to celebrate the wedding of Mohammad & Dima. Saturday, October 10, 2026, 8:00 PM – 10:30 PM at Sheraton Amman Hotel, Amman.",
+      "You are invited to celebrate the wedding of Mohammad & Dima. Saturday, October 10, 2026, 8:00 PM – 11:30 PM at Sheraton Amman Hotel, Amman.",
   },
 } as const;
 
