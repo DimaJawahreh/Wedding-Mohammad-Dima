@@ -46,7 +46,7 @@ export default function App() {
     const delay = window.setTimeout(() => {
       const distance = () =>
         Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-      const duration = Math.min(42000, Math.max(26000, distance() * 5.5));
+      const duration = Math.min(62000, Math.max(38000, distance() * 8));
 
       const tick = (now: number) => {
         if (cancelled) return;
