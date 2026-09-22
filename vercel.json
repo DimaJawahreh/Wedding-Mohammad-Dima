@@ -1,4 +1,9 @@
 {
+  "rewrites": [
+    { "source": "/1", "destination": "/index.html" },
+    { "source": "/2", "destination": "/index.html" },
+    { "source": "/3", "destination": "/index.html" }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",

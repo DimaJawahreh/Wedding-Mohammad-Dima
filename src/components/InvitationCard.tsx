@@ -1,7 +1,17 @@
+import { useEffect, useState } from "react";
 import { wedding } from "../config";
+import { formatGuestCountNote, parseGuestCount } from "../guestCount";
 import { Reveal } from "./Reveal";
 
 export function InvitationCard() {
+  const [guestCount, setGuestCount] = useState(() => parseGuestCount());
+
+  useEffect(() => {
+    const sync = () => setGuestCount(parseGuestCount());
+    window.addEventListener("popstate", sync);
+    return () => window.removeEventListener("popstate", sync);
+  }, []);
+
   return (
     <section className="section invite-card-section" id="invitation" aria-label="Invitation">
       <Reveal>
@@ -37,7 +47,7 @@ export function InvitationCard() {
           <p className="invite-place" lang="en" dir="ltr">
             {wedding.venue.name}
           </p>
-          <p className="invite-guests">{wedding.copy.guestCountNote}</p>
+          <p className="invite-guests">{formatGuestCountNote(guestCount)}</p>
         </article>
       </Reveal>
     </section>
