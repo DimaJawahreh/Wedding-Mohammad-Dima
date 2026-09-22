@@ -20,22 +20,21 @@ export function InvitationCard() {
 
           <p className="invite-intro">{wedding.copy.invitation.intro}</p>
 
+          <p className="invite-honors">{wedding.copy.invitation.honors}</p>
           <div className="invite-hosts">
-            <div className="host-col">
-              <p className="invite-honors">{wedding.copy.invitation.honors}</p>
-              <p className="invite-host-name">{wedding.hosts.first}</p>
-            </div>
-            <span className="host-divider" aria-hidden="true" />
-            <div className="host-col">
-              <p className="invite-honors">و</p>
-              <p className="invite-host-name">{wedding.hosts.second}</p>
-            </div>
+            <p className="invite-host-name">{wedding.hosts.first}</p>
+            <span className="host-and">و</span>
+            <p className="invite-host-name">{wedding.hosts.second}</p>
           </div>
 
           <p className="invite-line">{wedding.copy.invitation.inviteLine1}</p>
           <p className="invite-line">{wedding.copy.invitation.inviteLine2}</p>
 
-          <h2 className="invite-couple">{wedding.couple.displayArInvite}</h2>
+          <h2 className="invite-couple">
+            <span>{wedding.couple.groomAr}</span>
+            <span className="invite-couple-and">و</span>
+            <span>{wedding.couple.brideAr}</span>
+          </h2>
           <p className="invite-couple-en" lang="en" dir="ltr">
             {wedding.couple.displayEn}
           </p>

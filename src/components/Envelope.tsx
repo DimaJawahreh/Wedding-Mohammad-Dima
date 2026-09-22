@@ -18,7 +18,14 @@ export function Envelope({ onOpen }: EnvelopeProps) {
   }
 
   return (
-    <div className="open-screen" role="dialog" aria-modal="true" lang="en" dir="ltr">
+    <div
+      className="open-screen"
+      role="dialog"
+      aria-modal="true"
+      lang="en"
+      dir="ltr"
+      onPointerUp={handleOpen}
+    >
       <motion.p
         className="open-invited envelope-kicker"
         initial={reduce ? false : { opacity: 0 }}
@@ -31,6 +38,7 @@ export function Envelope({ onOpen }: EnvelopeProps) {
         type="button"
         className={`envelope-wrap ${opening ? "is-opening" : ""}`}
         onClick={handleOpen}
+        onPointerUp={handleOpen}
         aria-label={wedding.copy.openInvitation}
         initial={reduce ? false : { opacity: 0, y: 16 }}
         animate={{ opacity: opening ? 0 : 1, y: opening ? -20 : 0 }}

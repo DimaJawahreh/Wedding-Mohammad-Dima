@@ -6,7 +6,7 @@ export const wedding = {
     brideAr: "ديما",
     displayEn: "Mohammad & Dima",
     displayAr: "محمد و ديما",
-    displayArInvite: "محمد وديما",
+    displayArInvite: "محمد و ديما",
     initials: "M & D",
   },
   date: {

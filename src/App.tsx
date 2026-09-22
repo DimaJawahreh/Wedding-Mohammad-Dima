@@ -154,6 +154,7 @@ export default function App() {
     const audio = audioRef.current;
     if (!audio) return;
     try {
+      if (audio.readyState < 2) audio.load();
       await audio.play();
       setPlaying(true);
     } catch {
@@ -186,7 +187,8 @@ export default function App() {
       <audio
         ref={audioRef}
         loop
-        preload="auto"
+        preload="none"
+        playsInline
         onCanPlay={() => setAudioReady(true)}
         onError={() => {
           setAudioReady(false);
