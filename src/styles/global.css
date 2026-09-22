@@ -445,15 +445,20 @@ a {
   display: flex;
   justify-content: center;
   align-items: baseline;
-  font-size: clamp(2.1rem, 10vw, 2.6rem);
-  font-weight: 700;
-  margin: 0.85rem 0 0.15rem;
+  font-family: var(--font-ar);
+  font-size: clamp(1.45rem, 6.4vw, 1.8rem);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--sage-deep);
+  margin: 0.85rem 0 0.2rem;
 }
 
 .invite-couple-and {
   font-weight: 400;
-  padding-inline-start: 0.22em;
-  padding-inline-end: 0.42em;
+  font-size: 0.78em;
+  color: var(--sage);
+  padding-inline-start: 0.28em;
+  padding-inline-end: 0.48em;
 }
 
 .invite-couple-en {

@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import "@fontsource/amiri/arabic-400.css";
 import App from "./App";
 import "./styles/global.css";
 
