@@ -18,6 +18,7 @@ export const wedding = {
     dateAr: "10/10/2026",
     timeEn: "8:00 PM – 11:30 PM",
     timeStartEn: "8:00 PM",
+    timeStartAr: "8:00 مساءً",
     timeEndEn: "11:30 PM",
     timeAr: "8:00 مساءً – 11:30 مساءً",
     short: "10.10.2026",

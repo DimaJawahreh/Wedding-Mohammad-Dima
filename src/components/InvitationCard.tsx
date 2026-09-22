@@ -41,7 +41,7 @@ export function InvitationCard() {
 
           <p className="invite-meta">{wedding.copy.invitation.dayPrefix}</p>
           <p className="invite-date">{wedding.date.dateAr}</p>
-          <p className="invite-time">{wedding.date.timeAr}</p>
+          <p className="invite-time">{wedding.date.timeStartAr}</p>
           <p className="invite-place-label">{wedding.copy.invitation.placeLabel}</p>
           <p className="invite-place" lang="en" dir="ltr">
             {wedding.venue.name}
