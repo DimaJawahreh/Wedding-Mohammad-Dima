@@ -6,9 +6,9 @@
   --glass: rgba(255, 252, 248, 0.78);
   --glass-strong: rgba(255, 253, 250, 0.9);
   --line: rgba(47, 59, 50, 0.14);
-  --font-ar: "Amiri", "Noto Naskh Arabic", serif;
-  --font-en: "Cormorant Garamond", Georgia, serif;
-  --font-ui: "Jost", "Helvetica Neue", sans-serif;
+  --font-ar: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", "SF Arabic", serif;
+  --font-en: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-ui: "Jost", "Segoe UI", system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -681,18 +681,37 @@ a {
 
 .map-frame {
   position: relative;
-  aspect-ratio: 16 / 12;
+  min-height: 8.5rem;
+  display: grid;
+  place-items: center;
   overflow: hidden;
   border-radius: 0.75rem;
   background: #d5ddd2;
+  color: var(--sage-deep);
+  text-decoration: none;
+  padding: 1.2rem 1rem;
+  text-align: center;
 }
 
-.map-frame iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
+.map-pin {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 auto 0.55rem;
+}
+
+.map-frame strong {
+  display: block;
+  font-family: var(--font-en);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.map-frame span {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .timeline {

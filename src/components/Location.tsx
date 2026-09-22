@@ -12,24 +12,24 @@ export function Location() {
 
       <Reveal delay={0.08}>
         <div className="map-card glass-card">
-          <div className="map-frame">
-            <iframe
-              title={wedding.venue.name}
-              src={wedding.venue.mapsEmbedUrl}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
-          </div>
+          <a
+            className="map-frame"
+            href={wedding.venue.mapsSearchUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg className="map-pin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M12 21s7-6.2 7-11.2A7 7 0 0 0 5 9.8C5 14.8 12 21 12 21Z"
+                stroke="currentColor"
+                strokeWidth="1.4"
+              />
+              <circle cx="12" cy="9.8" r="2.2" stroke="currentColor" strokeWidth="1.4" />
+            </svg>
+            <strong>{wedding.venue.name}</strong>
+            <span>{wedding.copy.directions}</span>
+          </a>
         </div>
-        <a
-          className="text-link"
-          href={wedding.venue.mapsSearchUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {wedding.copy.directions}
-        </a>
       </Reveal>
     </section>
   );

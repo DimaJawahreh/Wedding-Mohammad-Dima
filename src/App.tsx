@@ -154,9 +154,10 @@ export default function App() {
     const audio = audioRef.current;
     if (!audio) return;
     try {
-      if (audio.readyState < 2) audio.load();
+      if (!audio.src) audio.src = wedding.music.src;
       await audio.play();
       setPlaying(true);
+      setAudioReady(true);
     } catch {
       setPlaying(false);
     }
@@ -165,8 +166,8 @@ export default function App() {
   function handleOpen() {
     if (opened) return;
     setOpened(true);
-    void playMusic();
     window.setTimeout(() => setRevealed(true), reduce ? 60 : 1250);
+    void playMusic();
   }
 
   function toggleMusic() {
@@ -194,9 +195,7 @@ export default function App() {
           setAudioReady(false);
           setPlaying(false);
         }}
-      >
-        <source src={wedding.music.src} type="audio/mp4" />
-      </audio>
+      />
 
       <AnimatePresence>
         {!revealed && (
