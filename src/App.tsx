@@ -173,11 +173,17 @@ export default function App() {
     };
   }, [revealed, wishOpen]);
 
+  function ensureMusicSrc(audio: HTMLAudioElement) {
+    if (audio.getAttribute("src") !== wedding.music.src) {
+      audio.src = wedding.music.src;
+    }
+  }
+
   async function playMusic() {
     const audio = audioRef.current;
     if (!audio) return;
     try {
-      if (!audio.src) audio.src = wedding.music.src;
+      ensureMusicSrc(audio);
       await audio.play();
       setPlaying(true);
     } catch {
@@ -189,13 +195,14 @@ export default function App() {
     if (opened) return;
     setOpened(true);
     markOpened();
+    void playMusic();
     window.setTimeout(() => setRevealed(true), reduce ? 60 : 1250);
   }
 
   function toggleMusic() {
     const audio = audioRef.current;
     if (!audio) return;
-    if (!audio.src || audio.paused) {
+    if (audio.paused || audio.getAttribute("src") !== wedding.music.src) {
       void playMusic();
     } else {
       audio.pause();
