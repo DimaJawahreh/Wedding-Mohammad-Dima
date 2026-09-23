@@ -6,7 +6,7 @@
   --glass: rgba(255, 252, 248, 0.78);
   --glass-strong: rgba(255, 253, 250, 0.9);
   --line: rgba(47, 59, 50, 0.14);
-  --font-ar: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", "SF Arabic", serif;
+  --font-ar: "Aref Ruqaa", "Noto Naskh Arabic", "Traditional Arabic", "SF Arabic", serif;
   --font-en: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-ui: "Jost", "Segoe UI", system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -325,9 +325,9 @@ a {
 }
 
 .ayah {
-  font-size: 1.02rem;
-  font-style: italic;
-  line-height: 2.3;
+  font-size: 1.08rem;
+  font-style: normal;
+  line-height: 2.35;
   max-width: 22rem;
   color: var(--ink);
 }
@@ -424,7 +424,7 @@ a {
 
 .invite-honors {
   text-align: center;
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   color: var(--sage);
   margin: 1.05rem 0 0.45rem;
 }
@@ -444,9 +444,9 @@ a {
 }
 
 .invite-host-name {
-  font-size: 0.98rem;
+  font-size: 1.05rem;
   color: var(--ink);
-  line-height: 1.7;
+  line-height: 1.85;
   text-align: center;
 }
 
@@ -455,19 +455,19 @@ a {
   justify-content: center;
   align-items: baseline;
   font-family: var(--font-ar);
-  font-size: clamp(1.45rem, 6.4vw, 1.8rem);
-  font-weight: 400;
-  line-height: 1.4;
+  font-size: clamp(1.75rem, 7.4vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.65;
   color: var(--sage-deep);
-  margin: 0.85rem 0 0.2rem;
+  margin: 0.95rem 0 0.2rem;
 }
 
 .invite-couple-and {
   font-weight: 400;
-  font-size: 0.78em;
+  font-size: 0.72em;
   color: var(--sage);
-  padding-inline-start: 0.28em;
-  padding-inline-end: 0.48em;
+  padding-inline-start: 0.3em;
+  padding-inline-end: 0.5em;
 }
 
 .invite-couple-en {

@@ -49,7 +49,10 @@ export default function App() {
 
   useEffect(() => {
     if (!revealed) return;
-    void import("@fontsource/amiri/arabic-400.css");
+    void import("@fontsource/aref-ruqaa/arabic-400.css");
+    void import("@fontsource/aref-ruqaa/arabic-700.css");
+    void import("@fontsource/cormorant-garamond/latin-400.css");
+    void import("@fontsource/cormorant-garamond/latin-400-italic.css");
   }, [revealed]);
 
   useEffect(() => {
