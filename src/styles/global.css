@@ -7,8 +7,8 @@
   --glass-strong: rgba(255, 253, 250, 0.9);
   --line: rgba(47, 59, 50, 0.14);
   --font-ar: "Aref Ruqaa", "Noto Naskh Arabic", "Traditional Arabic", "SF Arabic", serif;
-  --font-en: "Cormorant Garamond", Palatino, "Palatino Linotype", Georgia, serif;
-  --font-ui: "Cormorant Garamond", Palatino, "Palatino Linotype", Georgia, serif;
+  --font-en: "Great Vibes", Palatino, "Palatino Linotype", serif;
+  --font-ui: "Great Vibes", Palatino, "Palatino Linotype", serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -173,8 +173,7 @@ a {
 
 .envelope-letter-date {
   font-family: var(--font-ui);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  font-size: 1rem;
   color: var(--ink-soft);
 }
 
@@ -371,24 +370,22 @@ a {
 .eyebrow,
 .section-title {
   font-family: var(--font-ui);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-weight: 400;
   color: var(--sage-deep);
 }
 
 .eyebrow {
-  font-size: 0.68rem;
+  font-size: 1.45rem;
   margin-bottom: 1.1rem;
 }
 
 .invite-card .eyebrow {
-  letter-spacing: 0.12em;
   line-height: 1.45;
 }
 
 .section-title {
-  font-size: 0.92rem;
-  font-weight: 500;
+  font-size: 1.7rem;
+  font-weight: 400;
   margin-bottom: 0.7rem;
 }
 
@@ -579,9 +576,7 @@ a {
   gap: 0.7rem;
   margin: 0.55rem 0 0.2rem;
   font-family: var(--font-ui);
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 1.15rem;
 }
 
 .reception-year {
@@ -615,9 +610,7 @@ a {
 .count-label {
   display: block;
   margin-top: 0.2rem;
-  font-size: 0.58rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.85rem;
 }
 
 .calendar {
@@ -723,9 +716,7 @@ a {
 .map-frame span {
   display: block;
   margin-top: 0.25rem;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 1.05rem;
 }
 
 .timeline {
@@ -836,10 +827,8 @@ a {
 
 .wish-modal-bar h2 {
   font-family: var(--font-ui);
-  font-size: 0.82rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-weight: 500;
+  font-size: 1.35rem;
+  font-weight: 400;
 }
 
 .wish-close {
