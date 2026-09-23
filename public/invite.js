@@ -1,12 +1,12 @@
 (function () {
   var TARGET = Date.parse("2026-10-10T20:00:00+03:00");
-  var opened = false;
   var scrolling = false;
   var stopScroll = false;
   var raf = 0;
   var start = 0;
   var armedAt = 0;
   var touchY = 0;
+  var fontsLoaded = false;
 
   function guests() {
     var query = /[?&](?:guests|n)=([123])/.exec(location.search);
@@ -31,21 +31,6 @@
     if (secs) secs.textContent = pad(Math.floor((diff % 60000) / 1000));
   }
 
-  function buildCalendar() {
-    var grid = document.getElementById("calendar-grid");
-    if (!grid) return;
-    var first = new Date(2026, 9, 1);
-    var offset = (first.getDay() + 6) % 7;
-    var days = 31;
-    var html = "";
-    var i;
-    for (i = 0; i < offset; i += 1) html += "<span></span>";
-    for (i = 1; i <= days; i += 1) {
-      html += i === 10 ? '<span class="is-wedding">♡</span>' : "<span>" + i + "</span>";
-    }
-    grid.innerHTML = html;
-  }
-
   function downloadIcs() {
     var ics = [
       "BEGIN:VCALENDAR",
@@ -67,14 +52,27 @@
     URL.revokeObjectURL(url);
   }
 
+  function loadPrettyFonts() {
+    if (fontsLoaded) return;
+    fontsLoaded = true;
+    var style = document.createElement("style");
+    style.textContent =
+      '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/aref-ruqaa-400.woff2") format("woff2")}' +
+      '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/great-vibes.woff2") format("woff2")}';
+    document.head.appendChild(style);
+  }
+
   function playMusic() {
     var audio = document.getElementById("music");
+    var btn = document.getElementById("music-btn");
     if (!audio) return;
-    if (!audio.getAttribute("src")) audio.src = "/assets/music/wedding.mp4";
+    if (audio.getAttribute("src") !== "/assets/music/wedding.mp4") {
+      audio.src = "/assets/music/wedding.mp4";
+    }
     var play = audio.play();
     if (play && play.then) {
       play.then(function () {
-        document.getElementById("music-btn").classList.add("is-playing");
+        if (btn) btn.classList.add("is-playing");
       }).catch(function () {});
     }
   }
@@ -130,52 +128,22 @@
     raf = requestAnimationFrame(step);
   }
 
-  function reveal() {
-    document.getElementById("open-screen").classList.add("is-gone");
-    document.getElementById("invitation").classList.add("is-on");
-    document.getElementById("floral-bg").classList.add("is-on");
-    document.getElementById("music-btn").classList.add("is-on");
-    document.documentElement.classList.remove("is-locked");
-    document.body.classList.remove("is-locked");
-    window.setTimeout(autoScroll, 1800);
-  }
-
-  function openInvite() {
-    if (opened) return;
-    opened = true;
-    var wrap = document.getElementById("envelope-wrap");
-    if (wrap) wrap.classList.add("is-opening");
+  function onOpened() {
+    loadPrettyFonts();
     playMusic();
-    window.setTimeout(reveal, 1250);
-  }
-
-  function openWish() {
-    haltScroll();
-    document.getElementById("wish-modal").hidden = false;
-    document.body.classList.add("is-locked");
-  }
-
-  function closeWish() {
-    document.getElementById("wish-modal").hidden = true;
-    document.body.classList.remove("is-locked");
+    window.setTimeout(autoScroll, 1800);
   }
 
   var note = document.getElementById("guest-note");
   if (note) note.textContent = "عدد الحضور لهذه البطاقة: " + guests();
-  buildCalendar();
   tickCountdown();
   window.setInterval(tickCountdown, 1000);
 
-  document.documentElement.classList.add("is-locked");
-  document.body.classList.add("is-locked");
-
-  var openScreen = document.getElementById("open-screen");
-  if (openScreen) {
-    openScreen.onclick = openInvite;
-    openScreen.ontouchend = function (event) {
-      event.preventDefault();
-      openInvite();
-    };
+  var toggle = document.getElementById("opened");
+  if (toggle) {
+    toggle.addEventListener("change", function () {
+      if (toggle.checked) onOpened();
+    });
   }
 
   var musicBtn = document.getElementById("music-btn");
@@ -185,13 +153,22 @@
   if (icsBtn) icsBtn.onclick = downloadIcs;
 
   var giftBtn = document.getElementById("gift-btn");
-  if (giftBtn) giftBtn.onclick = openWish;
+  if (giftBtn) {
+    giftBtn.onclick = function () {
+      haltScroll();
+      document.getElementById("wish-modal").hidden = false;
+    };
+  }
   var wishClose = document.getElementById("wish-close");
-  if (wishClose) wishClose.onclick = closeWish;
+  if (wishClose) {
+    wishClose.onclick = function () {
+      document.getElementById("wish-modal").hidden = true;
+    };
+  }
   var wishModal = document.getElementById("wish-modal");
   if (wishModal) {
     wishModal.onclick = function (event) {
-      if (event.target === wishModal) closeWish();
+      if (event.target === wishModal) wishModal.hidden = true;
     };
   }
 

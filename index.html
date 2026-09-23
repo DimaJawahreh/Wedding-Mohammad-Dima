@@ -21,33 +21,43 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Mohammad & Dima — Wedding Invitation" />
     <meta name="twitter:image" content="https://mohammaddima.vercel.app/assets/images/cover.jpg" />
-    <link rel="stylesheet" href="/invite.css" />
+    <style>
+      html,body{margin:0;background:#d8e0d4;color:#2c382e;font-family:"Traditional Arabic","SF Arabic",Palatino,"Palatino Linotype",Georgia,serif}
+      .open-toggle{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+      .invitation{display:none}
+      .open-toggle:checked ~ .invitation{display:block}
+      .open-toggle:checked ~ .open-screen{display:none}
+      .open-screen{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:1.5rem;cursor:pointer}
+    </style>
+    <link rel="stylesheet" href="/invite.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="/invite.css" /></noscript>
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect fill='%23F4EFE6' width='64' height='64' rx='10'/><text x='32' y='40' text-anchor='middle' font-size='16' fill='%238C6E45' font-family='Georgia, serif'>M&amp;D</text></svg>"
     />
   </head>
   <body>
+    <input type="checkbox" id="opened" class="open-toggle" />
     <div class="floral-bg" id="floral-bg" aria-hidden="true"></div>
 
     <audio id="music" loop preload="none" playsinline></audio>
 
-    <div class="open-screen" id="open-screen" role="dialog" aria-modal="true" lang="en" dir="ltr">
+    <label class="open-screen" id="open-screen" for="opened" lang="en" dir="ltr">
       <p class="open-invited envelope-kicker">You're invited</p>
-      <button type="button" class="envelope-wrap" id="envelope-wrap" aria-label="Open Invitation">
-        <div class="envelope" aria-hidden="true">
-          <div class="envelope-back"></div>
-          <div class="envelope-letter">
+      <span class="envelope-wrap" id="envelope-wrap">
+        <span class="envelope" aria-hidden="true">
+          <span class="envelope-back"></span>
+          <span class="envelope-letter">
             <span class="envelope-letter-names">M &amp; D</span>
             <span class="envelope-letter-date">10.10.2026</span>
-          </div>
-          <div class="envelope-body"></div>
-          <div class="envelope-flap"></div>
-          <div class="envelope-seal">M &amp; D</div>
-        </div>
+          </span>
+          <span class="envelope-body"></span>
+          <span class="envelope-flap"></span>
+          <span class="envelope-seal">M &amp; D</span>
+        </span>
         <span class="envelope-hint">Open Invitation</span>
-      </button>
-    </div>
+      </span>
+    </label>
 
     <main class="invitation" id="invitation">
       <section class="section blessing" aria-label="Opening">
@@ -125,7 +135,15 @@
           <div class="calendar-week">
             <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
           </div>
-          <div class="calendar-grid" id="calendar-grid"></div>
+          <div class="calendar-grid" id="calendar-grid">
+            <span></span><span></span><span></span>
+            <span>1</span><span>2</span><span>3</span><span>4</span>
+            <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+            <span class="is-wedding">♡</span>
+            <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span>
+            <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span>
+            <span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+          </div>
         </div>
         <button type="button" class="text-link" id="ics-btn">Add to Calendar</button>
       </section>
@@ -223,6 +241,194 @@
       </span>
     </button>
 
-    <script src="/invite.js" defer></script>
+    <script>
+(function () {
+  var TARGET = Date.parse("2026-10-10T20:00:00+03:00");
+  var scrolling = false;
+  var stopScroll = false;
+  var raf = 0;
+  var start = 0;
+  var armedAt = 0;
+  var touchY = 0;
+  var fontsLoaded = false;
+
+  function guests() {
+    var query = /[?&](?:guests|n)=([123])/.exec(location.search);
+    if (query) return query[1];
+    var part = location.pathname.replace(/\/+$/, "").split("/").pop();
+    return part === "1" || part === "2" || part === "3" ? part : "1";
+  }
+
+  function pad(n) {
+    return (n < 10 ? "0" : "") + Math.max(0, n);
+  }
+
+  function tickCountdown() {
+    var diff = Math.max(0, TARGET - Date.now());
+    var days = document.getElementById("count-days");
+    var hours = document.getElementById("count-hours");
+    var mins = document.getElementById("count-mins");
+    var secs = document.getElementById("count-secs");
+    if (days) days.textContent = pad(Math.floor(diff / 86400000));
+    if (hours) hours.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+    if (mins) mins.textContent = pad(Math.floor((diff % 3600000) / 60000));
+    if (secs) secs.textContent = pad(Math.floor((diff % 60000) / 1000));
+  }
+
+  function downloadIcs() {
+    var ics = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "BEGIN:VEVENT",
+      "DTSTART:20261010T170000Z",
+      "DTEND:20261010T203000Z",
+      "SUMMARY:Wedding of Mohammad & Dima",
+      "LOCATION:Sheraton Amman Hotel\\, Amman, Jordan",
+      "END:VEVENT",
+      "END:VCALENDAR",
+    ].join("\r\n");
+    var blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "mohammad-dima-wedding.ics";
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function loadPrettyFonts() {
+    if (fontsLoaded) return;
+    fontsLoaded = true;
+    var style = document.createElement("style");
+    style.textContent =
+      '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/aref-ruqaa-400.woff2") format("woff2")}' +
+      '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/great-vibes.woff2") format("woff2")}';
+    document.head.appendChild(style);
+  }
+
+  function playMusic() {
+    var audio = document.getElementById("music");
+    var btn = document.getElementById("music-btn");
+    if (!audio) return;
+    if (audio.getAttribute("src") !== "/assets/music/wedding.mp4") {
+      audio.src = "/assets/music/wedding.mp4";
+    }
+    var play = audio.play();
+    if (play && play.then) {
+      play.then(function () {
+        if (btn) btn.classList.add("is-playing");
+      }).catch(function () {});
+    }
+  }
+
+  function toggleMusic() {
+    var audio = document.getElementById("music");
+    var btn = document.getElementById("music-btn");
+    if (!audio || !btn) return;
+    if (audio.paused || audio.getAttribute("src") !== "/assets/music/wedding.mp4") {
+      playMusic();
+    } else {
+      audio.pause();
+      btn.classList.remove("is-playing");
+    }
+  }
+
+  function distance() {
+    var root = document.scrollingElement || document.documentElement;
+    var view = window.innerHeight || root.clientHeight;
+    return Math.max(0, root.scrollHeight - view, document.body.scrollHeight - view);
+  }
+
+  function setTop(y) {
+    var root = document.scrollingElement || document.documentElement;
+    root.scrollTop = y;
+    document.documentElement.scrollTop = y;
+    document.body.scrollTop = y;
+  }
+
+  function haltScroll() {
+    stopScroll = true;
+    scrolling = false;
+    document.documentElement.classList.remove("is-auto-scrolling");
+    if (raf) cancelAnimationFrame(raf);
+  }
+
+  function autoScroll() {
+    if (stopScroll) return;
+    var max = distance();
+    if (max < 80) return;
+    document.documentElement.classList.add("is-auto-scrolling");
+    scrolling = true;
+    armedAt = Date.now() + 800;
+    var duration = Math.min(62000, Math.max(38000, max * 8));
+    function step(now) {
+      if (!scrolling || stopScroll) return;
+      if (!start) start = now;
+      var t = Math.min(1, (now - start) / duration);
+      setTop(distance() * t);
+      if (t < 1) raf = requestAnimationFrame(step);
+      else document.documentElement.classList.remove("is-auto-scrolling");
+    }
+    raf = requestAnimationFrame(step);
+  }
+
+  function onOpened() {
+    loadPrettyFonts();
+    playMusic();
+    window.setTimeout(autoScroll, 1800);
+  }
+
+  var note = document.getElementById("guest-note");
+  if (note) note.textContent = "عدد الحضور لهذه البطاقة: " + guests();
+  tickCountdown();
+  window.setInterval(tickCountdown, 1000);
+
+  var toggle = document.getElementById("opened");
+  if (toggle) {
+    toggle.addEventListener("change", function () {
+      if (toggle.checked) onOpened();
+    });
+  }
+
+  var musicBtn = document.getElementById("music-btn");
+  if (musicBtn) musicBtn.onclick = toggleMusic;
+
+  var icsBtn = document.getElementById("ics-btn");
+  if (icsBtn) icsBtn.onclick = downloadIcs;
+
+  var giftBtn = document.getElementById("gift-btn");
+  if (giftBtn) {
+    giftBtn.onclick = function () {
+      haltScroll();
+      document.getElementById("wish-modal").hidden = false;
+    };
+  }
+  var wishClose = document.getElementById("wish-close");
+  if (wishClose) {
+    wishClose.onclick = function () {
+      document.getElementById("wish-modal").hidden = true;
+    };
+  }
+  var wishModal = document.getElementById("wish-modal");
+  if (wishModal) {
+    wishModal.onclick = function (event) {
+      if (event.target === wishModal) wishModal.hidden = true;
+    };
+  }
+
+  window.addEventListener("touchstart", function (event) {
+    touchY = event.touches[0] ? event.touches[0].clientY : 0;
+  }, { passive: true });
+  window.addEventListener("touchmove", function (event) {
+    if (!scrolling || Date.now() < armedAt) return;
+    var y = event.touches[0] ? event.touches[0].clientY : touchY;
+    if (Math.abs(y - touchY) > 12) haltScroll();
+  }, { passive: true });
+  window.addEventListener("wheel", function (event) {
+    if (!scrolling || Date.now() < armedAt) return;
+    if (Math.abs(event.deltaY) > 2) haltScroll();
+  }, { passive: true });
+})();
+    </script>
   </body>
 </html>

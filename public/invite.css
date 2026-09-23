@@ -1,27 +1,3 @@
-@font-face {
-  font-family: "Aref Ruqaa";
-  font-style: normal;
-  font-weight: 400;
-  font-display: optional;
-  src: url("/fonts/aref-ruqaa-400.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Aref Ruqaa";
-  font-style: normal;
-  font-weight: 700;
-  font-display: optional;
-  src: url("/fonts/aref-ruqaa-700.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Great Vibes";
-  font-style: normal;
-  font-weight: 400;
-  font-display: optional;
-  src: url("/fonts/great-vibes.woff2") format("woff2");
-}
-
 :root {
   --sage: #5d6d5d;
   --sage-deep: #2f3b32;
@@ -477,7 +453,7 @@ a {
   align-items: baseline;
   font-family: var(--font-ar);
   font-size: clamp(1.75rem, 7.4vw, 2.2rem);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.65;
   color: var(--sage-deep);
   margin: 0.95rem 0 0.2rem;
@@ -1066,4 +1042,33 @@ body.is-locked {
 .envelope-wrap.is-opening .envelope-seal {
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.6);
+}
+
+.open-toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.open-toggle:checked ~ .open-screen {
+  display: none;
+}
+
+.open-toggle:checked ~ .invitation {
+  display: block;
+}
+
+.open-toggle:checked ~ .music-btn {
+  display: grid;
+}
+
+.open-toggle:checked ~ .floral-bg {
+  background: url("/assets/images/floral-bg.png") center / cover no-repeat;
+}
+
+body:has(.open-toggle:not(:checked)) {
+  overflow: hidden;
+  height: 100svh;
 }
