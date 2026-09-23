@@ -23,7 +23,7 @@ export function WishingWell({ open, onOpen, onClose }: WishingWellProps) {
           aria-haspopup="dialog"
           aria-expanded={open}
         >
-          <img src={wedding.images.gift} alt="" className="gift-img" />
+          <img src={wedding.images.gift} alt="" className="gift-img" loading="lazy" decoding="async" />
           <span className="gift-hint">{wedding.copy.wishingWellHint}</span>
         </button>
         <p className="wishing-teaser">{wedding.copy.wishingWellMessage}</p>
@@ -56,7 +56,7 @@ export function WishingWell({ open, onOpen, onClose }: WishingWellProps) {
                 </button>
               </div>
               <div className="wish-modal-body">
-                <img src={wedding.images.gift} alt="" className="wish-modal-gift" />
+                <img src={wedding.images.gift} alt="" className="wish-modal-gift" loading="lazy" decoding="async" />
                 <p className="wish-en">{wedding.copy.wishingWellMessage}</p>
                 <p className="wish-ar" dir="rtl">
                   {wedding.copy.wishingWellMessageAr}

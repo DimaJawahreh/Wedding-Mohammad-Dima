@@ -1,19 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { wedding } from "./config";
 import { Envelope } from "./components/Envelope";
 import { MusicControl } from "./components/MusicControl";
-import { OpeningBlessing } from "./components/OpeningBlessing";
-import { InvitationCard } from "./components/InvitationCard";
-import { CoupleHero } from "./components/CoupleHero";
-import { Countdown } from "./components/Countdown";
-import { Location } from "./components/Location";
-import { Timeline } from "./components/Timeline";
-import { WishingWell } from "./components/WishingWell";
-import { ChildrenNote } from "./components/ChildrenNote";
-import { Closing } from "./components/Closing";
-import { Footer } from "./components/Footer";
 import { usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
+
+const Invitation = lazy(() => import("./Invitation"));
 
 const OPEN_KEY = "md-invite-open";
 
@@ -49,10 +41,7 @@ export default function App() {
 
   useEffect(() => {
     if (!revealed) return;
-    void import("@fontsource/aref-ruqaa/arabic-400.css");
-    void import("@fontsource/aref-ruqaa/arabic-700.css");
-    void import("@fontsource/cormorant-garamond/latin-400.css");
-    void import("@fontsource/cormorant-garamond/latin-400-italic.css");
+    void import("./fonts");
   }, [revealed]);
 
   useEffect(() => {
@@ -234,27 +223,14 @@ export default function App() {
       </AnimatePresence>
 
       {revealed && (
-        <motion.main
-          className="invitation"
-          initial={reduce ? false : { opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <OpeningBlessing />
-          <InvitationCard />
-          <CoupleHero />
-          <Countdown />
-          <Location />
-          <Timeline />
-          <WishingWell
-            open={wishOpen}
-            onOpen={() => setWishOpen(true)}
-            onClose={() => setWishOpen(false)}
+        <Suspense fallback={null}>
+          <Invitation
+            reduce={reduce}
+            wishOpen={wishOpen}
+            onWishOpen={() => setWishOpen(true)}
+            onWishClose={() => setWishOpen(false)}
           />
-          <ChildrenNote />
-          <Closing />
-          <Footer />
-        </motion.main>
+        </Suspense>
       )}
 
       {revealed && <MusicControl playing={playing} onToggle={toggleMusic} />}
