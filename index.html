@@ -9,7 +9,6 @@
       name="description"
       content="You are invited to celebrate the wedding of Mohammad & Dima. Saturday, October 10, 2026, 8:00 PM – 11:30 PM at Sheraton Amman Hotel, Amman."
     />
-
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ar_AR" />
     <meta property="og:title" content="Mohammad & Dima — Wedding Invitation" />
@@ -21,146 +20,209 @@
     <meta property="og:url" content="https://mohammaddima.vercel.app/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Mohammad & Dima — Wedding Invitation" />
-    <meta
-      name="twitter:description"
-      content="Saturday, October 10, 2026 · Sheraton Amman Hotel"
-    />
     <meta name="twitter:image" content="https://mohammaddima.vercel.app/assets/images/cover.jpg" />
-
-    <style>
-      html,
-      body {
-        margin: 0;
-        background: #d8e0d4;
-        min-height: 100%;
-        color: #2c382e;
-        font-family: "Aref Ruqaa", "Traditional Arabic", Palatino, "Palatino Linotype", Georgia, serif;
-      }
-      #boot {
-        min-height: 100svh;
-        box-sizing: border-box;
-        padding: 1.5rem 1.1rem 2.5rem;
-      }
-      #boot-open {
-        min-height: 100svh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        text-align: center;
-        cursor: pointer;
-      }
-      #boot-open p {
-        margin: 0;
-        font-family: Palatino, "Palatino Linotype", Georgia, serif;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        font-size: 0.78rem;
-        color: #5d6d5d;
-      }
-      #boot-open button {
-        font: inherit;
-        background: rgba(255, 252, 248, 0.9);
-        border: 1px solid rgba(47, 59, 50, 0.14);
-        border-radius: 1.1rem;
-        padding: 1.3rem 1.6rem;
-        color: #2f3b32;
-        box-shadow: 0 14px 32px rgba(47, 59, 50, 0.08);
-      }
-      #boot-invite {
-        max-width: 26rem;
-        margin: 0 auto;
-        background: rgba(255, 252, 248, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.55);
-        border-radius: 1.4rem;
-        padding: 1.5rem 1.15rem 1.7rem;
-        text-align: center;
-        line-height: 1.85;
-      }
-      #boot-invite h1 {
-        margin: 0.7rem 0 0.15rem;
-        font-size: 1.55rem;
-        font-weight: 400;
-        color: #2f3b32;
-      }
-      #boot-invite .en {
-        font-family: Palatino, "Palatino Linotype", Georgia, serif;
-        font-style: italic;
-        color: #5d6d5d;
-        margin: 0 0 0.8rem;
-      }
-      #boot-invite p {
-        margin: 0.2rem 0;
-      }
-      #boot-invite .muted {
-        color: #5a675c;
-      }
-    </style>
+    <link rel="stylesheet" href="/invite.css" />
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect fill='%23F4EFE6' width='64' height='64' rx='10'/><text x='32' y='40' text-anchor='middle' font-size='16' fill='%238C6E45' font-family='Georgia, serif'>M&amp;D</text></svg>"
     />
   </head>
   <body>
-    <div id="root">
-      <div id="boot">
-        <div id="boot-open">
-          <p>You're invited</p>
-          <button type="button" id="boot-open-btn">Open Invitation</button>
+    <div class="floral-bg" id="floral-bg" aria-hidden="true"></div>
+
+    <audio id="music" loop preload="none" playsinline></audio>
+
+    <div class="open-screen" id="open-screen" role="dialog" aria-modal="true" lang="en" dir="ltr">
+      <p class="open-invited envelope-kicker">You're invited</p>
+      <button type="button" class="envelope-wrap" id="envelope-wrap" aria-label="Open Invitation">
+        <div class="envelope" aria-hidden="true">
+          <div class="envelope-back"></div>
+          <div class="envelope-letter">
+            <span class="envelope-letter-names">M &amp; D</span>
+            <span class="envelope-letter-date">10.10.2026</span>
+          </div>
+          <div class="envelope-body"></div>
+          <div class="envelope-flap"></div>
+          <div class="envelope-seal">M &amp; D</div>
         </div>
-        <main id="boot-invite" hidden>
-          <p class="muted">Wedding Invitation</p>
-          <p>بكل الحب والسرور،</p>
-          <p>يتشرف</p>
-          <p>السيد سلطان أكرم سلطان و السيد ناجح محمد جواهرة</p>
-          <p>بدعوتكم لمشاركتهم فرحتهم وحضور حفل زفاف</p>
-          <h1>محمد و ديما</h1>
-          <p class="en">Mohammad &amp; Dima</p>
-          <p>وذلك يوم السبت</p>
-          <p>10.10.2026</p>
-          <p>8:00 مساءً</p>
-          <p class="muted">المكان</p>
-          <p>Sheraton Amman Hotel</p>
-          <p id="boot-guests">عدد الحضور لهذه البطاقة: 1</p>
-          <p>يسعدنا حضوركم واحتفالكم معنا، ونرجو الالتزام بعدم اصطحاب الأطفال.</p>
-        </main>
+        <span class="envelope-hint">Open Invitation</span>
+      </button>
+    </div>
+
+    <main class="invitation" id="invitation">
+      <section class="section blessing" aria-label="Opening">
+        <div class="names-arch glass-card" lang="en" dir="ltr">
+          <p class="arch-name">Mohammad</p>
+          <p class="open-amp">&amp;</p>
+          <p class="arch-name">Dima</p>
+        </div>
+        <p class="bismillah">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</p>
+        <blockquote class="ayah">
+          وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+        </blockquote>
+      </section>
+
+      <section class="section invite-card-section" id="invite-card">
+        <article class="glass-card invite-card">
+          <p class="eyebrow">Wedding Invitation</p>
+          <p class="invite-intro">بكل الحب والسرور،</p>
+          <p class="invite-honors">يتشرف</p>
+          <div class="invite-hosts">
+            <p class="invite-host-name">السيد سلطان أكرم سلطان</p>
+            <span class="host-and">و</span>
+            <p class="invite-host-name">السيد ناجح محمد جواهرة</p>
+          </div>
+          <p class="invite-line">بدعوتكم لمشاركتهم فرحتهم</p>
+          <p class="invite-line">وحضور حفل زفاف</p>
+          <h2 class="invite-couple">
+            <span>محمد</span>
+            <span class="invite-couple-and">و</span>
+            <span>ديما</span>
+          </h2>
+          <p class="invite-couple-en" lang="en" dir="ltr">Mohammad &amp; Dima</p>
+          <p class="invite-meta">وذلك يوم السبت</p>
+          <p class="invite-date">10.10.2026</p>
+          <p class="invite-time">8:00 مساءً</p>
+          <p class="invite-place-label">المكان</p>
+          <p class="invite-place" lang="en" dir="ltr">Sheraton Amman Hotel</p>
+          <p class="invite-guests" id="guest-note">عدد الحضور لهذه البطاقة: 1</p>
+        </article>
+      </section>
+
+      <section class="section countdown-section" lang="en" dir="ltr">
+        <article class="glass-card reception-card">
+          <p class="eyebrow">Reception</p>
+          <p class="reception-lead">We invite you to celebrate with us at</p>
+          <p class="reception-time">8:00 PM</p>
+          <p class="date-row">
+            <span>Saturday</span>
+            <span>10</span>
+            <span>October</span>
+          </p>
+          <p class="reception-year">2026</p>
+        </article>
+        <p class="eyebrow">Counting Down</p>
+        <div class="countdown" role="timer">
+          <div class="count-item">
+            <span class="count-value" id="count-days">00</span>
+            <span class="count-label">Days</span>
+          </div>
+          <div class="count-item">
+            <span class="count-value" id="count-hours">00</span>
+            <span class="count-label">Hours</span>
+          </div>
+          <div class="count-item">
+            <span class="count-value" id="count-mins">00</span>
+            <span class="count-label">Minutes</span>
+          </div>
+          <div class="count-item">
+            <span class="count-value" id="count-secs">00</span>
+            <span class="count-label">Seconds</span>
+          </div>
+        </div>
+        <div class="calendar glass-card">
+          <p class="calendar-month">October 2026</p>
+          <div class="calendar-week">
+            <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+          </div>
+          <div class="calendar-grid" id="calendar-grid"></div>
+        </div>
+        <button type="button" class="text-link" id="ics-btn">Add to Calendar</button>
+      </section>
+
+      <section class="section location-section" lang="en" dir="ltr">
+        <p class="section-title">Reception Venue</p>
+        <p class="venue-name">Sheraton Amman Hotel</p>
+        <p class="venue-city">Amman, Jordan</p>
+        <div class="map-card glass-card">
+          <a
+            class="map-frame"
+            href="https://www.google.com/maps/search/?api=1&query=Sheraton+Amman+Hotel"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg class="map-pin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 21s7-6.2 7-11.2A7 7 0 0 0 5 9.8C5 14.8 12 21 12 21Z" stroke="currentColor" stroke-width="1.4" />
+              <circle cx="12" cy="9.8" r="2.2" stroke="currentColor" stroke-width="1.4" />
+            </svg>
+            <strong>Sheraton Amman Hotel</strong>
+            <span>Get Directions</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section timeline-section" lang="en" dir="ltr">
+        <h2 class="section-title">Wedding Day Schedule</h2>
+        <ol class="timeline">
+          <li class="timeline-item">
+            <span class="timeline-time">8:00 PM</span>
+            <span class="timeline-rail" aria-hidden="true"><span class="timeline-dot"></span></span>
+            <span class="timeline-title">Arrival &amp; Welcome</span>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-time">8:30 PM</span>
+            <span class="timeline-rail" aria-hidden="true"><span class="timeline-dot"></span></span>
+            <span class="timeline-title">Wedding Celebration</span>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-time">11:30 PM</span>
+            <span class="timeline-rail" aria-hidden="true"><span class="timeline-dot"></span></span>
+            <span class="timeline-title">End of Celebration</span>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section wishing-section" lang="en" dir="ltr">
+        <div class="wishing-inner">
+          <p class="section-title wishing-heading">Wishing Well</p>
+          <button type="button" class="gift-btn" id="gift-btn">
+            <img src="/assets/images/gift-box.png" alt="" class="gift-img" loading="lazy" decoding="async" />
+            <span class="gift-hint">Tap to open</span>
+          </button>
+          <p class="wishing-teaser">Your presence would mean the world to us.</p>
+        </div>
+      </section>
+
+      <section class="section children-note">
+        <p class="children-title">تنويه</p>
+        <p class="children-text">يسعدنا حضوركم واحتفالكم معنا، ونرجو الالتزام بعدم اصطحاب الأطفال.</p>
+      </section>
+
+      <section class="section closing" lang="en" dir="ltr">
+        <p class="closing-forever">Together</p>
+        <p class="closing-names">Mohammad &amp; Dima</p>
+        <p class="closing-date">10.10.2026</p>
+      </section>
+
+      <footer class="footer">
+        <p class="credit">By Pride</p>
+      </footer>
+    </main>
+
+    <div class="modal-backdrop" id="wish-modal" hidden>
+      <div class="wish-modal" role="dialog" aria-modal="true">
+        <div class="wish-modal-bar">
+          <h2>Wishing Well</h2>
+          <button type="button" class="wish-close" id="wish-close" aria-label="Close">×</button>
+        </div>
+        <div class="wish-modal-body">
+          <img src="/assets/images/gift-box.png" alt="" class="wish-modal-gift" loading="lazy" decoding="async" />
+          <p class="wish-en">Your presence would mean the world to us.</p>
+          <p class="wish-ar" dir="rtl">حضوركم هو أغلى هدية</p>
+          <p class="wish-names">Mohammad &amp; Dima</p>
+        </div>
       </div>
     </div>
-    <script>
-      (function () {
-        var guests = 1;
-        var query = /[?&](?:guests|n)=([123])/.exec(location.search);
-        if (query) {
-          guests = Number(query[1]);
-        } else {
-          var part = location.pathname.replace(/\/+$/, "").split("/").pop();
-          if (part === "1" || part === "2" || part === "3") guests = Number(part);
-        }
-        var note = document.getElementById("boot-guests");
-        if (note) note.textContent = "عدد الحضور لهذه البطاقة: " + guests;
 
-        var screen = document.getElementById("boot-open");
-        var invite = document.getElementById("boot-invite");
-        var button = document.getElementById("boot-open-btn");
-        function openInvite() {
-          if (screen) screen.hidden = true;
-          if (invite) invite.hidden = false;
-          try {
-            sessionStorage.setItem("md-invite-open", "1");
-          } catch (err) {}
-        }
-        if (button) button.onclick = openInvite;
-        if (screen) screen.onclick = openInvite;
-        try {
-          if (sessionStorage.getItem("md-invite-open") === "1") openInvite();
-        } catch (err) {}
-      })();
-    </script>
-    <script type="module">
-      window.setTimeout(function () {
-        import("/src/main.tsx");
-      }, 600);
-    </script>
+    <button type="button" class="music-btn" id="music-btn" aria-label="Play music" lang="en" dir="ltr">
+      <span class="music-vinyl" aria-hidden="true"></span>
+      <span class="music-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5.8v12.4c0 .7.8 1.1 1.4.7l9.2-6.2c.6-.4.6-1.3 0-1.7L9.4 5.1C8.8 4.7 8 5.1 8 5.8Z" />
+        </svg>
+      </span>
+    </button>
+
+    <script src="/invite.js" defer></script>
   </body>
 </html>
