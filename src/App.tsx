@@ -15,11 +15,29 @@ import { Closing } from "./components/Closing";
 import { Footer } from "./components/Footer";
 import { usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
 
+const OPEN_KEY = "md-invite-open";
+
+function wasOpened() {
+  try {
+    return sessionStorage.getItem(OPEN_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function markOpened() {
+  try {
+    sessionStorage.setItem(OPEN_KEY, "1");
+  } catch {
+    /* ignore private-mode quota */
+  }
+}
+
 export default function App() {
-  const [opened, setOpened] = useState(false);
-  const [revealed, setRevealed] = useState(false);
+  const alreadyOpen = wasOpened();
+  const [opened, setOpened] = useState(alreadyOpen);
+  const [revealed, setRevealed] = useState(alreadyOpen);
   const [playing, setPlaying] = useState(false);
-  const [audioReady, setAudioReady] = useState(false);
   const [wishOpen, setWishOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const stopAutoScroll = useRef(false);
@@ -28,6 +46,11 @@ export default function App() {
   useEffect(() => {
     document.body.classList.toggle("is-locked", !revealed || wishOpen);
   }, [revealed, wishOpen]);
+
+  useEffect(() => {
+    if (!revealed) return;
+    void import("@fontsource/amiri/arabic-400.css");
+  }, [revealed]);
 
   useEffect(() => {
     if (!revealed || wishOpen || stopAutoScroll.current) return;
@@ -157,7 +180,6 @@ export default function App() {
       if (!audio.src) audio.src = wedding.music.src;
       await audio.play();
       setPlaying(true);
-      setAudioReady(true);
     } catch {
       setPlaying(false);
     }
@@ -166,14 +188,14 @@ export default function App() {
   function handleOpen() {
     if (opened) return;
     setOpened(true);
+    markOpened();
     window.setTimeout(() => setRevealed(true), reduce ? 60 : 1250);
-    void playMusic();
   }
 
   function toggleMusic() {
     const audio = audioRef.current;
-    if (!audio || !audioReady) return;
-    if (audio.paused) {
+    if (!audio) return;
+    if (!audio.src || audio.paused) {
       void playMusic();
     } else {
       audio.pause();
@@ -183,18 +205,14 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <div className="floral-bg" aria-hidden="true" />
+      <div className={`floral-bg ${revealed ? "is-on" : ""}`} aria-hidden="true" />
 
       <audio
         ref={audioRef}
         loop
         preload="none"
         playsInline
-        onCanPlay={() => setAudioReady(true)}
-        onError={() => {
-          setAudioReady(false);
-          setPlaying(false);
-        }}
+        onError={() => setPlaying(false)}
       />
 
       <AnimatePresence>
@@ -229,9 +247,7 @@ export default function App() {
         </motion.main>
       )}
 
-      {revealed && audioReady && (
-        <MusicControl playing={playing} onToggle={toggleMusic} />
-      )}
+      {revealed && <MusicControl playing={playing} onToggle={toggleMusic} />}
     </div>
   );
 }

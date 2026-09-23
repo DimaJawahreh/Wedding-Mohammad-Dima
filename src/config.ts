@@ -56,7 +56,7 @@ export const wedding = {
       timePrefix: "من الساعة",
       placeLabel: "المكان",
     },
-    ceremonyTitle: "Ceremony",
+    ceremonyTitle: "Wedding Invitation",
     receptionTitle: "Reception",
     countdownTitle: "Counting Down",
     locationTitle: "Reception Venue",

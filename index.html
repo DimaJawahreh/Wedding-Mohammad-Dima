@@ -33,6 +33,68 @@
         margin: 0;
         background: #d8e0d4;
         min-height: 100%;
+        color: #2c382e;
+        font-family: "Noto Naskh Arabic", "Traditional Arabic", "SF Arabic", Georgia, serif;
+      }
+      #boot {
+        min-height: 100svh;
+        box-sizing: border-box;
+        padding: 1.5rem 1.1rem 2.5rem;
+      }
+      #boot-open {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        text-align: center;
+        cursor: pointer;
+      }
+      #boot-open p {
+        margin: 0;
+        font-family: Georgia, serif;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        color: #5d6d5d;
+      }
+      #boot-open button {
+        font: inherit;
+        background: rgba(255, 252, 248, 0.9);
+        border: 1px solid rgba(47, 59, 50, 0.14);
+        border-radius: 1.1rem;
+        padding: 1.3rem 1.6rem;
+        color: #2f3b32;
+        box-shadow: 0 14px 32px rgba(47, 59, 50, 0.08);
+      }
+      #boot-invite {
+        max-width: 26rem;
+        margin: 0 auto;
+        background: rgba(255, 252, 248, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        border-radius: 1.4rem;
+        padding: 1.5rem 1.15rem 1.7rem;
+        text-align: center;
+        line-height: 1.85;
+      }
+      #boot-invite h1 {
+        margin: 0.7rem 0 0.15rem;
+        font-size: 1.55rem;
+        font-weight: 400;
+        color: #2f3b32;
+      }
+      #boot-invite .en {
+        font-family: Georgia, serif;
+        font-style: italic;
+        color: #5d6d5d;
+        margin: 0 0 0.8rem;
+      }
+      #boot-invite p {
+        margin: 0.2rem 0;
+      }
+      #boot-invite .muted {
+        color: #5a675c;
       }
     </style>
     <link
@@ -41,7 +103,60 @@
     />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="boot">
+        <div id="boot-open">
+          <p>You're invited</p>
+          <button type="button" id="boot-open-btn">Open Invitation</button>
+        </div>
+        <main id="boot-invite" hidden>
+          <p class="muted">Wedding Invitation</p>
+          <p>بكل الحب والسرور،</p>
+          <p>يتشرف</p>
+          <p>السيد سلطان أكرم سلطان و السيد ناجح محمد جواهرة</p>
+          <p>بدعوتكم لمشاركتهم فرحتهم وحضور حفل زفاف</p>
+          <h1>محمد و ديما</h1>
+          <p class="en">Mohammad &amp; Dima</p>
+          <p>وذلك يوم السبت</p>
+          <p>10/10/2026</p>
+          <p>8:00 مساءً</p>
+          <p class="muted">المكان</p>
+          <p>Sheraton Amman Hotel</p>
+          <p id="boot-guests">عدد الحضور لهذه البطاقة: 1</p>
+          <p>يسعدنا حضوركم واحتفالكم معنا، ونرجو الالتزام بعدم اصطحاب الأطفال.</p>
+        </main>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var guests = 1;
+        var query = /[?&](?:guests|n)=([123])/.exec(location.search);
+        if (query) {
+          guests = Number(query[1]);
+        } else {
+          var part = location.pathname.replace(/\/+$/, "").split("/").pop();
+          if (part === "1" || part === "2" || part === "3") guests = Number(part);
+        }
+        var note = document.getElementById("boot-guests");
+        if (note) note.textContent = "عدد الحضور لهذه البطاقة: " + guests;
+
+        var screen = document.getElementById("boot-open");
+        var invite = document.getElementById("boot-invite");
+        var button = document.getElementById("boot-open-btn");
+        function openInvite() {
+          if (screen) screen.hidden = true;
+          if (invite) invite.hidden = false;
+          try {
+            sessionStorage.setItem("md-invite-open", "1");
+          } catch (err) {}
+        }
+        if (button) button.onclick = openInvite;
+        if (screen) screen.onclick = openInvite;
+        try {
+          if (sessionStorage.getItem("md-invite-open") === "1") openInvite();
+        } catch (err) {}
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

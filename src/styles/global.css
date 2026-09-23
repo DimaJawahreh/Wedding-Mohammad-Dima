@@ -62,8 +62,12 @@ a {
 .floral-bg {
   position: fixed;
   inset: 0;
-  background: url("/assets/images/floral-bg.png") center / cover no-repeat;
+  background: #d8e0d4;
   z-index: 0;
+}
+
+.floral-bg.is-on {
+  background: url("/assets/images/floral-bg.png") center / cover no-repeat;
 }
 
 .invitation {
@@ -375,6 +379,11 @@ a {
 .eyebrow {
   font-size: 0.68rem;
   margin-bottom: 1.1rem;
+}
+
+.invite-card .eyebrow {
+  letter-spacing: 0.12em;
+  line-height: 1.45;
 }
 
 .section-title {
