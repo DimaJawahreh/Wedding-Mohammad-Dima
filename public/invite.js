@@ -7,6 +7,12 @@
   var armedAt = 0;
   var touchY = 0;
   var fontsLoaded = false;
+  var opened = false;
+
+  var sheet = document.createElement("link");
+  sheet.rel = "stylesheet";
+  sheet.href = "/invite.css";
+  document.head.appendChild(sheet);
 
   function guests() {
     var query = /[?&](?:guests|n)=([123])/.exec(location.search);
@@ -129,6 +135,8 @@
   }
 
   function onOpened() {
+    if (opened) return;
+    opened = true;
     loadPrettyFonts();
     playMusic();
     var floral = document.getElementById("floral-bg");
@@ -145,6 +153,14 @@
   if (toggle) {
     toggle.addEventListener("change", function () {
       if (toggle.checked) onOpened();
+    });
+    if (toggle.checked) onOpened();
+  }
+  var openScreen = document.getElementById("open-screen");
+  if (openScreen) {
+    openScreen.addEventListener("click", function () {
+      if (toggle && !toggle.checked) toggle.checked = true;
+      onOpened();
     });
   }
 

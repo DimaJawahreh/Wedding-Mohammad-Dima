@@ -23,17 +23,26 @@
     <meta name="twitter:image" content="https://mohammaddima.vercel.app/assets/images/cover.jpg" />
     <style>
       html,body{margin:0;background:#d8e0d4;color:#2c382e;font-family:"Traditional Arabic","SF Arabic",Palatino,"Palatino Linotype",Georgia,serif}
+      *{box-sizing:border-box}
       .open-toggle{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
       .invitation{display:none}
       .open-toggle:checked ~ .open-screen{display:none}
       .open-toggle:checked ~ .invitation{display:block}
-      .open-screen{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:1.5rem;cursor:pointer}
+      .open-screen{position:fixed;inset:0;z-index:20;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;padding:1.5rem;cursor:pointer}
+      .envelope-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem}
+      .envelope{position:relative;width:min(78vw,300px);height:188px}
+      .envelope-back,.envelope-body{position:absolute;inset:0;border-radius:4px 4px 10px 10px;background:#eef1e8;border:1px solid rgba(47,59,50,.12)}
+      .envelope-back{z-index:1}
+      .envelope-body{z-index:3;clip-path:polygon(0 38%,50% 78%,100% 38%,100% 100%,0 100%)}
+      .envelope-letter{position:absolute;left:9%;right:9%;top:14%;height:72%;z-index:2;background:#fffdf8;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+      .envelope-flap{position:absolute;top:0;left:0;right:0;height:54%;z-index:4;background:#f7f3ea;clip-path:polygon(0 0,100% 0,50% 100%)}
+      .envelope-seal{position:absolute;left:50%;top:50%;z-index:5;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;background:#2f3b32;color:#f6f1e4;display:grid;place-items:center;font-size:.78rem}
       .mono-page{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
       .mono-brand{display:flex;align-items:flex-end;justify-content:center}
       .mono-meem,.mono-dal{font-size:min(28vw,7.5rem);line-height:.8;color:#1c2620}
       .mono-date{letter-spacing:.32em}
+      .section{width:min(100% - 2rem,28rem);margin:auto;padding:2rem 0;text-align:center}
     </style>
-    <link rel="stylesheet" href="/invite.css" />
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect fill='%23F4EFE6' width='64' height='64' rx='10'/><text x='32' y='40' text-anchor='middle' font-size='16' fill='%238C6E45' font-family='Georgia, serif'>M&amp;D</text></svg>"
@@ -261,6 +270,12 @@
   var armedAt = 0;
   var touchY = 0;
   var fontsLoaded = false;
+  var opened = false;
+
+  var sheet = document.createElement("link");
+  sheet.rel = "stylesheet";
+  sheet.href = "/invite.css";
+  document.head.appendChild(sheet);
 
   function guests() {
     var query = /[?&](?:guests|n)=([123])/.exec(location.search);
@@ -383,6 +398,8 @@
   }
 
   function onOpened() {
+    if (opened) return;
+    opened = true;
     loadPrettyFonts();
     playMusic();
     var floral = document.getElementById("floral-bg");
@@ -399,6 +416,14 @@
   if (toggle) {
     toggle.addEventListener("change", function () {
       if (toggle.checked) onOpened();
+    });
+    if (toggle.checked) onOpened();
+  }
+  var openScreen = document.getElementById("open-screen");
+  if (openScreen) {
+    openScreen.addEventListener("click", function () {
+      if (toggle && !toggle.checked) toggle.checked = true;
+      onOpened();
     });
   }
 
