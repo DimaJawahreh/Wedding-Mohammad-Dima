@@ -2,7 +2,8 @@
   "rewrites": [
     { "source": "/1", "destination": "/index.html" },
     { "source": "/2", "destination": "/index.html" },
-    { "source": "/3", "destination": "/index.html" }
+    { "source": "/3", "destination": "/index.html" },
+    { "source": "/open", "destination": "/assets/open.html" }
   ],
   "headers": [
     {

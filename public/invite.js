@@ -11,7 +11,7 @@
 
   var sheet = document.createElement("link");
   sheet.rel = "stylesheet";
-  sheet.href = "/invite.css";
+  sheet.href = "/assets/invite.css";
   document.head.appendChild(sheet);
 
   function guests() {
@@ -63,8 +63,8 @@
     fontsLoaded = true;
     var style = document.createElement("style");
     style.textContent =
-      '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/aref-ruqaa-400.woff2") format("woff2")}' +
-      '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/great-vibes.woff2") format("woff2")}';
+        '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("/assets/fonts/aref-ruqaa-400.woff2") format("woff2")}' +
+      '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("/assets/fonts/great-vibes.woff2") format("woff2")}';
     document.head.appendChild(style);
   }
 
