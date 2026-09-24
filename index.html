@@ -66,8 +66,58 @@
     </label>
 
     <section class="monogram-stage" id="monogram-stage" aria-hidden="true">
-      <div class="mono-slide" id="mono-dal">
-        <p class="mono-hero">د</p>
+      <svg class="mono-frame" viewBox="0 0 360 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <defs>
+          <g id="bloom">
+            <ellipse cx="0" cy="-7.2" rx="3.8" ry="7.4" fill="#f8f3e9" />
+            <ellipse cx="0" cy="-7.2" rx="3.8" ry="7.4" fill="#f1ead8" transform="rotate(72)" />
+            <ellipse cx="0" cy="-7.2" rx="3.8" ry="7.4" fill="#f6f0e3" transform="rotate(144)" />
+            <ellipse cx="0" cy="-7.2" rx="3.8" ry="7.4" fill="#eee4d0" transform="rotate(216)" />
+            <ellipse cx="0" cy="-7.2" rx="3.8" ry="7.4" fill="#f4eee0" transform="rotate(288)" />
+            <circle r="1.8" fill="#c4a25e" />
+            <circle r="0.6" fill="#f3e6c0" />
+          </g>
+          <g id="leaves">
+            <ellipse cx="-13" cy="3" rx="12" ry="4.4" fill="#7f9274" transform="rotate(-38 -13 3)" />
+            <ellipse cx="13" cy="4" rx="11" ry="4" fill="#8aa07c" transform="rotate(32 13 4)" />
+            <ellipse cx="0" cy="10" rx="8" ry="3" fill="#6f8168" />
+          </g>
+          <g id="spray">
+            <path d="M28 92C25 62 38 40 28 6" stroke="#6d7c66" stroke-width="1.35" fill="none" stroke-linecap="round" />
+            <path d="M28 66C10 56 4 42 12 22" stroke="#6d7c66" stroke-width="1.05" fill="none" />
+            <path d="M28 58C46 48 54 34 48 16" stroke="#74856c" stroke-width="1" fill="none" />
+            <ellipse cx="12" cy="50" rx="12" ry="4.6" fill="#7f9274" transform="rotate(-46 12 50)" />
+            <ellipse cx="44" cy="36" rx="11" ry="4.2" fill="#8aa07c" transform="rotate(36 44 36)" />
+            <ellipse cx="8" cy="70" rx="10" ry="3.8" fill="#6f8168" transform="rotate(-38 8 70)" />
+            <ellipse cx="42" cy="60" rx="9.2" ry="3.6" fill="#849676" transform="rotate(48 42 60)" />
+            <use href="#bloom" transform="translate(28 8) scale(1.28)" />
+            <use href="#bloom" transform="translate(10 32) scale(0.9)" />
+            <use href="#bloom" transform="translate(46 24) scale(0.84)" />
+            <circle cx="18" cy="64" r="2.4" fill="#d7c29a" />
+            <circle cx="18" cy="64" r="0.85" fill="#efe3c4" />
+          </g>
+        </defs>
+        <ellipse cx="180" cy="320" rx="126" ry="190" fill="none" stroke="#8d9a84" stroke-width="1.15" opacity="0.5" />
+        <ellipse cx="180" cy="320" rx="116" ry="180" fill="none" stroke="#c2ae82" stroke-width="0.7" opacity="0.45" />
+        <use href="#spray" transform="translate(46 112) scale(1.02)" />
+        <use href="#spray" transform="translate(314 112) scale(-1.02 1.02)" />
+        <use href="#spray" transform="translate(46 528) scale(1.02 -1.02)" />
+        <use href="#spray" transform="translate(314 528) scale(-1.02 -1.02)" />
+        <use href="#leaves" transform="translate(180 128)" />
+        <use href="#bloom" transform="translate(180 118) scale(1.2)" />
+        <use href="#leaves" transform="translate(180 512) rotate(180)" />
+        <use href="#bloom" transform="translate(180 522) scale(1.2)" />
+        <use href="#leaves" transform="translate(54 320) rotate(-90)" />
+        <use href="#bloom" transform="translate(48 320) scale(1.05)" />
+        <use href="#leaves" transform="translate(306 320) rotate(90)" />
+        <use href="#bloom" transform="translate(312 320) scale(1.05)" />
+        <use href="#bloom" transform="translate(92 186) scale(0.82)" />
+        <use href="#bloom" transform="translate(268 186) scale(0.82)" />
+        <use href="#bloom" transform="translate(92 454) scale(0.82)" />
+        <use href="#bloom" transform="translate(268 454) scale(0.82)" />
+      </svg>
+      <div class="mono-slide" id="mono-first">
+        <p class="mono-hero">م</p>
       </div>
       <div class="mono-slide" id="mono-lockup">
         <div class="mono-brand" aria-label="محمد و ديما">
@@ -423,11 +473,11 @@
   }
 
   function playMonogram() {
-    var dal = document.getElementById("mono-dal");
+    var first = document.getElementById("mono-first");
     var lockup = document.getElementById("mono-lockup");
-    if (dal) dal.classList.add("is-on");
+    if (first) first.classList.add("is-on");
     window.setTimeout(function () {
-      if (dal) dal.classList.remove("is-on");
+      if (first) first.classList.remove("is-on");
       if (lockup) lockup.classList.add("is-on");
       window.setTimeout(showInvitation, 1600);
     }, 1500);

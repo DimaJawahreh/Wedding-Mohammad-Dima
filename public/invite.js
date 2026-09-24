@@ -160,11 +160,11 @@
   }
 
   function playMonogram() {
-    var dal = document.getElementById("mono-dal");
+    var first = document.getElementById("mono-first");
     var lockup = document.getElementById("mono-lockup");
-    if (dal) dal.classList.add("is-on");
+    if (first) first.classList.add("is-on");
     window.setTimeout(function () {
-      if (dal) dal.classList.remove("is-on");
+      if (first) first.classList.remove("is-on");
       if (lockup) lockup.classList.add("is-on");
       window.setTimeout(showInvitation, 1600);
     }, 1500);

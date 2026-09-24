@@ -1091,11 +1091,23 @@ body:has(.monogram-stage:not(.is-done):not([hidden])) {
   z-index: 18;
   align-items: center;
   justify-content: center;
-  background: #eef2ea;
+  background:
+    radial-gradient(ellipse at 50% 44%, #f7f4ee 0 46%, #e6ece2 100%);
+}
+
+.mono-frame {
+  position: absolute;
+  inset: 2.5%;
+  width: auto;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .mono-slide {
   display: none;
+  position: relative;
+  z-index: 1;
   text-align: center;
 }
 
