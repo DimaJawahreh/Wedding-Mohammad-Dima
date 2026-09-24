@@ -7,6 +7,7 @@
   var armedAt = 0;
   var touchY = 0;
   var fontsLoaded = false;
+  var inviteFontsLoaded = false;
 
   function guests() {
     var query = /[?&](?:guests|n)=([123])/.exec(location.search);
@@ -52,35 +53,23 @@
     URL.revokeObjectURL(url);
   }
 
-  function loadPrettyFonts(done) {
-    var finished = false;
-    function finish() {
-      if (finished) return;
-      finished = true;
-      if (done) done();
-    }
-    if (fontsLoaded) {
-      if (document.fonts && document.fonts.check && document.fonts.check('1em "Aref Ruqaa"')) {
-        finish();
-        return;
-      }
-    } else {
-      fontsLoaded = true;
-      var style = document.createElement("style");
-      style.textContent =
-        '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/aref-ruqaa-400.woff2") format("woff2")}' +
-        '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/great-vibes.woff2") format("woff2")}';
-      document.head.appendChild(style);
-    }
-    if (document.fonts && document.fonts.load) {
-      Promise.all([
-        document.fonts.load('400 8rem "Aref Ruqaa"'),
-        document.fonts.load('400 2rem "Great Vibes"'),
-      ]).then(finish).catch(finish);
-      window.setTimeout(finish, 800);
-    } else {
-      finish();
-    }
+  function addFont(name, file) {
+    var style = document.createElement("style");
+    style.textContent =
+      '@font-face{font-family:"' + name + '";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/' + file + '") format("woff2")}';
+    document.head.appendChild(style);
+  }
+
+  function loadLetterFont() {
+    if (fontsLoaded) return;
+    fontsLoaded = true;
+    addFont("Aref Ruqaa", "aref-ruqaa-400.woff2");
+  }
+
+  function loadInviteFonts() {
+    if (inviteFontsLoaded) return;
+    inviteFontsLoaded = true;
+    addFont("Great Vibes", "great-vibes.woff2");
   }
 
   function playMusic() {
@@ -152,29 +141,38 @@
   function showInvitation() {
     var stage = document.getElementById("monogram-stage");
     var invite = document.getElementById("invitation");
-    if (stage) stage.classList.add("is-done");
     if (invite) invite.classList.add("is-on");
+    loadInviteFonts();
     var floral = document.getElementById("floral-bg");
-    if (floral) floral.classList.add("is-on");
-    window.setTimeout(autoScroll, 1600);
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () {
+        if (stage) stage.classList.add("is-leaving");
+      });
+    });
+    window.setTimeout(function () {
+      if (floral) floral.classList.add("is-on");
+    }, 700);
+    window.setTimeout(function () {
+      if (stage) stage.classList.add("is-done");
+      window.setTimeout(autoScroll, 700);
+    }, 2100);
   }
 
   function playMonogram() {
-    var garden = document.getElementById("mono-garden");
-    if (garden) garden.classList.add("is-on");
     var first = document.getElementById("mono-first");
     var lockup = document.getElementById("mono-lockup");
     if (first) first.classList.add("is-on");
     window.setTimeout(function () {
       if (first) first.classList.remove("is-on");
       if (lockup) lockup.classList.add("is-on");
-      window.setTimeout(showInvitation, 1600);
-    }, 1500);
+      window.setTimeout(showInvitation, 1800);
+    }, 1600);
   }
 
   function onOpened() {
     playMusic();
-    loadPrettyFonts(playMonogram);
+    loadLetterFont();
+    playMonogram();
   }
 
   var note = document.getElementById("guest-note");
