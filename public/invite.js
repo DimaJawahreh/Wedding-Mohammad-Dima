@@ -128,10 +128,31 @@
     raf = requestAnimationFrame(step);
   }
 
+  function showInvitation() {
+    var stage = document.getElementById("monogram-stage");
+    var invite = document.getElementById("invitation");
+    if (stage) stage.classList.add("is-done");
+    if (invite) invite.classList.add("is-on");
+    var floral = document.getElementById("floral-bg");
+    if (floral) floral.classList.add("is-on");
+    window.setTimeout(autoScroll, 1600);
+  }
+
+  function playMonogram() {
+    var dal = document.getElementById("mono-dal");
+    var lockup = document.getElementById("mono-lockup");
+    if (dal) dal.classList.add("is-on");
+    window.setTimeout(function () {
+      if (dal) dal.classList.remove("is-on");
+      if (lockup) lockup.classList.add("is-on");
+      window.setTimeout(showInvitation, 1600);
+    }, 1500);
+  }
+
   function onOpened() {
     loadPrettyFonts();
     playMusic();
-    window.setTimeout(autoScroll, 1800);
+    playMonogram();
   }
 
   var note = document.getElementById("guest-note");

@@ -7,8 +7,11 @@
   --glass-strong: rgba(255, 253, 250, 0.9);
   --line: rgba(47, 59, 50, 0.14);
   --font-ar: "Aref Ruqaa", "Noto Naskh Arabic", "Traditional Arabic", "SF Arabic", serif;
-  --font-en: "Great Vibes", Palatino, "Palatino Linotype", serif;
-  --font-ui: "Great Vibes", Palatino, "Palatino Linotype", serif;
+  --font-en-script: "Great Vibes", Palatino, "Palatino Linotype", serif;
+  --font-en-serif: Palatino, "Palatino Linotype", Georgia, serif;
+  --font-en-meta: "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-en: var(--font-en-script);
+  --font-ui: var(--font-en-serif);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -369,13 +372,14 @@ a {
 
 .eyebrow,
 .section-title {
-  font-family: var(--font-ui);
+  font-family: var(--font-en-serif);
   font-weight: 400;
+  font-style: italic;
   color: var(--sage-deep);
 }
 
 .eyebrow {
-  font-size: 1.45rem;
+  font-size: 1.05rem;
   margin-bottom: 1.1rem;
 }
 
@@ -384,7 +388,7 @@ a {
 }
 
 .section-title {
-  font-size: 1.7rem;
+  font-size: 1.2rem;
   font-weight: 400;
   margin-bottom: 0.7rem;
 }
@@ -468,16 +472,20 @@ a {
 }
 
 .invite-couple-en {
-  font-family: var(--font-en);
-  font-style: italic;
-  font-size: 1.2rem;
+  font-family: var(--font-en-script);
+  font-style: normal;
+  font-size: 1.7rem;
   color: var(--sage);
   margin-bottom: 0.9rem;
 }
 
 .invite-date,
-.invite-time {
-  font-size: 1.08rem;
+.invite-time,
+.closing-date,
+.mono-date {
+  font-family: var(--font-en-meta);
+  letter-spacing: 0.32em;
+  font-size: 0.92rem;
   color: var(--ink);
 }
 
@@ -486,7 +494,7 @@ a {
 }
 
 .invite-place {
-  font-family: var(--font-en);
+  font-family: var(--font-en-serif);
   font-style: italic;
   font-size: 1.15rem;
 }
@@ -894,22 +902,22 @@ a {
 }
 
 .closing-forever {
-  font-family: var(--font-en);
-  font-style: italic;
+  font-family: var(--font-en-script);
+  font-style: normal;
   font-size: clamp(2.6rem, 13vw, 3.6rem);
   color: var(--sage-deep);
 }
 
 .closing-names {
-  font-family: var(--font-en);
-  font-size: 1.55rem;
+  font-family: var(--font-en-script);
+  font-size: 1.85rem;
   margin: 0.2rem 0 0.35rem;
 }
 
 .closing-date {
-  font-family: var(--font-ui);
-  letter-spacing: 0.16em;
-  font-size: 0.78rem;
+  font-family: var(--font-en-meta);
+  letter-spacing: 0.32em;
+  font-size: 0.85rem;
   color: var(--ink-soft);
 }
 
@@ -1056,19 +1064,86 @@ body.is-locked {
   display: none;
 }
 
-.open-toggle:checked ~ .invitation {
-  display: block;
+.open-toggle:checked ~ .monogram-stage:not(.is-done) {
+  display: flex;
 }
 
 .open-toggle:checked ~ .music-btn {
   display: grid;
 }
 
-.open-toggle:checked ~ .floral-bg {
-  background: url("/assets/images/floral-bg.png") center / cover no-repeat;
-}
-
-body:has(.open-toggle:not(:checked)) {
+body:has(.open-toggle:not(:checked)),
+body:has(.monogram-stage:not(.is-done):not([hidden])) {
   overflow: hidden;
   height: 100svh;
+}
+
+.monogram-stage {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 18;
+  align-items: center;
+  justify-content: center;
+  background: #eef2ea;
+}
+
+.mono-slide {
+  display: none;
+  text-align: center;
+}
+
+.mono-slide.is-on {
+  display: block;
+  animation: mono-in 0.85s ease;
+}
+
+.mono-hero {
+  font-family: var(--font-ar);
+  font-size: min(46vw, 10.5rem);
+  line-height: 0.85;
+  color: #1c2620;
+}
+
+.mono-brand {
+  position: relative;
+  width: 11.5rem;
+  height: 11.2rem;
+  margin-inline: auto;
+}
+
+.mono-meem,
+.mono-dal {
+  position: absolute;
+  font-family: var(--font-ar);
+  color: #1c2620;
+  line-height: 0.8;
+}
+
+.mono-meem {
+  font-size: 7.4rem;
+  right: 0.15rem;
+  top: 0;
+}
+
+.mono-dal {
+  font-size: 6.2rem;
+  left: 0.1rem;
+  bottom: 0.1rem;
+}
+
+.mono-date {
+  margin-top: 1.6rem;
+  color: #1c2620;
+}
+
+@keyframes mono-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }

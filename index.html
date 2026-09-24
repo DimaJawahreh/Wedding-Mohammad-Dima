@@ -25,12 +25,18 @@
       html,body{margin:0;background:#d8e0d4;color:#2c382e;font-family:"Traditional Arabic","SF Arabic",Palatino,"Palatino Linotype",Georgia,serif}
       .open-toggle{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
       .invitation{display:none}
-      .open-toggle:checked ~ .invitation{display:block}
+      .invitation.is-on{display:block}
       .open-toggle:checked ~ .open-screen{display:none}
       .open-screen{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:1.5rem;cursor:pointer}
     </style>
     <link rel="stylesheet" href="/invite.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="/invite.css" /></noscript>
+    <noscript>
+      <link rel="stylesheet" href="/invite.css" />
+      <style>
+        .open-toggle:checked ~ .invitation { display: block; }
+        .monogram-stage { display: none !important; }
+      </style>
+    </noscript>
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect fill='%23F4EFE6' width='64' height='64' rx='10'/><text x='32' y='40' text-anchor='middle' font-size='16' fill='%238C6E45' font-family='Georgia, serif'>M&amp;D</text></svg>"
@@ -58,6 +64,19 @@
         <span class="envelope-hint">Open Invitation</span>
       </span>
     </label>
+
+    <section class="monogram-stage" id="monogram-stage" aria-hidden="true">
+      <div class="mono-slide" id="mono-dal">
+        <p class="mono-hero">د</p>
+      </div>
+      <div class="mono-slide" id="mono-lockup">
+        <div class="mono-brand" aria-label="محمد و ديما">
+          <span class="mono-meem">م</span>
+          <span class="mono-dal">د</span>
+        </div>
+        <p class="mono-date">10.10.2026</p>
+      </div>
+    </section>
 
     <main class="invitation" id="invitation">
       <section class="section blessing" aria-label="Opening">
@@ -372,10 +391,31 @@
     raf = requestAnimationFrame(step);
   }
 
+  function showInvitation() {
+    var stage = document.getElementById("monogram-stage");
+    var invite = document.getElementById("invitation");
+    if (stage) stage.classList.add("is-done");
+    if (invite) invite.classList.add("is-on");
+    var floral = document.getElementById("floral-bg");
+    if (floral) floral.classList.add("is-on");
+    window.setTimeout(autoScroll, 1600);
+  }
+
+  function playMonogram() {
+    var dal = document.getElementById("mono-dal");
+    var lockup = document.getElementById("mono-lockup");
+    if (dal) dal.classList.add("is-on");
+    window.setTimeout(function () {
+      if (dal) dal.classList.remove("is-on");
+      if (lockup) lockup.classList.add("is-on");
+      window.setTimeout(showInvitation, 1600);
+    }, 1500);
+  }
+
   function onOpened() {
     loadPrettyFonts();
     playMusic();
-    window.setTimeout(autoScroll, 1800);
+    playMonogram();
   }
 
   var note = document.getElementById("guest-note");
