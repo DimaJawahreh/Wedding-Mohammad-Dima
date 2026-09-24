@@ -52,14 +52,35 @@
     URL.revokeObjectURL(url);
   }
 
-  function loadPrettyFonts() {
-    if (fontsLoaded) return;
-    fontsLoaded = true;
-    var style = document.createElement("style");
-    style.textContent =
-      '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/aref-ruqaa-400.woff2") format("woff2")}' +
-      '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/great-vibes.woff2") format("woff2")}';
-    document.head.appendChild(style);
+  function loadPrettyFonts(done) {
+    var finished = false;
+    function finish() {
+      if (finished) return;
+      finished = true;
+      if (done) done();
+    }
+    if (fontsLoaded) {
+      if (document.fonts && document.fonts.check && document.fonts.check('1em "Aref Ruqaa"')) {
+        finish();
+        return;
+      }
+    } else {
+      fontsLoaded = true;
+      var style = document.createElement("style");
+      style.textContent =
+        '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/aref-ruqaa-400.woff2") format("woff2")}' +
+        '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/great-vibes.woff2") format("woff2")}';
+      document.head.appendChild(style);
+    }
+    if (document.fonts && document.fonts.load) {
+      Promise.all([
+        document.fonts.load('400 8rem "Aref Ruqaa"'),
+        document.fonts.load('400 2rem "Great Vibes"'),
+      ]).then(finish).catch(finish);
+      window.setTimeout(finish, 800);
+    } else {
+      finish();
+    }
   }
 
   function playMusic() {
@@ -150,9 +171,8 @@
   }
 
   function onOpened() {
-    loadPrettyFonts();
     playMusic();
-    playMonogram();
+    loadPrettyFonts(playMonogram);
   }
 
   var note = document.getElementById("guest-note");
