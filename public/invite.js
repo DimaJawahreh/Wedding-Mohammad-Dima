@@ -160,6 +160,8 @@
   }
 
   function playMonogram() {
+    var garden = document.getElementById("mono-garden");
+    if (garden) garden.classList.add("is-on");
     var first = document.getElementById("mono-first");
     var lockup = document.getElementById("mono-lockup");
     if (first) first.classList.add("is-on");

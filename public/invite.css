@@ -1092,16 +1092,43 @@ body:has(.monogram-stage:not(.is-done):not([hidden])) {
   align-items: center;
   justify-content: center;
   background:
-    radial-gradient(ellipse at 50% 44%, #f7f4ee 0 46%, #e6ece2 100%);
+    radial-gradient(ellipse at 50% 38%, #fbf8f2 0 36%, #eef3ea 72%, #e4ebe3 100%);
 }
 
-.mono-frame {
+.mono-garden {
   position: absolute;
-  inset: 2.5%;
-  width: auto;
-  height: auto;
-  pointer-events: none;
+  inset: 0;
   z-index: 0;
+  pointer-events: none;
+}
+
+.mono-spray {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(36vw, 12.5rem);
+  opacity: 0;
+}
+
+.mono-garden.is-on .mono-spray {
+  opacity: 0.95;
+  background-image: url("/assets/images/floral-bg.png");
+  background-repeat: no-repeat;
+  background-size: auto 125%;
+}
+
+.mono-spray-left {
+  left: 0;
+  background-position: left 46%;
+  -webkit-mask-image: linear-gradient(to right, #000 38%, transparent 88%);
+  mask-image: linear-gradient(to right, #000 38%, transparent 88%);
+}
+
+.mono-spray-right {
+  right: 0;
+  background-position: right 54%;
+  -webkit-mask-image: linear-gradient(to left, #000 38%, transparent 88%);
+  mask-image: linear-gradient(to left, #000 38%, transparent 88%);
 }
 
 .mono-slide {
