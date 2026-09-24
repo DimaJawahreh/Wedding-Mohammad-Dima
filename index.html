@@ -30,13 +30,13 @@
       .open-toggle:checked ~ .invitation,.is-open .invitation{display:block}
       .open-screen{position:fixed;inset:0;z-index:20;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;padding:1.5rem;cursor:pointer;border:0;background:transparent;width:100%;font:inherit;color:inherit}
       .envelope-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem}
-      .envelope{position:relative;width:min(78vw,300px);height:188px}
+      .envelope{position:relative;width:min(78vw,300px);height:188px;direction:ltr}
       .envelope-back,.envelope-body{position:absolute;inset:0;border-radius:4px 4px 10px 10px;background:#eef1e8;border:1px solid rgba(47,59,50,.12)}
       .envelope-back{z-index:1}
       .envelope-body{z-index:3;clip-path:polygon(0 38%,50% 78%,100% 38%,100% 100%,0 100%)}
       .envelope-letter{position:absolute;left:9%;right:9%;top:14%;height:72%;z-index:2;background:#fffdf8;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center}
       .envelope-flap{position:absolute;top:0;left:0;right:0;height:54%;z-index:4;background:#f7f3ea;clip-path:polygon(0 0,100% 0,50% 100%)}
-      .envelope-seal{position:absolute;left:50%;top:50%;z-index:5;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;background:#2f3b32;color:#f6f1e4;display:grid;place-items:center;font-size:.78rem}
+      .envelope-seal{position:absolute;left:50%;top:50%;z-index:5;width:58px;height:58px;margin:0;border-radius:50%;background:#2f3b32;color:#f6f1e4;display:grid;place-items:center;text-align:center;font-size:.72rem;line-height:1;transform:translate(-50%,-50%)}
       .mono-page{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
       .mono-brand{display:flex;align-items:flex-end;justify-content:center}
       .mono-meem,.mono-dal{font-size:min(28vw,7.5rem);line-height:.8;color:#1c2620}
@@ -272,9 +272,16 @@
   var fontsLoaded = false;
   var didOpen = false;
 
+  function assetUrl(file) {
+    if (location.hostname.indexOf("github.io") !== -1) {
+      return location.pathname.replace(/index\.html$/, "").replace(/\/?$/, "/") + "assets/" + file;
+    }
+    return "/assets/" + file;
+  }
+
   var sheet = document.createElement("link");
   sheet.rel = "stylesheet";
-  sheet.href = "/assets/invite.css";
+  sheet.href = assetUrl("invite.css");
   document.head.appendChild(sheet);
 
   function guests() {
@@ -326,8 +333,8 @@
     fontsLoaded = true;
     var style = document.createElement("style");
     style.textContent =
-        '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("/assets/fonts/aref-ruqaa-400.woff2") format("woff2")}' +
-      '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("/assets/fonts/great-vibes.woff2") format("woff2")}';
+        '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("' + assetUrl("fonts/aref-ruqaa-400.woff2") + '") format("woff2")}' +
+      '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("' + assetUrl("fonts/great-vibes.woff2") + '") format("woff2")}';
     document.head.appendChild(style);
   }
 
@@ -335,8 +342,8 @@
     var audio = document.getElementById("music");
     var btn = document.getElementById("music-btn");
     if (!audio) return;
-    if (audio.getAttribute("src") !== "/assets/music/wedding.mp4") {
-      audio.src = "/assets/music/wedding.mp4";
+    if (audio.getAttribute("src") !== assetUrl("music/wedding.mp4")) {
+      audio.src = assetUrl("music/wedding.mp4");
     }
     var play = audio.play();
     if (play && play.then) {
@@ -350,7 +357,7 @@
     var audio = document.getElementById("music");
     var btn = document.getElementById("music-btn");
     if (!audio || !btn) return;
-    if (audio.paused || audio.getAttribute("src") !== "/assets/music/wedding.mp4") {
+    if (audio.paused || audio.getAttribute("src") !== assetUrl("music/wedding.mp4")) {
       playMusic();
     } else {
       audio.pause();
@@ -406,7 +413,10 @@
     loadPrettyFonts();
     playMusic();
     var floral = document.getElementById("floral-bg");
-    if (floral) floral.classList.add("is-on");
+    if (floral) {
+      floral.style.background = 'url("' + assetUrl("images/floral-bg.png") + '") center / cover no-repeat';
+      floral.classList.add("is-on");
+    }
     window.setTimeout(autoScroll, 1600);
   }
 

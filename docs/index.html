@@ -1,26 +1,26 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#D8E0D4" />
-    <title>Mohammad &amp; Dima — Wedding Invitation</title>
+    <title>Mohammad &amp; Dima â€” Wedding Invitation</title>
     <meta
       name="description"
-      content="You are invited to celebrate the wedding of Mohammad & Dima. Saturday, October 10, 2026, 8:00 PM – 11:30 PM at Sheraton Amman Hotel, Amman."
+      content="You are invited to celebrate the wedding of Mohammad & Dima. Saturday, October 10, 2026, 8:00 PM â€“ 11:30 PM at Sheraton Amman Hotel, Amman."
     />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ar_AR" />
-    <meta property="og:title" content="Mohammad & Dima — Wedding Invitation" />
+    <meta property="og:title" content="Mohammad & Dima â€” Wedding Invitation" />
     <meta
       property="og:description"
-      content="Saturday, October 10, 2026 · 8:00 PM – 11:30 PM · Sheraton Amman Hotel, Amman"
+      content="Saturday, October 10, 2026 Â· 8:00 PM â€“ 11:30 PM Â· Sheraton Amman Hotel, Amman"
     />
-    <meta property="og:image" content="https://mohammaddima.vercel.appassets/images/cover.jpg" />
+    <meta property="og:image" content="https://mohammaddima.vercel.app/assets/images/cover.jpg" />
     <meta property="og:url" content="https://mohammaddima.vercel.app/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Mohammad & Dima — Wedding Invitation" />
-    <meta name="twitter:image" content="https://mohammaddima.vercel.appassets/images/cover.jpg" />
+    <meta name="twitter:title" content="Mohammad & Dima â€” Wedding Invitation" />
+    <meta name="twitter:image" content="https://mohammaddima.vercel.app/assets/images/cover.jpg" />
     <style>
       html,body{margin:0;background:#d8e0d4;color:#2c382e;font-family:"Traditional Arabic","SF Arabic",Palatino,"Palatino Linotype",Georgia,serif}
       *{box-sizing:border-box}
@@ -30,18 +30,19 @@
       .open-toggle:checked ~ .invitation,.is-open .invitation{display:block}
       .open-screen{position:fixed;inset:0;z-index:20;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;padding:1.5rem;cursor:pointer;border:0;background:transparent;width:100%;font:inherit;color:inherit}
       .envelope-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem}
-      .envelope{position:relative;width:min(78vw,300px);height:188px}
+      .envelope{position:relative;width:min(78vw,300px);height:188px;direction:ltr}
       .envelope-back,.envelope-body{position:absolute;inset:0;border-radius:4px 4px 10px 10px;background:#eef1e8;border:1px solid rgba(47,59,50,.12)}
       .envelope-back{z-index:1}
       .envelope-body{z-index:3;clip-path:polygon(0 38%,50% 78%,100% 38%,100% 100%,0 100%)}
       .envelope-letter{position:absolute;left:9%;right:9%;top:14%;height:72%;z-index:2;background:#fffdf8;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center}
       .envelope-flap{position:absolute;top:0;left:0;right:0;height:54%;z-index:4;background:#f7f3ea;clip-path:polygon(0 0,100% 0,50% 100%)}
-      .envelope-seal{position:absolute;left:50%;top:50%;z-index:5;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;background:#2f3b32;color:#f6f1e4;display:grid;place-items:center;font-size:.78rem}
+      .envelope-seal{position:absolute;left:50%;top:50%;z-index:5;width:58px;height:58px;margin:0;border-radius:50%;background:#2f3b32;color:#f6f1e4;display:grid;place-items:center;text-align:center;font-size:.72rem;line-height:1;transform:translate(-50%,-50%)}
       .mono-page{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
       .mono-brand{display:flex;align-items:flex-end;justify-content:center}
       .mono-meem,.mono-dal{font-size:min(28vw,7.5rem);line-height:.8;color:#1c2620}
       .mono-date{letter-spacing:.32em}
       .section{width:min(100% - 2rem,28rem);margin:auto;padding:2rem 0;text-align:center}
+    
 :root {
   --sage: #5d6d5d;
   --sage-deep: #2f3b32;
@@ -114,7 +115,7 @@ a {
 }
 
 .floral-bg.is-on {
-  background: url("/assets/images/floral-bg.png") center / cover no-repeat;
+  background: url("assets/images/floral-bg.png") center / cover no-repeat;
 }
 
 .invitation {
@@ -177,6 +178,7 @@ a {
   width: min(78vw, 300px);
   height: 188px;
   perspective: 900px;
+  direction: ltr;
   filter: drop-shadow(0 18px 28px rgba(47, 59, 50, 0.16));
 }
 
@@ -250,15 +252,18 @@ a {
   z-index: 5;
   width: 58px;
   height: 58px;
-  translate: -50% -50%;
+  margin: 0;
   border-radius: 50%;
   display: grid;
   place-items: center;
+  text-align: center;
   background: radial-gradient(circle at 35% 30%, #4f6a52, #2f3b32 70%);
   color: #f6f1e4;
   font-family: var(--font-en);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  transform: translate(-50%, -50%);
   box-shadow: 0 8px 16px rgba(47, 59, 50, 0.22);
   border: 1px solid rgba(255, 248, 232, 0.2);
 }
@@ -1195,10 +1200,10 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
     </button>
 
     <main class="invitation" id="invitation">
-      <section class="mono-page" aria-label="محمد و ديما">
+      <section class="mono-page" aria-label="Ù…Ø­Ù…Ø¯ Ùˆ Ø¯ÙŠÙ…Ø§">
         <div class="mono-brand">
-          <span class="mono-meem">م</span>
-          <span class="mono-dal">د</span>
+          <span class="mono-meem">Ù…</span>
+          <span class="mono-dal">Ø¯</span>
         </div>
         <p class="mono-date">10.10.2026</p>
       </section>
@@ -1208,36 +1213,36 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
           <p class="open-amp">&amp;</p>
           <p class="arch-name">Dima</p>
         </div>
-        <p class="bismillah">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</p>
+        <p class="bismillah">Ø¨ÙØ³Ù’Ù…Ù Ø§Ù„Ù„Ù‡Ù Ø§Ù„Ø±ÙŽÙ‘Ø­Ù’Ù…ÙŽÙ†Ù Ø§Ù„Ø±ÙŽÙ‘Ø­ÙÙŠÙ…Ù</p>
         <blockquote class="ayah">
-          وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+          ÙˆÙŽÙ…ÙÙ†Ù’ Ø¢ÙŠÙŽØ§ØªÙÙ‡Ù Ø£ÙŽÙ†Ù’ Ø®ÙŽÙ„ÙŽÙ‚ÙŽ Ù„ÙŽÙƒÙÙ… Ù…ÙÙ‘Ù†Ù’ Ø£ÙŽÙ†Ù’ÙÙØ³ÙÙƒÙÙ…Ù’ Ø£ÙŽØ²Ù’ÙˆÙŽØ§Ø¬Ù‹Ø§ Ù„ÙÙ‘ØªÙŽØ³Ù’ÙƒÙÙ†ÙÙˆØ§ Ø¥ÙÙ„ÙŽÙŠÙ’Ù‡ÙŽØ§ ÙˆÙŽØ¬ÙŽØ¹ÙŽÙ„ÙŽ Ø¨ÙŽÙŠÙ’Ù†ÙŽÙƒÙÙ… Ù…ÙŽÙ‘ÙˆÙŽØ¯ÙŽÙ‘Ø©Ù‹ ÙˆÙŽØ±ÙŽØ­Ù’Ù…ÙŽØ©Ù‹
         </blockquote>
       </section>
 
       <section class="section invite-card-section" id="invite-card">
         <article class="glass-card invite-card">
           <p class="eyebrow">Wedding Invitation</p>
-          <p class="invite-intro">بكل الحب والسرور،</p>
-          <p class="invite-honors">يتشرف</p>
+          <p class="invite-intro">Ø¨ÙƒÙ„ Ø§Ù„Ø­Ø¨ ÙˆØ§Ù„Ø³Ø±ÙˆØ±ØŒ</p>
+          <p class="invite-honors">ÙŠØªØ´Ø±Ù</p>
           <div class="invite-hosts">
-            <p class="invite-host-name">السيد سلطان أكرم سلطان</p>
-            <span class="host-and">و</span>
-            <p class="invite-host-name">السيد ناجح محمد جواهرة</p>
+            <p class="invite-host-name">Ø§Ù„Ø³ÙŠØ¯ Ø³Ù„Ø·Ø§Ù† Ø£ÙƒØ±Ù… Ø³Ù„Ø·Ø§Ù†</p>
+            <span class="host-and">Ùˆ</span>
+            <p class="invite-host-name">Ø§Ù„Ø³ÙŠØ¯ Ù†Ø§Ø¬Ø­ Ù…Ø­Ù…Ø¯ Ø¬ÙˆØ§Ù‡Ø±Ø©</p>
           </div>
-          <p class="invite-line">بدعوتكم لمشاركتهم فرحتهم</p>
-          <p class="invite-line">وحضور حفل زفاف</p>
+          <p class="invite-line">Ø¨Ø¯Ø¹ÙˆØªÙƒÙ… Ù„Ù…Ø´Ø§Ø±ÙƒØªÙ‡Ù… ÙØ±Ø­ØªÙ‡Ù…</p>
+          <p class="invite-line">ÙˆØ­Ø¶ÙˆØ± Ø­ÙÙ„ Ø²ÙØ§Ù</p>
           <h2 class="invite-couple">
-            <span>محمد</span>
-            <span class="invite-couple-and">و</span>
-            <span>ديما</span>
+            <span>Ù…Ø­Ù…Ø¯</span>
+            <span class="invite-couple-and">Ùˆ</span>
+            <span>Ø¯ÙŠÙ…Ø§</span>
           </h2>
           <p class="invite-couple-en" lang="en" dir="ltr">Mohammad &amp; Dima</p>
-          <p class="invite-meta">وذلك يوم السبت</p>
+          <p class="invite-meta">ÙˆØ°Ù„Ùƒ ÙŠÙˆÙ… Ø§Ù„Ø³Ø¨Øª</p>
           <p class="invite-date">10.10.2026</p>
-          <p class="invite-time">8:00 مساءً</p>
-          <p class="invite-place-label">المكان</p>
+          <p class="invite-time">8:00 Ù…Ø³Ø§Ø¡Ù‹</p>
+          <p class="invite-place-label">Ø§Ù„Ù…ÙƒØ§Ù†</p>
           <p class="invite-place" lang="en" dir="ltr">Sheraton Amman Hotel</p>
-          <p class="invite-guests" id="guest-note">عدد الحضور لهذه البطاقة: 1</p>
+          <p class="invite-guests" id="guest-note">Ø¹Ø¯Ø¯ Ø§Ù„Ø­Ø¶ÙˆØ± Ù„Ù‡Ø°Ù‡ Ø§Ù„Ø¨Ø·Ø§Ù‚Ø©: 1</p>
         </article>
       </section>
 
@@ -1281,7 +1286,7 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
             <span></span><span></span><span></span>
             <span>1</span><span>2</span><span>3</span><span>4</span>
             <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
-            <span class="is-wedding">♡</span>
+            <span class="is-wedding">â™¡</span>
             <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span>
             <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span>
             <span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
@@ -1336,7 +1341,7 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
         <div class="wishing-inner">
           <p class="section-title wishing-heading">Wishing Well</p>
           <button type="button" class="gift-btn" id="gift-btn">
-            <img src="assets/images/gift-box.png" alt="" class="gift-img" loading="lazy" decoding="async" />
+            <img src="/assets/images/gift-box.png" alt="" class="gift-img" loading="lazy" decoding="async" />
             <span class="gift-hint">Tap to open</span>
           </button>
           <p class="wishing-teaser">Your presence would mean the world to us.</p>
@@ -1344,8 +1349,8 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
       </section>
 
       <section class="section children-note">
-        <p class="children-title">تنويه</p>
-        <p class="children-text">يسعدنا حضوركم واحتفالكم معنا، ونرجو الالتزام بعدم اصطحاب الأطفال.</p>
+        <p class="children-title">ØªÙ†ÙˆÙŠÙ‡</p>
+        <p class="children-text">ÙŠØ³Ø¹Ø¯Ù†Ø§ Ø­Ø¶ÙˆØ±ÙƒÙ… ÙˆØ§Ø­ØªÙØ§Ù„ÙƒÙ… Ù…Ø¹Ù†Ø§ØŒ ÙˆÙ†Ø±Ø¬Ùˆ Ø§Ù„Ø§Ù„ØªØ²Ø§Ù… Ø¨Ø¹Ø¯Ù… Ø§ØµØ·Ø­Ø§Ø¨ Ø§Ù„Ø£Ø·ÙØ§Ù„.</p>
       </section>
 
       <section class="section closing" lang="en" dir="ltr">
@@ -1363,12 +1368,12 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
       <div class="wish-modal" role="dialog" aria-modal="true">
         <div class="wish-modal-bar">
           <h2>Wishing Well</h2>
-          <button type="button" class="wish-close" id="wish-close" aria-label="Close">×</button>
+          <button type="button" class="wish-close" id="wish-close" aria-label="Close">Ã—</button>
         </div>
         <div class="wish-modal-body">
-          <img src="assets/images/gift-box.png" alt="" class="wish-modal-gift" loading="lazy" decoding="async" />
+          <img src="/assets/images/gift-box.png" alt="" class="wish-modal-gift" loading="lazy" decoding="async" />
           <p class="wish-en">Your presence would mean the world to us.</p>
-          <p class="wish-ar" dir="rtl">حضوركم هو أغلى هدية</p>
+          <p class="wish-ar" dir="rtl">Ø­Ø¶ÙˆØ±ÙƒÙ… Ù‡Ùˆ Ø£ØºÙ„Ù‰ Ù‡Ø¯ÙŠØ©</p>
           <p class="wish-names">Mohammad &amp; Dima</p>
         </div>
       </div>
@@ -1395,9 +1400,16 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
   var fontsLoaded = false;
   var didOpen = false;
 
+  function assetUrl(file) {
+    if (location.hostname.indexOf("github.io") !== -1) {
+      return location.pathname.replace(/index\.html$/, "").replace(/\/?$/, "/") + "assets/" + file;
+    }
+    return "/assets/" + file;
+  }
+
   var sheet = document.createElement("link");
   sheet.rel = "stylesheet";
-  sheet.href = "assets/invite.css";
+  sheet.href = assetUrl("invite.css");
   document.head.appendChild(sheet);
 
   function guests() {
@@ -1449,8 +1461,8 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
     fontsLoaded = true;
     var style = document.createElement("style");
     style.textContent =
-        '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/aref-ruqaa-400.woff2") format("woff2")}' +
-      '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/great-vibes.woff2") format("woff2")}';
+        '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("' + assetUrl("fonts/aref-ruqaa-400.woff2") + '") format("woff2")}' +
+      '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("' + assetUrl("fonts/great-vibes.woff2") + '") format("woff2")}';
     document.head.appendChild(style);
   }
 
@@ -1458,8 +1470,8 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
     var audio = document.getElementById("music");
     var btn = document.getElementById("music-btn");
     if (!audio) return;
-    if (audio.getAttribute("src") !== "assets/music/wedding.mp4") {
-      audio.src = "assets/music/wedding.mp4";
+    if (audio.getAttribute("src") !== assetUrl("music/wedding.mp4")) {
+      audio.src = assetUrl("music/wedding.mp4");
     }
     var play = audio.play();
     if (play && play.then) {
@@ -1473,7 +1485,7 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
     var audio = document.getElementById("music");
     var btn = document.getElementById("music-btn");
     if (!audio || !btn) return;
-    if (audio.paused || audio.getAttribute("src") !== "assets/music/wedding.mp4") {
+    if (audio.paused || audio.getAttribute("src") !== assetUrl("music/wedding.mp4")) {
       playMusic();
     } else {
       audio.pause();
@@ -1529,12 +1541,15 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
     loadPrettyFonts();
     playMusic();
     var floral = document.getElementById("floral-bg");
-    if (floral) floral.classList.add("is-on");
+    if (floral) {
+      floral.style.background = 'url("' + assetUrl("images/floral-bg.png") + '") center / cover no-repeat';
+      floral.classList.add("is-on");
+    }
     window.setTimeout(autoScroll, 1600);
   }
 
   var note = document.getElementById("guest-note");
-  if (note) note.textContent = "عدد الحضور لهذه البطاقة: " + guests();
+  if (note) note.textContent = "Ø¹Ø¯Ø¯ Ø§Ù„Ø­Ø¶ÙˆØ± Ù„Ù‡Ø°Ù‡ Ø§Ù„Ø¨Ø·Ø§Ù‚Ø©: " + guests();
   tickCountdown();
   window.setInterval(tickCountdown, 1000);
 

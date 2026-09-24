@@ -133,6 +133,7 @@ a {
   width: min(78vw, 300px);
   height: 188px;
   perspective: 900px;
+  direction: ltr;
   filter: drop-shadow(0 18px 28px rgba(47, 59, 50, 0.16));
 }
 
@@ -206,15 +207,18 @@ a {
   z-index: 5;
   width: 58px;
   height: 58px;
-  translate: -50% -50%;
+  margin: 0;
   border-radius: 50%;
   display: grid;
   place-items: center;
+  text-align: center;
   background: radial-gradient(circle at 35% 30%, #4f6a52, #2f3b32 70%);
   color: #f6f1e4;
   font-family: var(--font-en);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  transform: translate(-50%, -50%);
   box-shadow: 0 8px 16px rgba(47, 59, 50, 0.22);
   border: 1px solid rgba(255, 248, 232, 0.2);
 }

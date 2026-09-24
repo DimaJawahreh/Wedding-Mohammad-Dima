@@ -9,9 +9,16 @@
   var fontsLoaded = false;
   var didOpen = false;
 
+  function assetUrl(file) {
+    if (location.hostname.indexOf("github.io") !== -1) {
+      return location.pathname.replace(/index\.html$/, "").replace(/\/?$/, "/") + "assets/" + file;
+    }
+    return "/assets/" + file;
+  }
+
   var sheet = document.createElement("link");
   sheet.rel = "stylesheet";
-  sheet.href = "/assets/invite.css";
+  sheet.href = assetUrl("invite.css");
   document.head.appendChild(sheet);
 
   function guests() {
@@ -63,8 +70,8 @@
     fontsLoaded = true;
     var style = document.createElement("style");
     style.textContent =
-        '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("/assets/fonts/aref-ruqaa-400.woff2") format("woff2")}' +
-      '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("/assets/fonts/great-vibes.woff2") format("woff2")}';
+        '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("' + assetUrl("fonts/aref-ruqaa-400.woff2") + '") format("woff2")}' +
+      '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("' + assetUrl("fonts/great-vibes.woff2") + '") format("woff2")}';
     document.head.appendChild(style);
   }
 
@@ -72,8 +79,8 @@
     var audio = document.getElementById("music");
     var btn = document.getElementById("music-btn");
     if (!audio) return;
-    if (audio.getAttribute("src") !== "/assets/music/wedding.mp4") {
-      audio.src = "/assets/music/wedding.mp4";
+    if (audio.getAttribute("src") !== assetUrl("music/wedding.mp4")) {
+      audio.src = assetUrl("music/wedding.mp4");
     }
     var play = audio.play();
     if (play && play.then) {
@@ -87,7 +94,7 @@
     var audio = document.getElementById("music");
     var btn = document.getElementById("music-btn");
     if (!audio || !btn) return;
-    if (audio.paused || audio.getAttribute("src") !== "/assets/music/wedding.mp4") {
+    if (audio.paused || audio.getAttribute("src") !== assetUrl("music/wedding.mp4")) {
       playMusic();
     } else {
       audio.pause();
@@ -143,7 +150,10 @@
     loadPrettyFonts();
     playMusic();
     var floral = document.getElementById("floral-bg");
-    if (floral) floral.classList.add("is-on");
+    if (floral) {
+      floral.style.background = 'url("' + assetUrl("images/floral-bg.png") + '") center / cover no-repeat';
+      floral.classList.add("is-on");
+    }
     window.setTimeout(autoScroll, 1600);
   }
 

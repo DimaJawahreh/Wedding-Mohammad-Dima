@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --sage: #5d6d5d;
   --sage-deep: #2f3b32;
   --ink: #2c382e;
@@ -70,7 +70,7 @@ a {
 }
 
 .floral-bg.is-on {
-  background: url("/assets/images/floral-bg.png") center / cover no-repeat;
+  background: url("images/floral-bg.png") center / cover no-repeat;
 }
 
 .invitation {
