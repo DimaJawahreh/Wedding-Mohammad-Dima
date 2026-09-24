@@ -91,6 +91,11 @@ a {
   padding: 1.5rem;
   cursor: pointer;
   touch-action: manipulation;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  font: inherit;
+  color: inherit;
 }
 
 .envelope-kicker {
@@ -1058,11 +1063,13 @@ body.is-locked {
   clip: rect(0, 0, 0, 0);
 }
 
-.open-toggle:checked ~ .open-screen {
+.open-toggle:checked ~ .open-screen,
+body.is-open .open-screen {
   display: none;
 }
 
-.open-toggle:checked ~ .invitation {
+.open-toggle:checked ~ .invitation,
+body.is-open .invitation {
   display: block;
 }
 
@@ -1070,7 +1077,7 @@ body.is-locked {
   display: grid;
 }
 
-body:has(.open-toggle:not(:checked)) {
+body:has(.open-toggle:not(:checked)):not(.is-open) {
   overflow: hidden;
   height: 100svh;
 }

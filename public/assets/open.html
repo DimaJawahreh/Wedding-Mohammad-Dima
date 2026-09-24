@@ -26,9 +26,9 @@
       *{box-sizing:border-box}
       .open-toggle{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
       .invitation{display:none}
-      .open-toggle:checked ~ .open-screen{display:none}
-      .open-toggle:checked ~ .invitation{display:block}
-      .open-screen{position:fixed;inset:0;z-index:20;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;padding:1.5rem;cursor:pointer}
+      .open-toggle:checked ~ .open-screen,.is-open .open-screen{display:none}
+      .open-toggle:checked ~ .invitation,.is-open .invitation{display:block}
+      .open-screen{position:fixed;inset:0;z-index:20;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;padding:1.5rem;cursor:pointer;border:0;background:transparent;width:100%;font:inherit;color:inherit}
       .envelope-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem}
       .envelope{position:relative;width:min(78vw,300px);height:188px}
       .envelope-back,.envelope-body{position:absolute;inset:0;border-radius:4px 4px 10px 10px;background:#eef1e8;border:1px solid rgba(47,59,50,.12)}
@@ -135,6 +135,11 @@ a {
   padding: 1.5rem;
   cursor: pointer;
   touch-action: manipulation;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  font: inherit;
+  color: inherit;
 }
 
 .envelope-kicker {
@@ -1102,11 +1107,13 @@ body.is-locked {
   clip: rect(0, 0, 0, 0);
 }
 
-.open-toggle:checked ~ .open-screen {
+.open-toggle:checked ~ .open-screen,
+body.is-open .open-screen {
   display: none;
 }
 
-.open-toggle:checked ~ .invitation {
+.open-toggle:checked ~ .invitation,
+body.is-open .invitation {
   display: block;
 }
 
@@ -1114,7 +1121,7 @@ body.is-locked {
   display: grid;
 }
 
-body:has(.open-toggle:not(:checked)) {
+body:has(.open-toggle:not(:checked)):not(.is-open) {
   overflow: hidden;
   height: 100svh;
 }
@@ -1170,7 +1177,7 @@ body:has(.open-toggle:not(:checked)) {
 
     <audio id="music" loop preload="none" playsinline></audio>
 
-    <label class="open-screen" id="open-screen" for="opened" lang="en" dir="ltr">
+    <button type="button" class="open-screen" id="open-screen" lang="en" dir="ltr">
       <p class="open-invited envelope-kicker">You're invited</p>
       <span class="envelope-wrap" id="envelope-wrap">
         <span class="envelope" aria-hidden="true">
@@ -1185,7 +1192,7 @@ body:has(.open-toggle:not(:checked)) {
         </span>
         <span class="envelope-hint">Open Invitation</span>
       </span>
-    </label>
+    </button>
 
     <main class="invitation" id="invitation">
       <section class="mono-page" aria-label="محمد و ديما">
@@ -1386,7 +1393,12 @@ body:has(.open-toggle:not(:checked)) {
   var armedAt = 0;
   var touchY = 0;
   var fontsLoaded = false;
-  var opened = false;
+  var didOpen = false;
+
+  var sheet = document.createElement("link");
+  sheet.rel = "stylesheet";
+  sheet.href = "/assets/invite.css";
+  document.head.appendChild(sheet);
 
   function guests() {
     var query = /[?&](?:guests|n)=([123])/.exec(location.search);
@@ -1509,8 +1521,11 @@ body:has(.open-toggle:not(:checked)) {
   }
 
   function onOpened() {
-    if (opened) return;
-    opened = true;
+    if (didOpen) return;
+    didOpen = true;
+    document.body.classList.add("is-open");
+    var box = document.getElementById("opened");
+    if (box) box.checked = true;
     loadPrettyFonts();
     playMusic();
     var floral = document.getElementById("floral-bg");

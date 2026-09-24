@@ -7,7 +7,7 @@
   var armedAt = 0;
   var touchY = 0;
   var fontsLoaded = false;
-  var opened = false;
+  var didOpen = false;
 
   var sheet = document.createElement("link");
   sheet.rel = "stylesheet";
@@ -135,8 +135,11 @@
   }
 
   function onOpened() {
-    if (opened) return;
-    opened = true;
+    if (didOpen) return;
+    didOpen = true;
+    document.body.classList.add("is-open");
+    var box = document.getElementById("opened");
+    if (box) box.checked = true;
     loadPrettyFonts();
     playMusic();
     var floral = document.getElementById("floral-bg");
