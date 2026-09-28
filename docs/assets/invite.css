@@ -1424,6 +1424,23 @@ html[data-theme="2"] .invite-couple-en {
   color: #6d86a8;
 }
 
+html[data-theme="2"] .invite-hosts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+html[data-theme="2"] .invite-host-name {
+  white-space: nowrap;
+  font-size: clamp(0.84rem, 3.5vw, 1.02rem);
+  line-height: 1.7;
+}
+
+html[data-theme="2"] .host-and {
+  margin: 0.1rem 0 0.2rem;
+}
+
 html[data-theme="2"] .invite-date {
   font-family: var(--font-en-meta);
   letter-spacing: 0.32em;
