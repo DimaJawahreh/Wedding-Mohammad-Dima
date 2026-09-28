@@ -14,9 +14,9 @@
         } catch (e) {}
         document.documentElement.setAttribute("data-theme", theme);
         if (theme === "2") {
-          document.documentElement.style.background = "#eef3f8";
+          document.documentElement.style.background = "#f4efe6";
           var color = document.querySelector('meta[name="theme-color"]');
-          if (color) color.setAttribute("content", "#EEF3F8");
+          if (color) color.setAttribute("content", "#F4EFE6");
         }
       })();
     </script>
@@ -58,10 +58,33 @@
       .mono-meem,.mono-dal{font-size:min(28vw,7.5rem);line-height:.8;color:#1c2620}
       .mono-date{letter-spacing:.32em}
       .section{width:min(100% - 2rem,28rem);margin:auto;padding:2rem 0;text-align:center}
-      html[data-theme="2"] body{background:#eef3f8;color:#24384a}
-      .t2-book-cover{display:none}
+      html[data-theme="2"] body{background:#f4efe6;color:#3b2a1c}
+      .t2-gate,.t2-hero,.t2-letter-page,.t2-ribbon,.t2-celeb-title,.t2-schedule-title,.t2-scroll-blooms,.t2-show{display:none}
       html[data-theme="2"] .envelope-wrap,html[data-theme="2"] .open-invited{display:none}
-      html[data-theme="2"] .t2-book-cover{display:block;width:78vw;max-width:340px;min-width:240px;height:min(74vh,560px)}
+      html[data-theme="2"] .open-screen{padding:0;background:#f3efe8}
+      html[data-theme="2"] .t2-gate{display:block;position:absolute;inset:0;overflow:hidden}
+      html[data-theme="2"] .t2-flap{position:absolute;inset:0;transition:transform 1.4s cubic-bezier(.22,1,.36,1)}
+      html[data-theme="2"] .t2-flap-n{clip-path:polygon(0 0,100% 0,50% 52%);background:linear-gradient(180deg,#fbf8f2,#e7e0d4)}
+      html[data-theme="2"] .t2-flap-s{clip-path:polygon(0 100%,100% 100%,50% 48%);background:linear-gradient(0deg,#fbf8f2,#e4ddd0)}
+      html[data-theme="2"] .t2-flap-e{clip-path:polygon(100% 0,100% 100%,50% 50%);background:linear-gradient(270deg,#faf6ef,#e6dfd2)}
+      html[data-theme="2"] .t2-flap-w{clip-path:polygon(0 0,50% 50%,0 100%);background:linear-gradient(90deg,#faf6ef,#e6dfd2)}
+      html[data-theme="2"] .t2-seal{position:absolute;left:50%;top:50%;width:118px;height:118px;transform:translate(-50%,-50%);z-index:5;transition:opacity .7s ease,transform 1.1s ease}
+      html[data-theme="2"] .t2-seal svg{width:100%;height:100%}
+      html[data-theme="2"] .t2-click-copy{position:absolute;left:50%;top:calc(50% + 84px);transform:translateX(-50%);z-index:6;text-align:center;color:#8b3a3a;font-family:Palatino,Georgia,serif}
+      html[data-theme="2"] .t2-click-copy span{display:block;line-height:1.45}
+      html[data-theme="2"] body.is-opening .t2-flap-n{transform:translateY(-110%)}
+      html[data-theme="2"] body.is-opening .t2-flap-s{transform:translateY(110%)}
+      html[data-theme="2"] body.is-opening .t2-flap-e{transform:translateX(110%)}
+      html[data-theme="2"] body.is-opening .t2-flap-w{transform:translateX(-110%)}
+      html[data-theme="2"] body.is-opening .t2-seal,html[data-theme="2"] body.is-opening .t2-click-copy{opacity:0;transform:translate(-50%,-50%) scale(.72)}
+      html[data-theme="2"] body.is-opening .t2-click-copy{transform:translateX(-50%) translateY(12px)}
+      html[data-theme="2"] body.is-opening,html[data-theme="2"] body.is-opening .invitation{overflow:hidden}
+      html[data-theme="2"] body.is-opening .invitation{display:block}
+      html[data-theme="2"] body:not(.is-revealed) .open-screen{display:flex!important}
+      html[data-theme="2"] body.is-revealed .open-screen{display:none!important}
+      html[data-theme="2"] .t2-hero{display:grid;place-items:center;min-height:100svh;position:relative;color:#fff;overflow:hidden}
+      html[data-theme="2"] .t1-schedule-title{display:none}
+      html[data-theme="2"] .t2-schedule-title,html[data-theme="2"] .t2-celeb-title,html[data-theme="2"] .t2-ribbon{display:block}
     
 :root {
   --sage: #5d6d5d;
@@ -1190,36 +1213,42 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
   color: #1c2620;
 }
 
-/* ---------- Theme 2: cream + baby blue video invite ---------- */
-html:not([data-theme="2"]) .t2-bloom,
+/* ---------- Theme 2: wax-seal envelope, doves, gold celebration ---------- */
+html:not([data-theme="2"]) .t2-hero,
+html:not([data-theme="2"]) .t2-gate,
+html:not([data-theme="2"]) .t2-ribbon,
+html:not([data-theme="2"]) .t2-celeb-title,
+html:not([data-theme="2"]) .t2-schedule-title,
+html:not([data-theme="2"]) .t2-scroll-blooms,
 html:not([data-theme="2"]) .t2-show,
-html:not([data-theme="2"]) .t2-book-cover,
 html:not([data-theme="2"]) .t2-letter-page {
   display: none !important;
 }
 
 html[data-theme="2"] {
-  --sage: #5a7fa3;
-  --sage-deep: #1e3a5c;
-  --ink: #24384a;
-  --ink-soft: #4d6478;
-  --glass: rgba(255, 252, 248, 0.82);
-  --glass-strong: rgba(255, 253, 250, 0.92);
-  --line: rgba(140, 176, 206, 0.55);
+  --sage: #c4a35a;
+  --sage-deep: #8c6a2c;
+  --ink: #3b2a1c;
+  --ink-soft: #6b5644;
+  --glass: rgba(255, 250, 242, 0.86);
+  --glass-strong: rgba(255, 252, 246, 0.94);
+  --line: rgba(196, 163, 90, 0.45);
 }
 
 html[data-theme="2"] body {
-  background: #eef3f8;
+  background: #f4efe6;
   color: var(--ink);
   overflow-x: hidden;
 }
 
+html[data-theme="2"] body.is-revealed {
+  background-color: #f7f1e6;
+  background-image: radial-gradient(rgba(196, 163, 90, 0.2) 1.1px, transparent 1.2px);
+  background-size: 14px 14px;
+}
+
 html[data-theme="2"] .floral-bg {
-  background-color: #eef3f8;
-  background-size: cover;
-  background-position: center;
-  transform-origin: center center;
-  animation: t2-ken 28s ease-in-out infinite alternate;
+  display: none;
 }
 
 html[data-theme="2"] .envelope-wrap,
@@ -1228,145 +1257,475 @@ html[data-theme="2"] .open-invited {
 }
 
 html[data-theme="2"] .open-screen {
-  perspective: 1800px;
+  padding: 0;
+  background: #f3efe8;
 }
 
-html[data-theme="2"] body.is-open:not(.is-book-open) .open-screen {
+html[data-theme="2"] .t2-gate {
+  display: block;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+html[data-theme="2"] .t2-flap {
+  position: absolute;
+  inset: 0;
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html[data-theme="2"] .t2-flap-n {
+  clip-path: polygon(0 0, 100% 0, 50% 52%);
+  background:
+    radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.55), transparent 42%),
+    linear-gradient(180deg, #fbf8f2, #e7e0d4);
+}
+
+html[data-theme="2"] .t2-flap-s {
+  clip-path: polygon(0 100%, 100% 100%, 50% 48%);
+  background: linear-gradient(0deg, #fbf8f2, #e4ddd0);
+}
+
+html[data-theme="2"] .t2-flap-e {
+  clip-path: polygon(100% 0, 100% 100%, 50% 50%);
+  background: linear-gradient(270deg, #faf6ef, #e6dfd2);
+}
+
+html[data-theme="2"] .t2-flap-w {
+  clip-path: polygon(0 0, 50% 50%, 0 100%);
+  background: linear-gradient(90deg, #faf6ef, #e6dfd2);
+}
+
+html[data-theme="2"] .t2-seal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 118px;
+  height: 118px;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  filter: drop-shadow(0 10px 18px rgba(90, 60, 20, 0.32));
+  transition: opacity 0.7s ease, transform 1.1s ease;
+}
+
+html[data-theme="2"] .t2-seal svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+html[data-theme="2"] .t2-click-copy {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 84px);
+  transform: translateX(-50%);
+  z-index: 6;
+  text-align: center;
+  color: #8b3a3a;
+  font-family: Palatino, "Palatino Linotype", Georgia, serif;
+  letter-spacing: 0.04em;
+}
+
+html[data-theme="2"] .t2-click-copy span {
+  display: block;
+  line-height: 1.5;
+}
+
+html[data-theme="2"] .t2-click-copy span:last-child {
+  font-family: var(--font-ar);
+  font-size: 1.05rem;
+}
+
+html[data-theme="2"] body.is-opening .t2-flap-n { transform: translateY(-110%); }
+html[data-theme="2"] body.is-opening .t2-flap-s { transform: translateY(110%); }
+html[data-theme="2"] body.is-opening .t2-flap-e { transform: translateX(110%); }
+html[data-theme="2"] body.is-opening .t2-flap-w { transform: translateX(-110%); }
+html[data-theme="2"] body.is-opening .t2-seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.72);
+}
+html[data-theme="2"] body.is-opening .t2-click-copy {
+  opacity: 0;
+  transform: translateX(-50%) translateY(12px);
+}
+
+html[data-theme="2"] body:not(.is-revealed) .open-screen {
   display: flex !important;
 }
 
-html[data-theme="2"] body.is-book-open .open-screen {
+html[data-theme="2"] body.is-revealed .open-screen {
   display: none !important;
 }
 
-html[data-theme="2"] body.is-open:not(.is-book-open) .invitation {
+html[data-theme="2"] body.is-opening .invitation,
+html[data-theme="2"] body.is-revealed .invitation,
+html[data-theme="2"] body.is-open .invitation {
+  display: flex !important;
+  flex-direction: column;
+  z-index: 3;
+}
+
+html[data-theme="2"] .t2-hero { order: 1; }
+html[data-theme="2"] .countdown-section { order: 2; }
+html[data-theme="2"] .t2-ribbon { order: 3; }
+html[data-theme="2"] .timeline-section { order: 4; }
+html[data-theme="2"] .blessing { order: 5; }
+html[data-theme="2"] .invite-card-section { order: 6; }
+html[data-theme="2"] .location-section { order: 7; }
+html[data-theme="2"] .wishing-section { order: 8; }
+html[data-theme="2"] .children-note { order: 9; }
+html[data-theme="2"] .closing { order: 10; }
+html[data-theme="2"] .footer { order: 11; }
+
+html[data-theme="2"] .t2-letter-page,
+html[data-theme="2"] .mono-page,
+html[data-theme="2"] .t2-show {
   display: none !important;
 }
 
-.t2-book-cover {
-  display: none;
+html[data-theme="2"] .t2-hero {
+  display: grid;
+  place-items: center;
   position: relative;
-  flex: 0 0 auto;
-  width: 78vw;
-  max-width: 340px;
-  min-width: 240px;
-  height: min(74vh, 560px);
-  transform-origin: 100% center;
-  transform-style: preserve-3d;
-  transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: -18px 18px 40px rgba(30, 58, 92, 0.18);
+  min-height: 100svh;
+  overflow: hidden;
+  color: #fff8ee;
+  isolation: isolate;
 }
 
-html[data-theme="2"] .t2-book-cover {
-  display: block;
-}
-
-.t2-book-cover.is-open {
-  transform: rotateY(-158deg);
-}
-
-.t2-book-spine {
-  position: absolute;
-  top: 8px;
-  bottom: 8px;
-  right: -7px;
-  width: 10px;
-  border-radius: 2px 0 0 2px;
-  background: linear-gradient(180deg, #c5d6e6, #7fa0bc);
-  transform: rotateY(90deg);
-  transform-origin: left center;
-}
-
-.t2-book-face {
+html[data-theme="2"] .t2-hero-sky {
   position: absolute;
   inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  padding: 2rem 1.2rem;
-  border-radius: 4px 10px 10px 4px;
-  background-color: #f4efe6;
-  background-size: cover;
-  background-position: center;
-  color: #1e3a5c;
-  backface-visibility: hidden;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(18, 14, 10, 0.12) 0%, rgba(18, 14, 10, 0.28) 100%),
+    radial-gradient(ellipse at 50% 78%, #f0d2a8 0%, #9aaec0 38%, #6a7c92 72%, #445266 100%);
 }
 
-.t2-cover-letters {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-family: var(--font-ar);
-  font-size: 3.1rem;
-  line-height: 1;
+html[data-theme="2"] .t2-hero-sky::before,
+html[data-theme="2"] .t2-hero-sky::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(26vw, 7.4rem);
+  background:
+    linear-gradient(90deg, rgba(255, 248, 230, 0.08), transparent),
+    repeating-linear-gradient(90deg, rgba(255, 248, 230, 0.16) 0 9px, transparent 9px 26px);
+  box-shadow: inset 0 0 48px rgba(20, 16, 12, 0.18);
 }
 
-.t2-cover-rule {
-  width: 1px;
-  height: 2.4rem;
-  background: rgba(30, 58, 92, 0.35);
+html[data-theme="2"] .t2-hero-sky::before {
+  left: 0;
+  border-right: 1px solid rgba(255, 248, 230, 0.18);
 }
 
-.t2-cover-names {
-  font-family: var(--font-en-script);
-  font-size: 1.6rem;
+html[data-theme="2"] .t2-hero-sky::after {
+  right: 0;
+  border-left: 1px solid rgba(255, 248, 230, 0.18);
 }
 
-.t2-cover-date {
-  font-family: var(--font-en-meta);
-  letter-spacing: 0.36em;
-  font-size: 0.72rem;
+html[data-theme="2"] .t2-hero::before,
+html[data-theme="2"] .t2-hero::after {
+  content: "";
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  height: 22vh;
+  z-index: 5;
+  pointer-events: none;
 }
 
-.t2-cover-hint {
-  margin-top: 1.1rem;
-  font-family: var(--font-ar);
-  font-size: 0.95rem;
-  color: #3d5c78;
+html[data-theme="2"] .t2-hero::before {
+  top: -8vh;
+  background:
+    radial-gradient(circle at 12% 70%, #fff8ea 0 7%, transparent 8%),
+    radial-gradient(circle at 22% 40%, #d4af5a 0 8%, transparent 9%),
+    radial-gradient(circle at 32% 72%, #f3e6c0 0 6%, transparent 7%),
+    radial-gradient(circle at 78% 48%, #d4af5a 0 9%, transparent 10%),
+    radial-gradient(circle at 88% 76%, #fff8ea 0 8%, transparent 9%);
 }
 
-html[data-theme="2"] .t2-letter-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
+html[data-theme="2"] .t2-hero::after {
+  bottom: -6vh;
+  background:
+    radial-gradient(circle at 10% 40%, #d4af5a 0 9%, transparent 10%),
+    radial-gradient(circle at 20% 70%, #fff8ea 0 8%, transparent 9%),
+    radial-gradient(circle at 80% 36%, #f3e6c0 0 7%, transparent 8%),
+    radial-gradient(circle at 92% 68%, #c4a35a 0 10%, transparent 11%);
+}
+
+html[data-theme="2"] .t2-hero-copy {
+  position: relative;
+  z-index: 6;
   text-align: center;
+  padding: 0 1.2rem;
 }
 
-html[data-theme="2"] .mono-brand {
-  align-items: center;
-  gap: 0.9rem;
-  margin-bottom: 0.2rem;
+html[data-theme="2"] .t2-kicker {
+  font-family: var(--font-en-script);
+  font-size: clamp(1.7rem, 7vw, 2.4rem);
+  margin: 0 0 0.35rem;
+  text-shadow: 0 6px 18px rgba(20, 16, 12, 0.28);
 }
 
-html[data-theme="2"] .mono-meem,
-html[data-theme="2"] .mono-dal {
+html[data-theme="2"] .t2-hero-date {
+  font-family: var(--font-en-meta);
+  letter-spacing: 0.42em;
+  font-size: 0.78rem;
+  opacity: 0.92;
+  margin: 0 0 1.1rem;
+}
+
+html[data-theme="2"] .t2-hero-name {
+  font-family: var(--font-en-script);
+  font-size: clamp(3.1rem, 16vw, 5.3rem);
+  line-height: 0.88;
   margin: 0;
-  font-size: min(22vw, 5rem);
-  line-height: 1.15;
-  color: #1e3a5c;
+  text-shadow: 0 10px 28px rgba(20, 16, 12, 0.35);
 }
 
-html[data-theme="2"] .mono-rule {
+html[data-theme="2"] body.is-opening .t2-hero-dima {
+  animation: t2-name-in 1s var(--ease) 0.28s both;
+}
+
+html[data-theme="2"] body.is-opening .t2-hero-amp {
+  animation: t2-name-in 1s var(--ease) 0.48s both;
+}
+
+html[data-theme="2"] body.is-opening .t2-hero-mohammad {
+  animation: t2-name-in 1s var(--ease) 0.68s both;
+}
+
+html[data-theme="2"] .t2-hero-amp {
+  font-family: var(--font-en-script);
+  font-size: 2rem;
+  margin: 0.15rem 0 0.05rem;
+}
+
+html[data-theme="2"] .t2-scroll-hint {
+  margin-top: 1.7rem;
+  font-family: var(--font-en-meta);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.86;
+  line-height: 1.7;
+}
+
+html[data-theme="2"] .t2-dove {
+  position: absolute;
+  z-index: 4;
+  width: 96px;
+  height: auto;
+  filter: drop-shadow(0 6px 8px rgba(20, 16, 12, 0.2));
+}
+
+html[data-theme="2"] .t2-dove-a {
+  top: 24%;
+  animation: t2-fly-r 16s linear infinite;
+}
+
+html[data-theme="2"] .t2-dove-b {
+  top: 36%;
+  animation: t2-fly-l 18s linear infinite;
+}
+
+html[data-theme="2"] .t2-fall {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+html[data-theme="2"] .t2-fall span {
+  position: absolute;
+  top: -12%;
+  width: 12px;
+  height: 18px;
+  border-radius: 70% 20% 70% 20%;
+  background: radial-gradient(circle at 30% 30%, #fff, #e8d5a8 42%, #c9a24a);
+  animation: t2-drop 9s linear infinite;
+}
+
+html[data-theme="2"] .t2-fall span:nth-child(1) { left: 8%; animation-duration: 8.2s; animation-delay: -1s; }
+html[data-theme="2"] .t2-fall span:nth-child(2) { left: 18%; width: 9px; height: 14px; animation-duration: 10s; animation-delay: -4s; }
+html[data-theme="2"] .t2-fall span:nth-child(3) { left: 29%; animation-duration: 7.4s; animation-delay: -2s; }
+html[data-theme="2"] .t2-fall span:nth-child(4) { left: 41%; width: 14px; height: 20px; animation-duration: 11s; animation-delay: -6s; }
+html[data-theme="2"] .t2-fall span:nth-child(5) { left: 52%; animation-duration: 8.8s; animation-delay: -3s; }
+html[data-theme="2"] .t2-fall span:nth-child(6) { left: 63%; width: 10px; height: 15px; animation-duration: 9.6s; animation-delay: -7s; }
+html[data-theme="2"] .t2-fall span:nth-child(7) { left: 72%; animation-duration: 7.8s; animation-delay: -1.5s; }
+html[data-theme="2"] .t2-fall span:nth-child(8) { left: 81%; width: 13px; height: 19px; animation-duration: 10.4s; animation-delay: -5s; }
+html[data-theme="2"] .t2-fall span:nth-child(9) { left: 89%; animation-duration: 8s; animation-delay: -2.8s; }
+html[data-theme="2"] .t2-fall span:nth-child(10) { left: 96%; width: 8px; height: 12px; animation-duration: 11.2s; animation-delay: -8s; }
+
+html[data-theme="2"] .t2-hero-flowers {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 26vh;
+  z-index: 5;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 78%, #fff8ea 0 9%, transparent 10%),
+    radial-gradient(circle at 22% 92%, #d4af5a 0 11%, transparent 12%),
+    radial-gradient(circle at 78% 80%, #f3e6c0 0 8%, transparent 9%),
+    radial-gradient(circle at 90% 94%, #c4a35a 0 12%, transparent 13%);
+}
+
+html[data-theme="2"] .section {
+  width: min(100% - 2rem, 28rem);
+  padding-top: 2.2rem;
+  padding-bottom: 2.2rem;
+}
+
+html[data-theme="2"] .t2-celeb-title {
   display: block;
-  width: 1px;
-  height: 3.4rem;
-  background: #7fa0bc;
+  font-family: var(--font-en-script);
+  font-size: clamp(2.1rem, 9vw, 2.8rem);
+  color: #3b2a1c;
+  margin: 0.4rem 0 1.1rem;
 }
 
-.mono-rule {
+html[data-theme="2"] .t2-celeb-title::after {
+  content: "♡";
+  display: block;
+  font-size: 0.95rem;
+  color: #c4a35a;
+  margin-top: 0.35rem;
+}
+
+html[data-theme="2"] .countdown-section .reception-card,
+html[data-theme="2"] .countdown-section .calendar,
+html[data-theme="2"] .countdown-section .text-link,
+html[data-theme="2"] .countdown-section > .eyebrow {
   display: none;
 }
 
-html[data-theme="2"] .mono-date {
-  margin-top: 1.7rem;
+html[data-theme="2"] .countdown {
+  display: flex;
+  justify-content: center;
+  gap: 0.55rem;
+  color: #c4a35a;
+  margin: 0.2rem 0 1.4rem;
+}
+
+html[data-theme="2"] .count-value {
+  font-family: Palatino, "Palatino Linotype", Georgia, serif;
+  font-size: clamp(1.7rem, 7vw, 2.15rem);
+  letter-spacing: 0.08em;
+}
+
+html[data-theme="2"] .count-label {
   font-family: var(--font-en-meta);
-  letter-spacing: 0.42em;
-  font-size: 0.82rem;
-  color: #3d5c78;
+  letter-spacing: 0.22em;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  color: #8c6a2c;
+}
+
+html[data-theme="2"] .t2-ribbon {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  margin: 0.4rem 0 0.2rem;
+  padding: 0.82rem 0;
+  background: linear-gradient(180deg, #e0c06a, #c4a35a 48%, #8c6a2c);
+  box-shadow: 0 8px 18px rgba(90, 60, 20, 0.16);
+}
+
+html[data-theme="2"] .t2-ribbon-track {
+  display: flex;
+  width: max-content;
+  animation: t2-marquee 18s linear infinite;
+}
+
+html[data-theme="2"] .t2-ribbon-track span {
+  padding: 0 1.6rem;
+  font-family: Palatino, "Palatino Linotype", Georgia, serif;
+  letter-spacing: 0.22em;
+  font-size: 0.78rem;
+  color: #fff8e8;
+  white-space: nowrap;
+}
+
+html[data-theme="2"] .t1-schedule-title {
+  display: none;
+}
+
+html[data-theme="2"] .t2-schedule-title {
+  display: block;
+  font-family: var(--font-en-script);
+  font-size: clamp(2rem, 8vw, 2.6rem);
+  color: #3b2a1c;
+}
+
+html[data-theme="2"] .t2-schedule-title::before,
+html[data-theme="2"] .t2-schedule-title::after {
+  content: "";
+  display: inline-block;
+  width: 2.2rem;
+  height: 1.1rem;
+  margin: 0 0.45rem;
+  vertical-align: middle;
+  background:
+    radial-gradient(circle at 30% 50%, #c4a35a 0 28%, transparent 30%),
+    radial-gradient(circle at 70% 50%, #d4af5a 0 22%, transparent 24%);
+}
+
+html[data-theme="2"] .t2-schedule-title::after {
+  content: "♡";
+  display: block;
+  width: auto;
+  height: auto;
+  background: none;
+  font-family: Palatino, serif;
+  font-size: 0.9rem;
+  color: #c4a35a;
+  margin: 0.35rem auto 0;
+}
+
+html[data-theme="2"] .timeline {
+  position: relative;
+  max-width: 22rem;
+  margin: 1.5rem auto 0;
+  gap: 1.7rem;
+}
+
+html[data-theme="2"] .timeline::before {
+  content: "";
+  position: absolute;
+  left: 5.85rem;
+  top: 0.45rem;
+  bottom: 0.45rem;
+  width: 1px;
+  background: linear-gradient(#c4a35a, #e8d5a8, #c4a35a);
+}
+
+html[data-theme="2"] .timeline-item {
+  grid-template-columns: 5.2rem 1.4rem 1fr;
+}
+
+html[data-theme="2"] .timeline-time {
+  font-family: Palatino, "Palatino Linotype", Georgia, serif;
+  color: #8c6a2c;
+  font-size: 1.05rem;
+}
+
+html[data-theme="2"] .timeline-title {
+  font-family: Palatino, "Palatino Linotype", Georgia, serif;
+  color: #3b2a1c;
+  font-size: 0.98rem;
+}
+
+html[data-theme="2"] .timeline-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 58% 42% 60% 40%;
+  background: radial-gradient(circle at 32% 30%, #fff6d6, #c4a35a 52%, #8c6a2c);
+  box-shadow: 0 0 0 5px #f7f1e6;
 }
 
 html[data-theme="2"] .invite-couple {
@@ -1393,244 +1752,140 @@ html[data-theme="2"] .closing-date {
 html[data-theme="2"] .glass-card,
 html[data-theme="2"] .names-arch {
   background: var(--glass);
-  border: 1px solid rgba(140, 176, 206, 0.7);
-  box-shadow: 0 14px 36px rgba(30, 58, 92, 0.1);
+  border: 1px solid rgba(196, 163, 90, 0.45);
+  box-shadow: 0 14px 36px rgba(90, 60, 20, 0.08);
   backdrop-filter: blur(8px);
 }
 
-html[data-theme="2"] .mono-meem,
-html[data-theme="2"] .mono-dal,
-html[data-theme="2"] .mono-date {
-  color: #1e3a5c;
+html[data-theme="2"] .music-btn {
+  background: rgba(255, 250, 240, 0.92);
+  color: #8c6a2c;
+  border: 1px solid rgba(196, 163, 90, 0.55);
 }
 
-html[data-theme="2"] .music-btn {
-  background: rgba(255, 252, 248, 0.9);
-  color: #1e3a5c;
-  border: 1px solid rgba(140, 176, 206, 0.7);
+html[data-theme="2"] body.is-revealed .music-btn,
+html[data-theme="2"] .open-toggle:checked ~ .music-btn {
+  display: grid;
 }
 
 html[data-theme="2"] .is-wedding {
-  color: #f7fbff;
-  background: #5a7fa3;
+  color: #fff8e8;
+  background: #c4a35a;
 }
 
 html[data-theme="2"] .wish-modal {
   background: #f7f4ee;
-  color: #24384a;
-  border: 1px solid rgba(140, 176, 206, 0.7);
+  color: #3b2a1c;
+  border: 1px solid rgba(196, 163, 90, 0.5);
 }
 
 html[data-theme="2"] .text-link,
 html[data-theme="2"] .map-frame,
 html[data-theme="2"] .section-title,
 html[data-theme="2"] .eyebrow {
-  color: #1e3a5c;
+  color: #8c6a2c;
 }
 
-html[data-theme="2"] .invitation {
-  z-index: 3;
-}
-
-html[data-theme="2"] body.is-book-open {
-  overflow: hidden;
-  height: 100svh;
-}
-
-html[data-theme="2"] body.is-book-open .invitation {
-  display: block;
-  position: relative;
-  height: 100svh;
-  overflow: hidden;
-}
-
-html[data-theme="2"] body.is-book-open .invitation > * {
-  position: absolute;
-  inset: 0;
-  width: auto;
-  margin: 0;
-  min-height: 100%;
-  padding: 8vh 8vw;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transform-origin: 100% center;
-  transform: translateX(-18px) rotateY(-12deg);
-}
-
-html[data-theme="2"] body.is-book-open .invitation > *.is-page {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: none;
-  animation: t2-page-in 0.85s var(--ease);
-}
-
-html[data-theme="2"] .t2-line {
-  opacity: 0;
-  transform: translateY(12px);
-}
-
-html[data-theme="2"] .is-page .t2-line {
-  animation: t2-line-in 0.7s var(--ease) forwards;
-  animation-delay: var(--d, 0s);
-}
-
-html[data-theme="2"] .section {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.t2-bloom {
+html[data-theme="2"] .t2-scroll-blooms {
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 1;
+  z-index: 6;
   pointer-events: none;
   overflow: hidden;
 }
 
-html[data-theme="2"] .t2-bloom {
+html[data-theme="2"] body.is-revealed .t2-scroll-blooms {
   display: block;
 }
 
-.t2-petal {
+html[data-theme="2"] .t2-bloom-flower {
   position: absolute;
-  width: 22px;
-  height: 34px;
-  background: radial-gradient(circle at 30% 25%, #8fb4d4, #1e3a5c 72%);
-  border-radius: 70% 20% 70% 20%;
-  opacity: 0.55;
-  filter: blur(0.2px);
-  animation: t2-drift 16s linear infinite;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, #fff8e6 0 16%, #e8d5a8 17% 34%, #d4af5a 35% 62%, #9a6f28 63%);
+  opacity: 0.92;
+  will-change: transform;
+  box-shadow:
+    18px 0 0 -14px #d4af5a,
+    -16px 4px 0 -14px #f3e6c0,
+    4px 18px 0 -14px #c4a35a,
+    -6px -16px 0 -13px #fff4d8,
+    14px 14px 0 -15px #e0c06a,
+    -14px 12px 0 -15px #c4a35a,
+    0 8px 16px rgba(90, 60, 20, 0.12);
 }
 
-.t2-petal:nth-child(1) { left: 8%; top: 88%; animation-duration: 18s; animation-delay: -2s; }
-.t2-petal:nth-child(2) { left: 22%; top: 94%; width: 14px; height: 22px; animation-duration: 14s; animation-delay: -7s; }
-.t2-petal:nth-child(3) { left: 38%; top: 90%; animation-duration: 20s; animation-delay: -4s; }
-.t2-petal:nth-child(4) { left: 55%; top: 96%; width: 16px; height: 26px; animation-duration: 15s; animation-delay: -11s; }
-.t2-petal:nth-child(5) { left: 68%; top: 92%; animation-duration: 17s; animation-delay: -1s; }
-.t2-petal:nth-child(6) { left: 81%; top: 88%; width: 13px; height: 20px; animation-duration: 13s; animation-delay: -8s; }
-.t2-petal:nth-child(7) { left: 12%; top: 70%; animation-duration: 19s; animation-delay: -5s; opacity: 0.32; }
-.t2-petal:nth-child(8) { left: 47%; top: 78%; animation-duration: 21s; animation-delay: -9s; opacity: 0.34; }
-.t2-petal:nth-child(9) { left: 74%; top: 64%; animation-duration: 16s; animation-delay: -3s; opacity: 0.3; }
-.t2-petal:nth-child(10) { left: 91%; top: 80%; animation-duration: 22s; animation-delay: -12s; }
+html[data-theme="2"] .t2-bloom-flower:nth-child(1) {
+  top: 10%;
+  left: -16px;
+}
 
-@keyframes t2-drift {
+html[data-theme="2"] .t2-bloom-flower:nth-child(2) {
+  top: 46%;
+  right: -18px;
+}
+
+html[data-theme="2"] .t2-bloom-flower:nth-child(3) {
+  bottom: 7%;
+  left: 10%;
+  width: 48px;
+  height: 48px;
+}
+
+@keyframes t2-name-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes t2-fly-r {
+  0% { transform: translate3d(6vw, 18px, 0) scaleX(1); }
+  100% { transform: translate3d(108vw, -28px, 0) scaleX(1); }
+}
+
+@keyframes t2-fly-l {
+  0% { transform: translate3d(78vw, 8px, 0) scaleX(-1); }
+  100% { transform: translate3d(-18vw, 28px, 0) scaleX(-1); }
+}
+
+@keyframes t2-drop {
   0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
+    transform: translate3d(0, -8vh, 0) rotate(0deg);
+    opacity: 0;
   }
-  50% {
-    transform: translate3d(-28px, -46vh, 0) rotate(130deg);
-  }
+  12% { opacity: 0.9; }
   100% {
-    transform: translate3d(16px, -108vh, 0) rotate(250deg);
+    transform: translate3d(28px, 108vh, 0) rotate(220deg);
     opacity: 0;
   }
 }
 
-@keyframes t2-ken {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.08);
-  }
+@keyframes t2-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
-@keyframes t2-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    box-shadow: 0 12px 32px rgba(30, 58, 92, 0.18);
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="2"] .t2-dove,
+  html[data-theme="2"] .t2-fall span,
+  html[data-theme="2"] .t2-ribbon-track,
+  html[data-theme="2"] body.is-opening .t2-hero-name,
+  html[data-theme="2"] body.is-opening .t2-hero-amp {
+    animation: none !important;
   }
-  50% {
-    transform: scale(1.06);
-    box-shadow: 0 16px 40px rgba(30, 58, 92, 0.28);
+  html[data-theme="2"] .t2-flap {
+    transition: none !important;
   }
 }
 
-.t2-show {
-  display: none !important;
-}
-
-.t2-show[hidden] {
-  display: none !important;
-}
-
-.t2-scene {
-  position: relative;
-  width: min(86vw, 22rem);
-  min-height: 18rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  text-align: center;
-  animation: t2-rise 0.9s var(--ease) both;
-}
-
-.t2-show.is-swap .t2-glyph,
-.t2-show.is-swap .t2-caption {
-  opacity: 0;
-  transform: scale(0.88);
-}
-
-.t2-show.is-out {
-  opacity: 0;
-  transition: opacity 0.75s ease;
-}
-
-.t2-glyph {
-  font-family: var(--font-ar);
-  font-size: min(38vw, 8.2rem);
-  line-height: 0.9;
-  color: #1e3a5c;
-  text-shadow: 0 8px 24px rgba(255, 255, 255, 0.55);
-  transition: opacity 0.32s ease, transform 0.32s ease;
-}
-
-.t2-glyph.is-both {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 0.15em;
-  font-size: min(28vw, 6.4rem);
-}
-
-.t2-caption {
-  font-family: var(--font-ar);
-  font-size: 1.4rem;
-  color: #3d5c78;
-  letter-spacing: 0.12em;
-  transition: opacity 0.32s ease, transform 0.32s ease;
-}
-
-@keyframes t2-page-in {
-  from {
-    opacity: 0;
-    transform: translateX(-24px) rotateY(-16deg);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes t2-line-in {
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-    </style>
+</style>
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect fill='%23F4EFE6' width='64' height='64' rx='10'/><text x='32' y='40' text-anchor='middle' font-size='16' fill='%238C6E45' font-family='Georgia, serif'>M&amp;D</text></svg>"
@@ -1639,17 +1894,10 @@ html[data-theme="2"] .t2-bloom {
   <body>
     <input type="checkbox" id="opened" class="open-toggle" />
     <div class="floral-bg" id="floral-bg" aria-hidden="true"></div>
-    <div class="t2-bloom" aria-hidden="true">
-      <span class="t2-petal"></span>
-      <span class="t2-petal"></span>
-      <span class="t2-petal"></span>
-      <span class="t2-petal"></span>
-      <span class="t2-petal"></span>
-      <span class="t2-petal"></span>
-      <span class="t2-petal"></span>
-      <span class="t2-petal"></span>
-      <span class="t2-petal"></span>
-      <span class="t2-petal"></span>
+    <div class="t2-scroll-blooms" aria-hidden="true">
+      <span class="t2-bloom-flower"></span>
+      <span class="t2-bloom-flower"></span>
+      <span class="t2-bloom-flower"></span>
     </div>
     <div class="t2-show" id="t2-show" hidden>
       <div class="t2-scene is-active" id="t2-scene">
@@ -1675,18 +1923,60 @@ html[data-theme="2"] .t2-bloom {
         </span>
         <span class="envelope-hint">Open Invitation</span>
       </span>
-      <span class="t2-book-cover" id="t2-book-cover" dir="rtl">
-        <span class="t2-book-spine" aria-hidden="true"></span>
-        <span class="t2-book-face" id="t2-book-face">
-          <span class="t2-cover-letters" aria-hidden="true"><span>م</span><span class="t2-cover-rule"></span><span>د</span></span>
-          <span class="t2-cover-names" lang="en" dir="ltr">Mohammad &amp; Dima</span>
-          <span class="t2-cover-date" lang="en" dir="ltr">10.10.2026</span>
-          <span class="t2-cover-hint">اضغطي لفتح الدعوة</span>
+      <span class="t2-gate" id="t2-gate">
+        <span class="t2-flap t2-flap-n"></span>
+        <span class="t2-flap t2-flap-e"></span>
+        <span class="t2-flap t2-flap-s"></span>
+        <span class="t2-flap t2-flap-w"></span>
+        <span class="t2-seal" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <defs>
+              <radialGradient id="wax" cx="38%" cy="32%" r="70%">
+                <stop offset="0%" stop-color="#efe0b8"/>
+                <stop offset="55%" stop-color="#c4a35a"/>
+                <stop offset="100%" stop-color="#8c6a2c"/>
+              </radialGradient>
+            </defs>
+            <circle cx="60" cy="60" r="54" fill="url(#wax)"/>
+            <circle cx="60" cy="60" r="44" fill="none" stroke="#f3e6c0" stroke-width="1.4" opacity=".55"/>
+            <path d="M38 48c8-10 36-10 44 0" fill="none" stroke="#7b5720" stroke-width="1.2"/>
+            <path d="M40 74c8 9 32 9 40 0" fill="none" stroke="#7b5720" stroke-width="1.2"/>
+            <text x="60" y="68" text-anchor="middle" font-size="22" font-family="Georgia, serif" fill="#6a4a1a">M&amp;D</text>
+          </svg>
+        </span>
+        <span class="t2-click-copy">
+          <span>Click to open</span>
+          <span>اضغط للفتح</span>
         </span>
       </span>
     </button>
 
     <main class="invitation" id="invitation">
+      <section class="t2-hero" lang="en" dir="ltr" aria-label="Wedding Day">
+        <div class="t2-hero-sky" aria-hidden="true"></div>
+        <svg class="t2-dove t2-dove-a" viewBox="0 0 80 48" aria-hidden="true">
+          <path fill="#f7f4ee" d="M6 28c8-1 14-8 22-11 2 5 8 9 16 10 8 1 18-1 28-6-7 6-16 12-28 14-10 2-20 1-28-2-4 3-8 5-12 5 2-4 4-8 6-10z"/>
+          <path fill="#efe8dc" d="M28 17c5-8 13-13 22-14-4 5-9 9-16 12z"/>
+          <path fill="#c9b89a" d="M70 21l8 2-8 3z"/>
+        </svg>
+        <svg class="t2-dove t2-dove-b" viewBox="0 0 80 48" aria-hidden="true">
+          <path fill="#fff" d="M74 26c-8-1-14-8-22-11-2 5-8 9-16 10-8 1-18-1-28-6 7 6 16 12 28 14 10 2 20 1 28-2 4 3 8 5 12 5-2-4-4-8-6-10z"/>
+          <path fill="#efe8dc" d="M52 15c-5-8-13-13-22-14 4 5 9 9 16 12z"/>
+        </svg>
+        <div class="t2-fall" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="t2-hero-copy">
+          <p class="t2-kicker">Wedding Day</p>
+          <p class="t2-hero-date">10.10.2026</p>
+          <p class="t2-hero-name t2-hero-dima">Dima</p>
+          <p class="t2-hero-amp">&amp;</p>
+          <p class="t2-hero-name t2-hero-mohammad">Mohammad</p>
+          <p class="t2-scroll-hint">Scroll down<br />مرر للأسفل</p>
+        </div>
+        <div class="t2-hero-flowers" aria-hidden="true"></div>
+      </section>
       <section class="t2-letter-page" aria-label="ديما">
         <p class="t2-glyph">د</p>
         <p class="t2-caption">ديما</p>
@@ -1743,6 +2033,7 @@ html[data-theme="2"] .t2-bloom {
       </section>
 
       <section class="section countdown-section" lang="en" dir="ltr">
+        <p class="t2-celeb-title">The Celebration</p>
         <article class="glass-card reception-card">
           <p class="eyebrow">Reception</p>
           <p class="reception-lead">We invite you to celebrate with us at</p>
@@ -1812,8 +2103,16 @@ html[data-theme="2"] .t2-bloom {
         </div>
       </section>
 
+      <div class="t2-ribbon" dir="ltr" aria-hidden="true">
+        <div class="t2-ribbon-track">
+          <span>2026 &nbsp;✦&nbsp; Save the Date &nbsp;✦&nbsp; October 10 &nbsp;✦&nbsp; 2026 &nbsp;✦&nbsp; Save the Date &nbsp;✦&nbsp; October 10 &nbsp;✦&nbsp;</span>
+          <span>2026 &nbsp;✦&nbsp; Save the Date &nbsp;✦&nbsp; October 10 &nbsp;✦&nbsp; 2026 &nbsp;✦&nbsp; Save the Date &nbsp;✦&nbsp; October 10 &nbsp;✦&nbsp;</span>
+        </div>
+      </div>
+
       <section class="section timeline-section" lang="en" dir="ltr">
-        <h2 class="section-title">Wedding Day Schedule</h2>
+        <h2 class="section-title t1-schedule-title">Wedding Day Schedule</h2>
+        <h2 class="section-title t2-schedule-title">Schedule of Events</h2>
         <ol class="timeline">
           <li class="timeline-item">
             <span class="timeline-time">8:00 PM</span>
@@ -1837,7 +2136,7 @@ html[data-theme="2"] .t2-bloom {
         <div class="wishing-inner">
           <p class="section-title wishing-heading">Wishing Well</p>
           <button type="button" class="gift-btn" id="gift-btn">
-            <img src="/assets/images/gift-box.png" alt="" class="gift-img" loading="lazy" decoding="async" />
+            <img src="assets/images/gift-box.png" alt="" class="gift-img" loading="lazy" decoding="async" />
             <span class="gift-hint">Tap to open</span>
           </button>
           <p class="wishing-teaser">Your presence would mean the world to us.</p>
@@ -1867,7 +2166,7 @@ html[data-theme="2"] .t2-bloom {
           <button type="button" class="wish-close" id="wish-close" aria-label="Close">×</button>
         </div>
         <div class="wish-modal-body">
-          <img src="/assets/images/gift-box.png" alt="" class="wish-modal-gift" loading="lazy" decoding="async" />
+          <img src="assets/images/gift-box.png" alt="" class="wish-modal-gift" loading="lazy" decoding="async" />
           <p class="wish-en">Your presence would mean the world to us.</p>
           <p class="wish-ar" dir="rtl">حضوركم هو أغلى هدية</p>
           <p class="wish-names">Mohammad &amp; Dima</p>
@@ -1904,24 +2203,45 @@ html[data-theme="2"] .t2-bloom {
     return "/assets/" + file;
   }
 
-  function setTheme2Frame() {
-    var floral = document.getElementById("floral-bg");
-    var face = document.getElementById("t2-book-face");
-    var frame = 'url("' + assetUrl("images/theme2-frame.png") + '") center / cover no-repeat';
-    if (face) face.style.background = frame;
-    if (floral) {
-      floral.style.background = document.body.classList.contains("is-book-open")
-        ? frame
-        : "#eef3f8";
-      floral.classList.add("is-on");
-    }
+  function startTheme2Reveal() {
+    var reduce = false;
+    try {
+      reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    } catch (e) {}
+    document.body.classList.add("is-opening", "is-locked");
+    loadPrettyFonts();
+    playMusic();
+    window.setTimeout(function () {
+      document.body.classList.add("is-open", "is-revealed");
+      document.body.classList.remove("is-opening", "is-locked");
+      var box = document.getElementById("opened");
+      if (box) box.checked = true;
+    }, reduce ? 0 : 1450);
   }
 
-  if (theme === "2") setTheme2Frame();
+  function onOpened() {
+    if (didOpen) return;
+    didOpen = true;
+    var box = document.getElementById("opened");
+    if (theme === "2") {
+      startTheme2Reveal();
+      return;
+    }
+    document.body.classList.add("is-open");
+    if (box) box.checked = true;
+    loadPrettyFonts();
+    playMusic();
+    var floral = document.getElementById("floral-bg");
+    if (floral) {
+      floral.style.background = 'url("' + assetUrl("images/floral-bg.png") + '") center / cover no-repeat';
+      floral.classList.add("is-on");
+    }
+    window.setTimeout(autoScroll, 1600);
+  }
 
   var sheet = document.createElement("link");
   sheet.rel = "stylesheet";
-  sheet.href = assetUrl("invite.css");
+  sheet.href = assetUrl("invite.css") + "?v=t2flaps2";
   document.head.appendChild(sheet);
 
   function guests() {
@@ -2044,91 +2364,6 @@ html[data-theme="2"] .t2-bloom {
     raf = requestAnimationFrame(step);
   }
 
-  function markLines(page) {
-    var nodes = page.querySelectorAll(
-      "p, h2, li, blockquote, .invite-hosts, .names-arch, .mono-brand, .mono-date, .countdown, .calendar, .map-card, .gift-btn, .reception-card, .t2-glyph, .t2-caption"
-    );
-    var n = 0;
-    for (var i = 0; i < nodes.length; i++) {
-      var el = nodes[i];
-      if (el.closest(".invite-hosts") && !el.classList.contains("invite-hosts")) continue;
-      if (el.closest(".names-arch") && !el.classList.contains("names-arch")) continue;
-      if (el.closest(".reception-card") && !el.classList.contains("reception-card")) continue;
-      if (el.closest(".countdown") && !el.classList.contains("countdown")) continue;
-      if (el.closest(".calendar") && !el.classList.contains("calendar")) continue;
-      if (el.closest("li") && el.tagName !== "LI") continue;
-      if (el.closest(".mono-brand") && !el.classList.contains("mono-brand")) continue;
-      el.classList.remove("t2-line");
-      el.style.removeProperty("--d");
-    }
-    void page.offsetWidth;
-    for (var j = 0; j < nodes.length; j++) {
-      var node = nodes[j];
-      if (node.closest(".invite-hosts") && !node.classList.contains("invite-hosts")) continue;
-      if (node.closest(".names-arch") && !node.classList.contains("names-arch")) continue;
-      if (node.closest(".reception-card") && !node.classList.contains("reception-card")) continue;
-      if (node.closest(".countdown") && !node.classList.contains("countdown")) continue;
-      if (node.closest(".calendar") && !node.classList.contains("calendar")) continue;
-      if (node.closest("li") && node.tagName !== "LI") continue;
-      if (node.closest(".mono-brand") && !node.classList.contains("mono-brand")) continue;
-      node.classList.add("t2-line");
-      node.style.setProperty("--d", 0.18 + n * 0.58 + "s");
-      n += 1;
-    }
-    return n;
-  }
-
-  var bookPages = [];
-  var bookIndex = 0;
-  var bookTimer = 0;
-
-  function showBookPage(index) {
-    if (!bookPages.length) return;
-    if (index >= bookPages.length) return;
-    bookIndex = index;
-    for (var i = 0; i < bookPages.length; i++) {
-      bookPages[i].classList.toggle("is-page", i === index);
-    }
-    var count = markLines(bookPages[index]);
-    var wait = Math.min(12000, Math.max(2800, 1600 + count * 720));
-    window.clearTimeout(bookTimer);
-    if (index < bookPages.length - 1) {
-      bookTimer = window.setTimeout(function () {
-        showBookPage(index + 1);
-      }, wait);
-    }
-  }
-
-  function startTheme2Book() {
-    document.body.classList.add("is-book-open", "is-locked");
-    setTheme2Frame();
-    var invite = document.getElementById("invitation");
-    bookPages = invite ? [].slice.call(invite.children) : [];
-    showBookPage(0);
-  }
-
-  function onOpened() {
-    if (didOpen) return;
-    didOpen = true;
-    document.body.classList.add("is-open");
-    var box = document.getElementById("opened");
-    if (box) box.checked = true;
-    loadPrettyFonts();
-    playMusic();
-    var floral = document.getElementById("floral-bg");
-    if (theme === "2") {
-      var cover = document.getElementById("t2-book-cover");
-      if (cover) cover.classList.add("is-open");
-      window.setTimeout(startTheme2Book, 1150);
-      return;
-    }
-    if (floral) {
-      floral.style.background = 'url("' + assetUrl("images/floral-bg.png") + '") center / cover no-repeat';
-      floral.classList.add("is-on");
-    }
-    window.setTimeout(autoScroll, 1600);
-  }
-
   var note = document.getElementById("guest-note");
   if (note) note.textContent = "عدد الحضور لهذه البطاقة: " + guests();
   tickCountdown();
@@ -2144,18 +2379,8 @@ html[data-theme="2"] .t2-bloom {
   var openScreen = document.getElementById("open-screen");
   if (openScreen) {
     openScreen.addEventListener("click", function () {
-      if (toggle && !toggle.checked) toggle.checked = true;
+      if (theme !== "2" && toggle && !toggle.checked) toggle.checked = true;
       onOpened();
-    });
-  }
-
-  var invitationEl = document.getElementById("invitation");
-  if (invitationEl && theme === "2") {
-    invitationEl.addEventListener("click", function (event) {
-      if (event.target.closest("button, a")) return;
-      if (!document.body.classList.contains("is-book-open")) return;
-      window.clearTimeout(bookTimer);
-      showBookPage(bookIndex + 1);
     });
   }
 
@@ -2169,7 +2394,6 @@ html[data-theme="2"] .t2-bloom {
   if (giftBtn) {
     giftBtn.onclick = function () {
       haltScroll();
-      window.clearTimeout(bookTimer);
       document.getElementById("wish-modal").hidden = false;
     };
   }
@@ -2184,6 +2408,22 @@ html[data-theme="2"] .t2-bloom {
     wishModal.onclick = function (event) {
       if (event.target === wishModal) wishModal.hidden = true;
     };
+  }
+
+  if (theme === "2") {
+    var blooms = document.querySelectorAll(".t2-bloom-flower");
+    var heroFlowers = document.querySelector(".t2-hero-flowers");
+    var fall = document.querySelector(".t2-fall");
+    window.addEventListener("scroll", function () {
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      for (var i = 0; i < blooms.length; i++) {
+        var dir = i % 2 === 0 ? 1 : -1;
+        blooms[i].style.transform =
+          "translate3d(" + (dir * y * 0.04) + "px," + (y * (0.12 + i * 0.05)) + "px,0) rotate(" + (y * 0.08 * dir) + "deg)";
+      }
+      if (heroFlowers) heroFlowers.style.transform = "translate3d(0," + (y * 0.18) + "px,0)";
+      if (fall) fall.style.transform = "translate3d(0," + (y * 0.22) + "px,0)";
+    }, { passive: true });
   }
 
   window.addEventListener("touchstart", function (event) {
