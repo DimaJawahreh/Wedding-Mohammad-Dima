@@ -1424,47 +1424,26 @@ html[data-theme="2"] .t2-hero {
   position: relative;
   min-height: 100svh;
   overflow: hidden;
-  color: #fff8ee;
+  color: #3b2a1c;
   isolation: isolate;
+  background:
+    radial-gradient(ellipse at 50% 28%, #fffdf7 0%, #f4efe6 55%, #e8dfcc 100%);
 }
 
-html[data-theme="2"] .t2-hero-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 40%;
-  z-index: 0;
-  transform: scale(1.04);
+html[data-theme="2"] .t2-hero-photo,
+html[data-theme="2"] .t2-hero-corner,
+html[data-theme="2"] .t2-dove,
+html[data-theme="2"] .t2-fall,
+html[data-theme="2"] .t2-scroll-blooms,
+html[data-theme="2"] .t2-venue-photos {
+  display: none !important;
 }
 
 html[data-theme="2"] .t2-hero-shade {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background:
-    linear-gradient(180deg, rgba(12, 10, 8, 0.28) 0%, rgba(12, 10, 8, 0.38) 48%, rgba(12, 10, 8, 0.58) 100%);
-}
-
-html[data-theme="2"] .t2-hero-corner {
-  position: absolute;
-  z-index: 5;
-  width: min(58vw, 18rem);
-  pointer-events: none;
-  opacity: 0.92;
-}
-
-html[data-theme="2"] .t2-hero-corner-tl {
-  top: -4%;
-  left: -8%;
-  transform: rotate(-8deg);
-}
-
-html[data-theme="2"] .t2-hero-corner-br {
-  right: -10%;
-  bottom: -8%;
-  transform: rotate(168deg);
+  background: radial-gradient(ellipse at 50% 42%, transparent 40%, rgba(90, 70, 40, 0.06) 100%);
 }
 
 html[data-theme="2"] .t2-hero-copy {
@@ -1478,7 +1457,7 @@ html[data-theme="2"] .t2-kicker {
   font-family: var(--font-en-script);
   font-size: clamp(1.7rem, 7vw, 2.4rem);
   margin: 0 0 0.35rem;
-  text-shadow: 0 6px 18px rgba(20, 16, 12, 0.28);
+  color: #8c6a2c;
 }
 
 html[data-theme="2"] .t2-hero-date {
@@ -1487,6 +1466,7 @@ html[data-theme="2"] .t2-hero-date {
   font-size: 0.78rem;
   opacity: 0.92;
   margin: 0 0 1.1rem;
+  color: #6b5644;
 }
 
 html[data-theme="2"] .t2-hero-name {
@@ -1494,7 +1474,7 @@ html[data-theme="2"] .t2-hero-name {
   font-size: clamp(3.1rem, 16vw, 5.3rem);
   line-height: 0.88;
   margin: 0;
-  text-shadow: 0 10px 28px rgba(20, 16, 12, 0.35);
+  color: #3b2a1c;
 }
 
 html[data-theme="2"] body.is-opening .t2-hero-dima {
@@ -1523,7 +1503,7 @@ html[data-theme="2"] .t2-scroll-hint {
   text-transform: uppercase;
   opacity: 0.92;
   line-height: 1.7;
-  color: #fff8ee;
+  color: #8c6a2c;
   background: transparent;
   border: 0;
   cursor: pointer;
@@ -1921,11 +1901,6 @@ html[data-theme="2"] .blessing .bismillah {
   <body>
     <input type="checkbox" id="opened" class="open-toggle" />
     <div class="floral-bg" id="floral-bg" aria-hidden="true"></div>
-    <div class="t2-scroll-blooms" aria-hidden="true">
-      <img class="t2-bloom-flower" id="t2-bloom-1" alt="" />
-      <img class="t2-bloom-flower" id="t2-bloom-2" alt="" />
-      <img class="t2-bloom-flower" id="t2-bloom-3" alt="" />
-    </div>
     <div class="t2-show" id="t2-show" hidden>
       <div class="t2-scene is-active" id="t2-scene">
         <p class="t2-glyph" id="t2-glyph">د</p>
@@ -1968,16 +1943,7 @@ html[data-theme="2"] .blessing .bismillah {
 
     <main class="invitation" id="invitation">
       <section class="t2-hero" lang="en" dir="ltr" aria-label="Wedding Day">
-        <img class="t2-hero-photo" id="t2-hero-photo" alt="Sheraton Amman Hotel" />
         <div class="t2-hero-shade" aria-hidden="true"></div>
-        <img class="t2-dove t2-dove-a" id="t2-dove-a" alt="" />
-        <img class="t2-dove t2-dove-b" id="t2-dove-b" alt="" />
-        <div class="t2-fall" aria-hidden="true">
-          <span></span><span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span><span></span>
-        </div>
-        <img class="t2-hero-corner t2-hero-corner-tl" id="t2-corner-a" alt="" />
-        <img class="t2-hero-corner t2-hero-corner-br" id="t2-corner-b" alt="" />
         <div class="t2-hero-copy">
           <p class="t2-kicker">Wedding Day</p>
           <p class="t2-hero-date">10.10.2026</p>
@@ -2096,10 +2062,6 @@ html[data-theme="2"] .blessing .bismillah {
         <p class="section-title">Reception Venue</p>
         <p class="venue-name">Sheraton Amman Hotel</p>
         <p class="venue-city">Amman, Jordan</p>
-        <div class="t2-venue-photos">
-          <img id="t2-hotel-out" alt="Sheraton Amman Hotel" />
-          <img id="t2-hotel-in" alt="Hotel entrance lounge" />
-        </div>
         <div class="map-card glass-card">
           <a
             class="map-frame"
@@ -2218,23 +2180,8 @@ html[data-theme="2"] .blessing .bismillah {
   }
 
   function setTheme2Media() {
-    var pairs = [
-      ["t2-seal-img", "images/wax-seal.png"],
-      ["t2-hero-photo", "images/hotel-exterior.png"],
-      ["t2-dove-a", "images/dove-right.png"],
-      ["t2-dove-b", "images/dove-left.png"],
-      ["t2-corner-a", "images/invite-florals.png"],
-      ["t2-corner-b", "images/invite-florals.png"],
-      ["t2-hotel-out", "images/hotel-exterior.png"],
-      ["t2-hotel-in", "images/hotel-lobby.png"],
-      ["t2-bloom-1", "images/invite-florals.png"],
-      ["t2-bloom-2", "images/invite-florals.png"],
-      ["t2-bloom-3", "images/invite-florals.png"]
-    ];
-    for (var i = 0; i < pairs.length; i++) {
-      var el = document.getElementById(pairs[i][0]);
-      if (el) el.src = assetUrl(pairs[i][1]);
-    }
+    var seal = document.getElementById("t2-seal-img");
+    if (seal) seal.src = assetUrl("images/wax-seal.png");
   }
 
   if (theme === "2") setTheme2Media();
@@ -2283,7 +2230,7 @@ html[data-theme="2"] .blessing .bismillah {
 
   var sheet = document.createElement("link");
   sheet.rel = "stylesheet";
-  sheet.href = assetUrl("invite.css") + "?v=t2photo1";
+  sheet.href = assetUrl("invite.css") + "?v=t2clean1";
   document.head.appendChild(sheet);
 
   function guests() {
@@ -2453,21 +2400,6 @@ html[data-theme="2"] .blessing .bismillah {
   }
 
   if (theme === "2") {
-    var blooms = document.querySelectorAll(".t2-bloom-flower");
-    var corners = document.querySelectorAll(".t2-hero-corner");
-    var fall = document.querySelector(".t2-fall");
-    window.addEventListener("scroll", function () {
-      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
-      for (var i = 0; i < blooms.length; i++) {
-        var dir = i % 2 === 0 ? 1 : -1;
-        blooms[i].style.transform =
-          "translate3d(" + (dir * y * 0.05) + "px," + (y * (0.1 + i * 0.04)) + "px,0) rotate(" + (y * 0.06 * dir) + "deg)";
-      }
-      for (var c = 0; c < corners.length; c++) {
-        corners[c].style.transform = "translate3d(0," + (y * 0.16) + "px,0)";
-      }
-      if (fall) fall.style.transform = "translate3d(0," + (y * 0.22) + "px,0)";
-    }, { passive: true });
     var scrollBtn = document.getElementById("t2-scroll-btn");
     if (scrollBtn) {
       scrollBtn.addEventListener("click", function (event) {
