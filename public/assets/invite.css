@@ -1286,9 +1286,33 @@ html[data-theme="2"] .mono-date {
 
 html[data-theme="2"] .mono-rule {
   width: 1px;
-  height: 3.2rem;
-  margin: 0 0.55rem 0.35rem;
+  height: 2.4rem;
+  margin: 0 0.7rem 0.55rem;
   background: #c4a574;
+}
+
+html[data-theme="2"] .mono-brand {
+  align-items: flex-end;
+  padding-bottom: 0.2rem;
+}
+
+html[data-theme="2"] .mono-meem,
+html[data-theme="2"] .mono-dal {
+  line-height: 1.2;
+}
+
+html[data-theme="2"] .mono-meem {
+  margin-inline-end: 0;
+  font-size: min(26vw, 6.5rem);
+}
+
+html[data-theme="2"] .mono-dal {
+  margin-bottom: 0;
+  font-size: min(23vw, 5.8rem);
+}
+
+html[data-theme="2"] .mono-date {
+  margin-top: 2rem;
 }
 
 html[data-theme="2"] .blessing {
