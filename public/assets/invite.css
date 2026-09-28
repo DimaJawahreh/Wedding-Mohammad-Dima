@@ -669,13 +669,38 @@ a {
 }
 
 .calendar-grid .is-wedding {
-  width: 1.7rem;
-  height: 1.7rem;
+  width: 1.9rem;
+  height: 1.9rem;
   margin-inline: auto;
   border-radius: 50%;
   color: #3d8b4a;
   background: rgba(61, 139, 74, 0.16);
-  font-size: 1.05rem;
+  font-size: 0.82rem;
+  perspective: 400px;
+}
+
+.cal-flip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.is-wedding.is-flipped .cal-flip {
+  transform: rotateY(180deg);
+}
+
+.cal-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  backface-visibility: hidden;
+}
+
+.cal-back {
+  transform: rotateY(180deg);
 }
 
 .text-link {
@@ -1333,13 +1358,20 @@ html[data-theme="2"] .t2-hero {
   position: relative;
   min-height: 100svh;
   overflow: hidden;
-  color: #3b2a1c;
+  color: #fff8ee;
   isolation: isolate;
-  background:
-    radial-gradient(ellipse at 50% 28%, #fffdf7 0%, #f4efe6 55%, #e8dfcc 100%);
 }
 
-html[data-theme="2"] .t2-hero-photo,
+html[data-theme="2"] .t2-hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  z-index: 0;
+}
+
 html[data-theme="2"] .t2-hero-corner,
 html[data-theme="2"] .t2-dove,
 html[data-theme="2"] .t2-fall,
@@ -1352,7 +1384,7 @@ html[data-theme="2"] .t2-hero-shade {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: radial-gradient(ellipse at 50% 42%, transparent 40%, rgba(90, 70, 40, 0.06) 100%);
+  background: linear-gradient(180deg, rgba(12, 10, 8, 0.28) 0%, rgba(12, 10, 8, 0.4) 48%, rgba(12, 10, 8, 0.58) 100%);
 }
 
 html[data-theme="2"] .t2-hero-copy {
@@ -1366,7 +1398,8 @@ html[data-theme="2"] .t2-kicker {
   font-family: var(--font-en-script);
   font-size: clamp(1.7rem, 7vw, 2.4rem);
   margin: 0 0 0.35rem;
-  color: #8c6a2c;
+  color: #fff8ee;
+  text-shadow: 0 6px 18px rgba(20, 16, 12, 0.35);
 }
 
 html[data-theme="2"] .t2-hero-date {
@@ -1375,7 +1408,7 @@ html[data-theme="2"] .t2-hero-date {
   font-size: 0.78rem;
   opacity: 0.92;
   margin: 0 0 1.1rem;
-  color: #6b5644;
+  color: #fff8ee;
 }
 
 html[data-theme="2"] .t2-hero-name {
@@ -1383,7 +1416,8 @@ html[data-theme="2"] .t2-hero-name {
   font-size: clamp(3.1rem, 16vw, 5.3rem);
   line-height: 0.88;
   margin: 0;
-  color: #3b2a1c;
+  color: #fff8ee;
+  text-shadow: 0 10px 28px rgba(20, 16, 12, 0.4);
 }
 
 html[data-theme="2"] body.is-opening .t2-hero-dima {
@@ -1412,7 +1446,7 @@ html[data-theme="2"] .t2-scroll-hint {
   text-transform: uppercase;
   opacity: 0.92;
   line-height: 1.7;
-  color: #8c6a2c;
+  color: #fff8ee;
   background: transparent;
   border: 0;
   cursor: pointer;
@@ -1518,8 +1552,6 @@ html[data-theme="2"] .t2-celeb-title::after {
 }
 
 html[data-theme="2"] .countdown-section .reception-card,
-html[data-theme="2"] .countdown-section .calendar,
-html[data-theme="2"] .countdown-section .text-link,
 html[data-theme="2"] .countdown-section > .eyebrow {
   display: none;
 }
@@ -1530,6 +1562,33 @@ html[data-theme="2"] .countdown {
   gap: 0.55rem;
   color: #c4a35a;
   margin: 0.2rem 0 1.4rem;
+}
+
+html[data-theme="2"] .count-value {
+  font-family: Palatino, "Palatino Linotype", Georgia, serif;
+  font-size: clamp(1.7rem, 7vw, 2.15rem);
+  letter-spacing: 0.08em;
+}
+
+html[data-theme="2"] .count-label {
+  font-family: var(--font-en-meta);
+  letter-spacing: 0.22em;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  color: #8c6a2c;
+}
+
+html[data-theme="2"] .countdown-section .calendar {
+  display: block;
+  margin-top: 0.4rem;
+}
+
+html[data-theme="2"] .countdown-section .text-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.55rem 1.2rem;
+  border: 1px solid rgba(196, 163, 90, 0.55);
+  border-radius: 999px;
 }
 
 html[data-theme="2"] .count-value {

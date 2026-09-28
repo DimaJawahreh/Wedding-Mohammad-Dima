@@ -139,6 +139,7 @@
 
     <main class="invitation" id="invitation">
       <section class="t2-hero" lang="en" dir="ltr" aria-label="Wedding Day">
+        <img class="t2-hero-photo" id="t2-hero-photo" alt="Sheraton Amman Hotel" />
         <div class="t2-hero-shade" aria-hidden="true"></div>
         <div class="t2-hero-copy">
           <p class="t2-kicker">Wedding Day</p>
@@ -245,7 +246,12 @@
             <span></span><span></span><span></span>
             <span>1</span><span>2</span><span>3</span><span>4</span>
             <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
-            <span class="is-wedding">♡</span>
+            <span class="is-wedding" id="wedding-day">
+              <span class="cal-flip">
+                <span class="cal-face cal-front">9</span>
+                <span class="cal-face cal-back">10</span>
+              </span>
+            </span>
             <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span>
             <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span>
             <span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
@@ -377,7 +383,9 @@
 
   function setTheme2Media() {
     var seal = document.getElementById("t2-seal-img");
+    var hero = document.getElementById("t2-hero-photo");
     if (seal) seal.src = assetUrl("images/wax-seal.png");
+    if (hero) hero.src = assetUrl("images/hotel-exterior.png");
   }
 
   if (theme === "2") setTheme2Media();
@@ -401,6 +409,10 @@
       document.documentElement.style.overflowY = "auto";
       var box = document.getElementById("opened");
       if (box) box.checked = true;
+      window.setTimeout(function () {
+        var day = document.getElementById("wedding-day");
+        if (day) day.classList.add("is-flipped");
+      }, 400);
     }, reduce ? 0 : 1900);
   }
 
@@ -422,11 +434,15 @@
       floral.classList.add("is-on");
     }
     window.setTimeout(autoScroll, 1600);
+    window.setTimeout(function () {
+      var day = document.getElementById("wedding-day");
+      if (day) day.classList.add("is-flipped");
+    }, 900);
   }
 
   var sheet = document.createElement("link");
   sheet.rel = "stylesheet";
-  sheet.href = assetUrl("invite.css") + "?v=t2clean1";
+  sheet.href = assetUrl("invite.css") + "?v=t2cal1";
   document.head.appendChild(sheet);
 
   function guests() {
