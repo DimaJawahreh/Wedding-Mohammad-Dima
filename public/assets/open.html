@@ -14,9 +14,9 @@
         } catch (e) {}
         document.documentElement.setAttribute("data-theme", theme);
         if (theme === "2") {
-          document.documentElement.style.background = "#f4efe6";
+          document.documentElement.style.background = "#0b1d3a";
           var color = document.querySelector('meta[name="theme-color"]');
-          if (color) color.setAttribute("content", "#F4EFE6");
+          if (color) color.setAttribute("content", "#0B1D3A");
         }
       })();
     </script>
@@ -58,36 +58,15 @@
       .mono-meem,.mono-dal{font-size:min(28vw,7.5rem);line-height:.8;color:#1c2620}
       .mono-date{letter-spacing:.32em}
       .section{width:min(100% - 2rem,28rem);margin:auto;padding:2rem 0;text-align:center}
-      html[data-theme="2"] body{background:#f4efe6;color:#3b2a1c}
-      .t2-gate,.t2-hero,.t2-letter-page,.t2-ribbon,.t2-celeb-title,.t2-schedule-title,.t2-scroll-blooms,.t2-show,.t2-venue-photos{display:none}
-      html[data-theme="2"] .envelope-wrap,html[data-theme="2"] .open-invited{display:none}
-      html[data-theme="2"] .open-screen{padding:0;background:#f4f1ea;perspective:1600px}
-      html[data-theme="2"] .t2-gate{display:block;position:absolute;inset:0;overflow:hidden;perspective:1600px}
-      html[data-theme="2"] .t2-flap{position:absolute;inset:0;transition:transform 1.85s cubic-bezier(.22,1,.36,1);box-shadow:inset 0 0 40px rgba(90,70,40,.08)}
-      html[data-theme="2"] .t2-flap-n{clip-path:polygon(0 0,100% 0,50% 52%);transform-origin:50% 0%;background:linear-gradient(180deg,#fbf8f3,#ebe4d7)}
-      html[data-theme="2"] .t2-flap-s{clip-path:polygon(0 100%,100% 100%,50% 48%);transform-origin:50% 100%;background:linear-gradient(0deg,#fbf8f3,#e6dfd1)}
-      html[data-theme="2"] .t2-flap-e{clip-path:polygon(100% 0,100% 100%,50% 50%);transform-origin:100% 50%;background:linear-gradient(270deg,#faf6ef,#e8e1d4)}
-      html[data-theme="2"] .t2-flap-w{clip-path:polygon(0 0,50% 50%,0 100%);transform-origin:0 50%;background:linear-gradient(90deg,#faf6ef,#e8e1d4)}
-      html[data-theme="2"] .t2-folds{position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(to bottom right,transparent 49.5%,rgba(170,155,130,.45) 50%,transparent 50.5%),linear-gradient(to bottom left,transparent 49.5%,rgba(170,155,130,.45) 50%,transparent 50.5%);transition:opacity .9s ease}
-      html[data-theme="2"] .t2-seal{position:absolute;left:50%;top:50%;width:148px;height:148px;transform:translate(-50%,-50%);z-index:5;transition:opacity .8s ease,transform 1.2s ease}
-      html[data-theme="2"] .t2-seal img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;display:block}
-      html[data-theme="2"] .t2-click-copy{position:absolute;left:50%;top:calc(50% + 96px);transform:translateX(-50%);z-index:6;text-align:center;color:#8b3a3a;font-family:Palatino,Georgia,serif}
-      html[data-theme="2"] .t2-click-copy span{display:block;line-height:1.45}
-      html[data-theme="2"] body.is-opening .t2-flap-n{transform:translateY(-6%) rotateX(-128deg)}
-      html[data-theme="2"] body.is-opening .t2-flap-s{transform:translateY(6%) rotateX(128deg)}
-      html[data-theme="2"] body.is-opening .t2-flap-e{transform:translateX(6%) rotateY(128deg)}
-      html[data-theme="2"] body.is-opening .t2-flap-w{transform:translateX(-6%) rotateY(-128deg)}
-      html[data-theme="2"] body.is-opening .t2-seal{opacity:0;transform:translate(-50%,-50%) scale(.7)}
-      html[data-theme="2"] body.is-opening .t2-click-copy,html[data-theme="2"] body.is-opening .t2-folds{opacity:0}
-      html[data-theme="2"] body.is-opening,html[data-theme="2"] body.is-opening .invitation{overflow:hidden}
-      html[data-theme="2"] body.is-opening .invitation{display:block}
-      html[data-theme="2"] body:not(.is-revealed) .open-screen{display:flex!important}
-      html[data-theme="2"] body.is-revealed .open-screen{display:none!important}
-      html[data-theme="2"] body.is-revealed,html[data-theme="2"] body.is-revealed .invitation{overflow:visible!important;height:auto!important}
-      html[data-theme="2"].is-revealed{overflow-y:auto!important;height:auto!important}
-      html[data-theme="2"] .t2-hero{display:grid;place-items:center;min-height:100svh;position:relative;color:#fff;overflow:hidden}
-      html[data-theme="2"] .t1-schedule-title{display:none}
-      html[data-theme="2"] .t2-schedule-title,html[data-theme="2"] .t2-celeb-title,html[data-theme="2"] .t2-ribbon,html[data-theme="2"] .t2-venue-photos{display:block}
+      html[data-theme="2"] body{background:#0b1d3a;color:#f6edd6}
+      .t2-gate,.t2-hero,.t2-letter-page,.t2-ribbon,.t2-celeb-title,.t2-schedule-title,.t2-scroll-blooms,.t2-show,.t2-venue-photos,.t2-bloom{display:none}
+      html[data-theme="2"] .envelope-back,html[data-theme="2"] .envelope-body{background:#17345f;border-color:rgba(212,175,55,.45)}
+      html[data-theme="2"] .envelope-letter{background:#1a3a6c}
+      html[data-theme="2"] .envelope-flap{background:#21487c}
+      html[data-theme="2"] .envelope-seal{background:#c49a3a;color:#0b1d3a}
+      html[data-theme="2"] .open-invited,html[data-theme="2"] .envelope-hint{color:#e8d48b}
+      html[data-theme="2"] .t2-bloom{display:block}
+      html[data-theme="2"] .mono-meem,html[data-theme="2"] .mono-dal,html[data-theme="2"] .mono-date{color:#f0dd9a}
     </style>
     <link
       rel="icon"
@@ -97,6 +76,10 @@
   <body>
     <input type="checkbox" id="opened" class="open-toggle" />
     <div class="floral-bg" id="floral-bg" aria-hidden="true"></div>
+    <div class="t2-bloom" aria-hidden="true">
+      <span class="t2-petal"></span><span class="t2-petal"></span><span class="t2-petal"></span><span class="t2-petal"></span><span class="t2-petal"></span>
+      <span class="t2-petal"></span><span class="t2-petal"></span><span class="t2-petal"></span><span class="t2-petal"></span><span class="t2-petal"></span>
+    </div>
     <div class="t2-show" id="t2-show" hidden>
       <div class="t2-scene is-active" id="t2-scene">
         <p class="t2-glyph" id="t2-glyph">د</p>
@@ -386,57 +369,20 @@
     return "/assets/" + file;
   }
 
-  function setTheme2Media() {
-    var seal = document.getElementById("t2-seal-img");
-    var hero = document.getElementById("t2-hero-photo");
-    if (seal) seal.src = assetUrl("images/wax-seal.png");
-    if (hero) hero.src = assetUrl("images/hotel-exterior.png");
-  }
-
-  if (theme === "2") setTheme2Media();
-
-  function startTheme2Reveal() {
-    var reduce = false;
-    try {
-      reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    } catch (e) {}
-    document.body.classList.add("is-opening", "is-locked");
-    loadPrettyFonts();
-    playMusic();
-    window.setTimeout(function () {
-      document.body.classList.add("is-open", "is-revealed");
-      document.body.classList.remove("is-opening", "is-locked");
-      document.documentElement.classList.add("is-revealed");
-      document.documentElement.classList.remove("is-locked");
-      document.body.style.height = "auto";
-      document.body.style.overflowY = "auto";
-      document.documentElement.style.height = "auto";
-      document.documentElement.style.overflowY = "auto";
-      var box = document.getElementById("opened");
-      if (box) box.checked = true;
-      window.setTimeout(function () {
-        var day = document.getElementById("wedding-day");
-        if (day) day.classList.add("is-flipped");
-      }, 400);
-    }, reduce ? 0 : 1900);
-  }
-
   function onOpened() {
     if (didOpen) return;
     didOpen = true;
     var box = document.getElementById("opened");
-    if (theme === "2") {
-      startTheme2Reveal();
-      return;
-    }
     document.body.classList.add("is-open");
     if (box) box.checked = true;
     loadPrettyFonts();
     playMusic();
-    var floral = document.getElementById("floral-bg");
-    if (floral) {
-      floral.style.background = 'url("' + assetUrl("images/floral-bg.png") + '") center / cover no-repeat';
-      floral.classList.add("is-on");
+    if (theme !== "2") {
+      var floral = document.getElementById("floral-bg");
+      if (floral) {
+        floral.style.background = 'url("' + assetUrl("images/floral-bg.png") + '") center / cover no-repeat';
+        floral.classList.add("is-on");
+      }
     }
     window.setTimeout(autoScroll, 1600);
     window.setTimeout(function () {
@@ -447,7 +393,7 @@
 
   var sheet = document.createElement("link");
   sheet.rel = "stylesheet";
-  sheet.href = assetUrl("invite.css") + "?v=t2design2";
+  sheet.href = assetUrl("invite.css") + "?v=t2blue1";
   document.head.appendChild(sheet);
 
   function guests() {
@@ -585,7 +531,7 @@
   var openScreen = document.getElementById("open-screen");
   if (openScreen) {
     openScreen.addEventListener("click", function () {
-      if (theme !== "2" && toggle && !toggle.checked) toggle.checked = true;
+      if (toggle && !toggle.checked) toggle.checked = true;
       onOpened();
     });
   }
@@ -614,17 +560,6 @@
     wishModal.onclick = function (event) {
       if (event.target === wishModal) wishModal.hidden = true;
     };
-  }
-
-  if (theme === "2") {
-    var scrollBtn = document.getElementById("t2-scroll-btn");
-    if (scrollBtn) {
-      scrollBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        var next = document.getElementById("t2-inside");
-        if (next) next.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    }
   }
 
   window.addEventListener("touchstart", function (event) {
