@@ -17,6 +17,16 @@
     return "/assets/" + file;
   }
 
+  function setTheme2Frame() {
+    var floral = document.getElementById("floral-bg");
+    if (!floral) return;
+    floral.style.background =
+      'url("' + assetUrl("images/theme2-frame.png") + '") center / cover no-repeat';
+    floral.classList.add("is-on");
+  }
+
+  if (theme === "2") setTheme2Frame();
+
   var sheet = document.createElement("link");
   sheet.rel = "stylesheet";
   sheet.href = assetUrl("invite.css");
@@ -163,16 +173,27 @@
         if (glyph) glyph.textContent = "م";
         if (caption) caption.textContent = "محمد";
         show.classList.remove("is-swap");
-      }, 280);
-    }, 2400);
+      }, 320);
+    }, 2600);
+    window.setTimeout(function () {
+      show.classList.add("is-swap");
+      window.setTimeout(function () {
+        if (glyph) {
+          glyph.innerHTML = "<span>م</span><span>د</span>";
+          glyph.classList.add("is-both");
+        }
+        if (caption) caption.textContent = "10.10.2026";
+        show.classList.remove("is-swap");
+      }, 320);
+    }, 5200);
     window.setTimeout(function () {
       show.classList.add("is-out");
       window.setTimeout(function () {
         show.hidden = true;
         document.body.classList.remove("is-locked");
         done();
-      }, 700);
-    }, 5000);
+      }, 800);
+    }, 7800);
   }
 
   function onOpened() {
@@ -185,9 +206,9 @@
     playMusic();
     var floral = document.getElementById("floral-bg");
     if (theme === "2") {
-      if (floral) floral.classList.add("is-on");
+      setTheme2Frame();
       runTheme2Intro(function () {
-        window.setTimeout(autoScroll, 900);
+        window.setTimeout(autoScroll, 700);
       });
       return;
     }

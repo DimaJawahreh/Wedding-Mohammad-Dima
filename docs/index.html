@@ -14,9 +14,9 @@
         } catch (e) {}
         document.documentElement.setAttribute("data-theme", theme);
         if (theme === "2") {
-          document.documentElement.style.background = "#0b1d3a";
+          document.documentElement.style.background = "#eef3f8";
           var color = document.querySelector('meta[name="theme-color"]');
-          if (color) color.setAttribute("content", "#0B1D3A");
+          if (color) color.setAttribute("content", "#EEF3F8");
         }
       })();
     </script>
@@ -58,11 +58,10 @@
       .mono-meem,.mono-dal{font-size:min(28vw,7.5rem);line-height:.8;color:#1c2620}
       .mono-date{letter-spacing:.32em}
       .section{width:min(100% - 2rem,28rem);margin:auto;padding:2rem 0;text-align:center}
-      html[data-theme="2"] body{background:#0b1d3a;color:#f4ead0}
-      html[data-theme="2"] .envelope-back,html[data-theme="2"] .envelope-body{background:#12284d;border-color:rgba(212,175,55,.4)}
-      html[data-theme="2"] .envelope-letter{background:#0e2244}
-      html[data-theme="2"] .envelope-flap{background:#16325c}
-      html[data-theme="2"] .envelope-seal{background:#c9a54a;color:#0b1d3a}
+      html[data-theme="2"] body{background:#eef3f8;color:#24384a}
+      .t2-poster{display:none}
+      html[data-theme="2"] .envelope-wrap,html[data-theme="2"] .open-invited{display:none}
+      html[data-theme="2"] .t2-poster{display:flex}
     
 :root {
   --sage: #5d6d5d;
@@ -1191,102 +1190,134 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
   color: #1c2620;
 }
 
-/* ---------- Theme 2: navy + gold ---------- */
+/* ---------- Theme 2: cream + baby blue video invite ---------- */
 html:not([data-theme="2"]) .t2-bloom,
-html:not([data-theme="2"]) .t2-show {
+html:not([data-theme="2"]) .t2-show,
+html:not([data-theme="2"]) .t2-poster {
   display: none !important;
 }
 
 html[data-theme="2"] {
-  --sage: #d4b15a;
-  --sage-deep: #f0dd9a;
-  --ink: #f6edd6;
-  --ink-soft: #d8cba6;
-  --glass: rgba(10, 26, 54, 0.78);
-  --glass-strong: rgba(12, 32, 64, 0.9);
-  --line: rgba(212, 175, 55, 0.38);
+  --sage: #5a7fa3;
+  --sage-deep: #1e3a5c;
+  --ink: #24384a;
+  --ink-soft: #4d6478;
+  --glass: rgba(255, 252, 248, 0.82);
+  --glass-strong: rgba(255, 253, 250, 0.92);
+  --line: rgba(140, 176, 206, 0.55);
 }
 
 html[data-theme="2"] body {
-  background: #0b1d3a;
+  background: #eef3f8;
   color: var(--ink);
+  overflow-x: hidden;
 }
 
-html[data-theme="2"] .floral-bg,
-html[data-theme="2"] .floral-bg.is-on {
-  background:
-    radial-gradient(ellipse at 50% 16%, #1c3d72 0%, #0b1d3a 52%, #06111f 100%) !important;
+html[data-theme="2"] .floral-bg {
+  background-color: #eef3f8;
+  background-size: cover;
+  background-position: center;
+  transform-origin: center center;
+  animation: t2-ken 28s ease-in-out infinite alternate;
 }
 
-html[data-theme="2"] .envelope {
-  filter: drop-shadow(0 18px 28px rgba(6, 12, 28, 0.45));
+html[data-theme="2"] .envelope-wrap,
+html[data-theme="2"] .open-invited {
+  display: none;
 }
 
-html[data-theme="2"] .envelope-back,
-html[data-theme="2"] .envelope-body {
-  background: linear-gradient(180deg, #17345f, #102544);
-  border: 1px solid rgba(212, 175, 55, 0.45);
+.t2-poster {
+  display: none;
+  position: relative;
+  z-index: 2;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-html[data-theme="2"] .envelope-letter {
-  background: linear-gradient(180deg, #1a3a6c, #0e2244);
-  border-color: rgba(212, 175, 55, 0.28);
+html[data-theme="2"] .t2-poster {
+  display: flex;
 }
 
-html[data-theme="2"] .envelope-letter-names,
-html[data-theme="2"] .envelope-letter-date {
-  color: #f0dd9a;
+.t2-play {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #1e3a5c;
+  background: rgba(255, 252, 248, 0.88);
+  border: 1px solid rgba(90, 127, 163, 0.35);
+  box-shadow: 0 12px 32px rgba(30, 58, 92, 0.18);
+  animation: t2-pulse 2.4s ease-in-out infinite;
 }
 
-html[data-theme="2"] .envelope-flap {
-  background: linear-gradient(180deg, #21487c 0%, #16325c 100%);
+.t2-play svg {
+  width: 28px;
+  height: 28px;
+  margin-inline-start: 3px;
 }
 
-html[data-theme="2"] .envelope-seal {
-  background: radial-gradient(circle at 35% 30%, #efd98a, #c49a3a 72%);
-  color: #0b1d3a;
-  border-color: rgba(255, 244, 210, 0.35);
+.t2-poster-names {
+  font-family: var(--font-en-script);
+  font-size: 1.7rem;
+  color: #1e3a5c;
 }
 
-html[data-theme="2"] .open-invited,
-html[data-theme="2"] .envelope-hint {
-  color: #e8d48b;
+.t2-poster-hint {
+  font-family: var(--font-en-serif);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #4d6478;
 }
 
-html[data-theme="2"] .glass-card {
+html[data-theme="2"] .glass-card,
+html[data-theme="2"] .names-arch {
   background: var(--glass);
-  border: 1px solid rgba(212, 175, 55, 0.42);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28), inset 0 0 0 1px rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(140, 176, 206, 0.7);
+  box-shadow: 0 14px 36px rgba(30, 58, 92, 0.1);
+  backdrop-filter: blur(8px);
 }
 
 html[data-theme="2"] .mono-meem,
 html[data-theme="2"] .mono-dal,
 html[data-theme="2"] .mono-date {
-  color: #f0dd9a;
+  color: #1e3a5c;
 }
 
 html[data-theme="2"] .music-btn {
-  background: #12284d;
-  color: #f0dd9a;
-  border: 1px solid rgba(212, 175, 55, 0.45);
+  background: rgba(255, 252, 248, 0.9);
+  color: #1e3a5c;
+  border: 1px solid rgba(140, 176, 206, 0.7);
 }
 
 html[data-theme="2"] .is-wedding {
-  color: #0b1d3a;
-  background: #d4b15a;
+  color: #f7fbff;
+  background: #5a7fa3;
 }
 
 html[data-theme="2"] .wish-modal {
-  background: #102544;
-  color: #f6edd6;
-  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: #f7f4ee;
+  color: #24384a;
+  border: 1px solid rgba(140, 176, 206, 0.7);
 }
 
 html[data-theme="2"] .text-link,
 html[data-theme="2"] .map-frame,
 html[data-theme="2"] .section-title,
 html[data-theme="2"] .eyebrow {
-  color: #e8d48b;
+  color: #1e3a5c;
+}
+
+html[data-theme="2"] .invitation {
+  z-index: 3;
+  padding-inline: 6vw;
+}
+
+html[data-theme="2"] .section {
+  padding-top: 2.4rem;
+  padding-bottom: 2.4rem;
 }
 
 .t2-bloom {
@@ -1298,33 +1329,30 @@ html[data-theme="2"] .eyebrow {
   overflow: hidden;
 }
 
-html[data-theme="2"] .invitation {
-  z-index: 3;
-}
-
 html[data-theme="2"] .t2-bloom {
   display: block;
 }
 
 .t2-petal {
   position: absolute;
-  width: 20px;
-  height: 32px;
-  background: radial-gradient(circle at 30% 25%, #f7ebc2, #c9a54a 68%);
-  border-radius: 80% 0 72% 20%;
-  opacity: 0.7;
+  width: 22px;
+  height: 34px;
+  background: radial-gradient(circle at 30% 25%, #8fb4d4, #1e3a5c 72%);
+  border-radius: 70% 20% 70% 20%;
+  opacity: 0.55;
+  filter: blur(0.2px);
   animation: t2-drift 16s linear infinite;
 }
 
 .t2-petal:nth-child(1) { left: 8%; top: 88%; animation-duration: 18s; animation-delay: -2s; }
-.t2-petal:nth-child(2) { left: 22%; top: 94%; width: 12px; height: 20px; animation-duration: 14s; animation-delay: -7s; }
+.t2-petal:nth-child(2) { left: 22%; top: 94%; width: 14px; height: 22px; animation-duration: 14s; animation-delay: -7s; }
 .t2-petal:nth-child(3) { left: 38%; top: 90%; animation-duration: 20s; animation-delay: -4s; }
-.t2-petal:nth-child(4) { left: 55%; top: 96%; width: 14px; height: 22px; animation-duration: 15s; animation-delay: -11s; }
+.t2-petal:nth-child(4) { left: 55%; top: 96%; width: 16px; height: 26px; animation-duration: 15s; animation-delay: -11s; }
 .t2-petal:nth-child(5) { left: 68%; top: 92%; animation-duration: 17s; animation-delay: -1s; }
-.t2-petal:nth-child(6) { left: 81%; top: 88%; width: 11px; height: 18px; animation-duration: 13s; animation-delay: -8s; }
-.t2-petal:nth-child(7) { left: 12%; top: 70%; animation-duration: 19s; animation-delay: -5s; opacity: 0.28; }
-.t2-petal:nth-child(8) { left: 47%; top: 78%; animation-duration: 21s; animation-delay: -9s; opacity: 0.3; }
-.t2-petal:nth-child(9) { left: 74%; top: 64%; animation-duration: 16s; animation-delay: -3s; opacity: 0.26; }
+.t2-petal:nth-child(6) { left: 81%; top: 88%; width: 13px; height: 20px; animation-duration: 13s; animation-delay: -8s; }
+.t2-petal:nth-child(7) { left: 12%; top: 70%; animation-duration: 19s; animation-delay: -5s; opacity: 0.32; }
+.t2-petal:nth-child(8) { left: 47%; top: 78%; animation-duration: 21s; animation-delay: -9s; opacity: 0.34; }
+.t2-petal:nth-child(9) { left: 74%; top: 64%; animation-duration: 16s; animation-delay: -3s; opacity: 0.3; }
 .t2-petal:nth-child(10) { left: 91%; top: 80%; animation-duration: 22s; animation-delay: -12s; }
 
 @keyframes t2-drift {
@@ -1332,11 +1360,32 @@ html[data-theme="2"] .t2-bloom {
     transform: translate3d(0, 0, 0) rotate(0deg);
   }
   50% {
-    transform: translate3d(-24px, -48vh, 0) rotate(120deg);
+    transform: translate3d(-28px, -46vh, 0) rotate(130deg);
   }
   100% {
-    transform: translate3d(18px, -105vh, 0) rotate(240deg);
+    transform: translate3d(16px, -108vh, 0) rotate(250deg);
     opacity: 0;
+  }
+}
+
+@keyframes t2-ken {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes t2-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 12px 32px rgba(30, 58, 92, 0.18);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 16px 40px rgba(30, 58, 92, 0.28);
   }
 }
 
@@ -1348,25 +1397,22 @@ html[data-theme="2"] .t2-bloom {
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  background: radial-gradient(ellipse at 50% 40%, rgba(22, 50, 92, 0.35), rgba(7, 17, 34, 0.18));
+  background: rgba(238, 243, 248, 0.18);
 }
 
 .t2-show[hidden] {
   display: none !important;
 }
 
-.t2-show-frame {
+.t2-scene {
   position: relative;
-  width: min(100%, 22rem);
-  min-height: 22rem;
+  width: min(86vw, 22rem);
+  min-height: 18rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.7rem;
-  padding: 2.4rem 1.4rem;
-  border: 1px solid rgba(212, 175, 55, 0.55);
-  box-shadow: inset 0 0 0 6px rgba(11, 29, 58, 0.35), inset 0 0 0 7px rgba(212, 175, 55, 0.28);
+  gap: 0.55rem;
   text-align: center;
   animation: t2-rise 0.9s var(--ease) both;
 }
@@ -1374,56 +1420,43 @@ html[data-theme="2"] .t2-bloom {
 .t2-show.is-swap .t2-glyph,
 .t2-show.is-swap .t2-caption {
   opacity: 0;
-  transform: scale(0.86);
+  transform: scale(0.88);
 }
 
 .t2-show.is-out {
   opacity: 0;
-  transition: opacity 0.65s ease;
-}
-
-.t2-corner {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  border: 1.5px solid #d4b15a;
-}
-
-.t2-corner-tl { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
-.t2-corner-tr { top: 10px; right: 10px; border-left: 0; border-bottom: 0; }
-.t2-corner-bl { bottom: 10px; left: 10px; border-right: 0; border-top: 0; }
-.t2-corner-br { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
-
-.t2-kicker {
-  font-family: var(--font-en-serif);
-  font-style: italic;
-  letter-spacing: 0.22em;
-  font-size: 0.72rem;
-  color: #d4b15a;
-  text-transform: uppercase;
+  transition: opacity 0.75s ease;
 }
 
 .t2-glyph {
   font-family: var(--font-ar);
-  font-size: min(38vw, 8.4rem);
+  font-size: min(38vw, 8.2rem);
   line-height: 0.9;
-  color: #f3e4b0;
-  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
-  transition: opacity 0.28s ease, transform 0.28s ease;
+  color: #1e3a5c;
+  text-shadow: 0 8px 24px rgba(255, 255, 255, 0.55);
+  transition: opacity 0.32s ease, transform 0.32s ease;
+}
+
+.t2-glyph.is-both {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.15em;
+  font-size: min(28vw, 6.4rem);
 }
 
 .t2-caption {
   font-family: var(--font-ar);
-  font-size: 1.45rem;
-  color: #e8d48b;
+  font-size: 1.4rem;
+  color: #3d5c78;
   letter-spacing: 0.12em;
-  transition: opacity 0.28s ease, transform 0.28s ease;
+  transition: opacity 0.32s ease, transform 0.32s ease;
 }
 
 @keyframes t2-rise {
   from {
     opacity: 0;
-    transform: translateY(16px) scale(0.96);
+    transform: translateY(18px) scale(0.96);
   }
   to {
     opacity: 1;
@@ -1453,12 +1486,7 @@ html[data-theme="2"] .t2-bloom {
       <span class="t2-petal"></span>
     </div>
     <div class="t2-show" id="t2-show" hidden>
-      <div class="t2-show-frame">
-        <span class="t2-corner t2-corner-tl"></span>
-        <span class="t2-corner t2-corner-tr"></span>
-        <span class="t2-corner t2-corner-bl"></span>
-        <span class="t2-corner t2-corner-br"></span>
-        <p class="t2-kicker">Wedding Invitation</p>
+      <div class="t2-scene is-active" id="t2-scene">
         <p class="t2-glyph" id="t2-glyph">د</p>
         <p class="t2-caption" id="t2-caption">ديما</p>
       </div>
@@ -1480,6 +1508,13 @@ html[data-theme="2"] .t2-bloom {
           <span class="envelope-seal">M &amp; D</span>
         </span>
         <span class="envelope-hint">Open Invitation</span>
+      </span>
+      <span class="t2-poster">
+        <span class="t2-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.8v12.4c0 .7.8 1.1 1.4.7l9.2-6.2c.6-.4.6-1.3 0-1.7L9.4 5.1C8.8 4.7 8 5.1 8 5.8Z" /></svg>
+        </span>
+        <span class="t2-poster-names">Mohammad &amp; Dima</span>
+        <span class="t2-poster-hint">Play Invitation</span>
       </span>
     </button>
 
@@ -1692,6 +1727,16 @@ html[data-theme="2"] .t2-bloom {
     return "/assets/" + file;
   }
 
+  function setTheme2Frame() {
+    var floral = document.getElementById("floral-bg");
+    if (!floral) return;
+    floral.style.background =
+      'url("' + assetUrl("images/theme2-frame.png") + '") center / cover no-repeat';
+    floral.classList.add("is-on");
+  }
+
+  if (theme === "2") setTheme2Frame();
+
   var sheet = document.createElement("link");
   sheet.rel = "stylesheet";
   sheet.href = assetUrl("invite.css");
@@ -1838,16 +1883,27 @@ html[data-theme="2"] .t2-bloom {
         if (glyph) glyph.textContent = "م";
         if (caption) caption.textContent = "محمد";
         show.classList.remove("is-swap");
-      }, 280);
-    }, 2400);
+      }, 320);
+    }, 2600);
+    window.setTimeout(function () {
+      show.classList.add("is-swap");
+      window.setTimeout(function () {
+        if (glyph) {
+          glyph.innerHTML = '<span>م</span><span>د</span>';
+          glyph.classList.add("is-both");
+        }
+        if (caption) caption.textContent = "10.10.2026";
+        show.classList.remove("is-swap");
+      }, 320);
+    }, 5200);
     window.setTimeout(function () {
       show.classList.add("is-out");
       window.setTimeout(function () {
         show.hidden = true;
         document.body.classList.remove("is-locked");
         done();
-      }, 700);
-    }, 5000);
+      }, 800);
+    }, 7800);
   }
 
   function onOpened() {
@@ -1860,9 +1916,9 @@ html[data-theme="2"] .t2-bloom {
     playMusic();
     var floral = document.getElementById("floral-bg");
     if (theme === "2") {
-      if (floral) floral.classList.add("is-on");
+      setTheme2Frame();
       runTheme2Intro(function () {
-        window.setTimeout(autoScroll, 900);
+        window.setTimeout(autoScroll, 700);
       });
       return;
     }
