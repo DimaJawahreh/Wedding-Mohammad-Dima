@@ -14,9 +14,9 @@
         } catch (e) {}
         document.documentElement.setAttribute("data-theme", theme);
         if (theme === "2") {
-          document.documentElement.style.background = "#0b1d3a";
+          document.documentElement.style.background = "#f4efe6";
           var color = document.querySelector('meta[name="theme-color"]');
-          if (color) color.setAttribute("content", "#0B1D3A");
+          if (color) color.setAttribute("content", "#F4EFE6");
         }
       })();
     </script>
@@ -58,15 +58,15 @@
       .mono-meem,.mono-dal{font-size:min(28vw,7.5rem);line-height:.8;color:#1c2620}
       .mono-date{letter-spacing:.32em}
       .section{width:min(100% - 2rem,28rem);margin:auto;padding:2rem 0;text-align:center}
-      html[data-theme="2"] body{background:#0b1d3a;color:#f6edd6}
-      .t2-gate,.t2-hero,.t2-letter-page,.t2-ribbon,.t2-celeb-title,.t2-schedule-title,.t2-scroll-blooms,.t2-show,.t2-venue-photos,.t2-bloom{display:none}
-      html[data-theme="2"] .envelope-back,html[data-theme="2"] .envelope-body{background:#17345f;border-color:rgba(212,175,55,.45)}
-      html[data-theme="2"] .envelope-letter{background:#1a3a6c}
-      html[data-theme="2"] .envelope-flap{background:#21487c}
-      html[data-theme="2"] .envelope-seal{background:#c49a3a;color:#0b1d3a}
-      html[data-theme="2"] .open-invited,html[data-theme="2"] .envelope-hint{color:#e8d48b}
-      html[data-theme="2"] .t2-bloom{display:block}
-      html[data-theme="2"] .mono-meem,html[data-theme="2"] .mono-dal,html[data-theme="2"] .mono-date{color:#f0dd9a}
+      html[data-theme="2"] body{background:#f4efe6;color:#2f3f52}
+      .t2-gate,.t2-hero,.t2-letter-page,.t2-ribbon,.t2-celeb-title,.t2-schedule-title,.t2-scroll-blooms,.t2-show,.t2-venue-photos,.t2-bloom,.t2-mono-kicker{display:none}
+      html[data-theme="2"] .envelope-back,html[data-theme="2"] .envelope-body{background:#f4eee3;border-color:rgba(61,90,122,.22)}
+      html[data-theme="2"] .envelope-letter{background:#fffdf8}
+      html[data-theme="2"] .envelope-flap{background:#d5dee8}
+      html[data-theme="2"] .envelope-seal{background:#4a6788;color:#f7f1e6}
+      html[data-theme="2"] .open-invited,html[data-theme="2"] .envelope-hint{color:#3d5a7a}
+      html[data-theme="2"] .t2-bloom,html[data-theme="2"] .t2-mono-kicker{display:block}
+      html[data-theme="2"] .mono-meem,html[data-theme="2"] .mono-dal,html[data-theme="2"] .mono-date{color:#3d5a7a}
     </style>
     <link
       rel="icon"
@@ -147,6 +147,7 @@
         <p class="t2-caption">محمد</p>
       </section>
       <section class="mono-page" aria-label="محمد و ديما">
+        <p class="t2-mono-kicker">The Wedding Of</p>
         <div class="mono-brand">
           <span class="mono-meem">م</span>
           <span class="mono-rule" aria-hidden="true"></span>
@@ -369,6 +370,14 @@
     return "/assets/" + file;
   }
 
+  if (theme === "2") {
+    var paper = document.getElementById("floral-bg");
+    if (paper) {
+      paper.style.background = 'url("' + assetUrl("images/theme2-frame.png") + '") center / cover no-repeat';
+      paper.classList.add("is-on");
+    }
+  }
+
   function onOpened() {
     if (didOpen) return;
     didOpen = true;
@@ -393,7 +402,7 @@
 
   var sheet = document.createElement("link");
   sheet.rel = "stylesheet";
-  sheet.href = assetUrl("invite.css") + "?v=t2blue1";
+  sheet.href = assetUrl("invite.css") + "?v=t2ivory1";
   document.head.appendChild(sheet);
 
   function guests() {
