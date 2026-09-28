@@ -8,6 +8,7 @@
   var touchY = 0;
   var fontsLoaded = false;
   var didOpen = false;
+  var theme = document.documentElement.getAttribute("data-theme") === "2" ? "2" : "1";
 
   function assetUrl(file) {
     if (location.hostname.indexOf("github.io") !== -1) {
@@ -141,6 +142,39 @@
     raf = requestAnimationFrame(step);
   }
 
+  function runTheme2Intro(done) {
+    var show = document.getElementById("t2-show");
+    var glyph = document.getElementById("t2-glyph");
+    var caption = document.getElementById("t2-caption");
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!show || reduce) {
+      if (show) show.hidden = true;
+      done();
+      return;
+    }
+    document.body.classList.add("is-locked");
+    show.hidden = false;
+    show.classList.add("is-on");
+    if (glyph) glyph.textContent = "د";
+    if (caption) caption.textContent = "ديما";
+    window.setTimeout(function () {
+      show.classList.add("is-swap");
+      window.setTimeout(function () {
+        if (glyph) glyph.textContent = "م";
+        if (caption) caption.textContent = "محمد";
+        show.classList.remove("is-swap");
+      }, 280);
+    }, 2400);
+    window.setTimeout(function () {
+      show.classList.add("is-out");
+      window.setTimeout(function () {
+        show.hidden = true;
+        document.body.classList.remove("is-locked");
+        done();
+      }, 700);
+    }, 5000);
+  }
+
   function onOpened() {
     if (didOpen) return;
     didOpen = true;
@@ -150,6 +184,13 @@
     loadPrettyFonts();
     playMusic();
     var floral = document.getElementById("floral-bg");
+    if (theme === "2") {
+      if (floral) floral.classList.add("is-on");
+      runTheme2Intro(function () {
+        window.setTimeout(autoScroll, 900);
+      });
+      return;
+    }
     if (floral) {
       floral.style.background = 'url("' + assetUrl("images/floral-bg.png") + '") center / cover no-repeat';
       floral.classList.add("is-on");

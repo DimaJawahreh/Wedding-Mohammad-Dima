@@ -3,7 +3,11 @@
     { "source": "/1", "destination": "/index.html" },
     { "source": "/2", "destination": "/index.html" },
     { "source": "/3", "destination": "/index.html" },
-    { "source": "/open", "destination": "/assets/open.html" }
+    { "source": "/open", "destination": "/assets/open.html" },
+    { "source": "/theme2", "destination": "/index.html" },
+    { "source": "/theme2/1", "destination": "/index.html" },
+    { "source": "/theme2/2", "destination": "/index.html" },
+    { "source": "/theme2/3", "destination": "/index.html" }
   ],
   "headers": [
     {
@@ -26,6 +30,15 @@
     },
     {
       "source": "/(1|2|3)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/theme2(/[123])?",
       "headers": [
         {
           "key": "Cache-Control",

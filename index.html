@@ -4,6 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#D8E0D4" />
+    <script>
+      (function () {
+        var theme = "1";
+        try {
+          if (/[?&](?:theme|t)=2(?:&|$)/.test(location.search) || /\/theme2(?:\/|$)/.test(location.pathname)) {
+            theme = "2";
+          }
+        } catch (e) {}
+        document.documentElement.setAttribute("data-theme", theme);
+        if (theme === "2") {
+          document.documentElement.style.background = "#0b1d3a";
+          var color = document.querySelector('meta[name="theme-color"]');
+          if (color) color.setAttribute("content", "#0B1D3A");
+        }
+      })();
+    </script>
     <title>Mohammad &amp; Dima — Wedding Invitation</title>
     <meta
       name="description"
@@ -42,6 +58,11 @@
       .mono-meem,.mono-dal{font-size:min(28vw,7.5rem);line-height:.8;color:#1c2620}
       .mono-date{letter-spacing:.32em}
       .section{width:min(100% - 2rem,28rem);margin:auto;padding:2rem 0;text-align:center}
+      html[data-theme="2"] body{background:#0b1d3a;color:#f4ead0}
+      html[data-theme="2"] .envelope-back,html[data-theme="2"] .envelope-body{background:#12284d;border-color:rgba(212,175,55,.4)}
+      html[data-theme="2"] .envelope-letter{background:#0e2244}
+      html[data-theme="2"] .envelope-flap{background:#16325c}
+      html[data-theme="2"] .envelope-seal{background:#c9a54a;color:#0b1d3a}
     </style>
     <link
       rel="icon"
@@ -51,6 +72,29 @@
   <body>
     <input type="checkbox" id="opened" class="open-toggle" />
     <div class="floral-bg" id="floral-bg" aria-hidden="true"></div>
+    <div class="t2-bloom" aria-hidden="true">
+      <span class="t2-petal"></span>
+      <span class="t2-petal"></span>
+      <span class="t2-petal"></span>
+      <span class="t2-petal"></span>
+      <span class="t2-petal"></span>
+      <span class="t2-petal"></span>
+      <span class="t2-petal"></span>
+      <span class="t2-petal"></span>
+      <span class="t2-petal"></span>
+      <span class="t2-petal"></span>
+    </div>
+    <div class="t2-show" id="t2-show" hidden>
+      <div class="t2-show-frame">
+        <span class="t2-corner t2-corner-tl"></span>
+        <span class="t2-corner t2-corner-tr"></span>
+        <span class="t2-corner t2-corner-bl"></span>
+        <span class="t2-corner t2-corner-br"></span>
+        <p class="t2-kicker">Wedding Invitation</p>
+        <p class="t2-glyph" id="t2-glyph">د</p>
+        <p class="t2-caption" id="t2-caption">ديما</p>
+      </div>
+    </div>
 
     <audio id="music" loop preload="none" playsinline></audio>
 
@@ -271,6 +315,7 @@
   var touchY = 0;
   var fontsLoaded = false;
   var didOpen = false;
+  var theme = document.documentElement.getAttribute("data-theme") === "2" ? "2" : "1";
 
   function assetUrl(file) {
     if (location.hostname.indexOf("github.io") !== -1) {
@@ -404,6 +449,39 @@
     raf = requestAnimationFrame(step);
   }
 
+  function runTheme2Intro(done) {
+    var show = document.getElementById("t2-show");
+    var glyph = document.getElementById("t2-glyph");
+    var caption = document.getElementById("t2-caption");
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!show || reduce) {
+      if (show) show.hidden = true;
+      done();
+      return;
+    }
+    document.body.classList.add("is-locked");
+    show.hidden = false;
+    show.classList.add("is-on");
+    if (glyph) glyph.textContent = "د";
+    if (caption) caption.textContent = "ديما";
+    window.setTimeout(function () {
+      show.classList.add("is-swap");
+      window.setTimeout(function () {
+        if (glyph) glyph.textContent = "م";
+        if (caption) caption.textContent = "محمد";
+        show.classList.remove("is-swap");
+      }, 280);
+    }, 2400);
+    window.setTimeout(function () {
+      show.classList.add("is-out");
+      window.setTimeout(function () {
+        show.hidden = true;
+        document.body.classList.remove("is-locked");
+        done();
+      }, 700);
+    }, 5000);
+  }
+
   function onOpened() {
     if (didOpen) return;
     didOpen = true;
@@ -413,6 +491,13 @@
     loadPrettyFonts();
     playMusic();
     var floral = document.getElementById("floral-bg");
+    if (theme === "2") {
+      if (floral) floral.classList.add("is-on");
+      runTheme2Intro(function () {
+        window.setTimeout(autoScroll, 900);
+      });
+      return;
+    }
     if (floral) {
       floral.style.background = 'url("' + assetUrl("images/floral-bg.png") + '") center / cover no-repeat';
       floral.classList.add("is-on");
