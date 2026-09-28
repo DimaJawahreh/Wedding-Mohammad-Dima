@@ -36,8 +36,8 @@ export const wedding = {
       "https://maps.google.com/maps?q=Sheraton+Amman+Hotel,+Amman,+Jordan&z=16&ie=UTF8&output=embed",
   },
   hosts: {
-    first: "السيد سلطان أكرم سلطان",
-    second: "السيد ناجح محمد جواهرة",
+    first: "حرم السيد سلطان أكرم سلطان",
+    second: "حرم السيد ناجح محمد جواهرة",
   },
   copy: {
     openingLine: "A new chapter begins…",
