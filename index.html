@@ -59,9 +59,9 @@
       .mono-date{letter-spacing:.32em}
       .section{width:min(100% - 2rem,28rem);margin:auto;padding:2rem 0;text-align:center}
       html[data-theme="2"] body{background:#eef3f8;color:#24384a}
-      .t2-poster{display:none}
+      .t2-book-cover{display:none}
       html[data-theme="2"] .envelope-wrap,html[data-theme="2"] .open-invited{display:none}
-      html[data-theme="2"] .t2-poster{display:flex}
+      html[data-theme="2"] .t2-book-cover{display:block;width:78vw;max-width:340px;min-width:240px;height:min(74vh,560px)}
     </style>
     <link
       rel="icon"
@@ -107,19 +107,30 @@
         </span>
         <span class="envelope-hint">Open Invitation</span>
       </span>
-      <span class="t2-poster">
-        <span class="t2-play" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.8v12.4c0 .7.8 1.1 1.4.7l9.2-6.2c.6-.4.6-1.3 0-1.7L9.4 5.1C8.8 4.7 8 5.1 8 5.8Z" /></svg>
+      <span class="t2-book-cover" id="t2-book-cover" dir="rtl">
+        <span class="t2-book-spine" aria-hidden="true"></span>
+        <span class="t2-book-face" id="t2-book-face">
+          <span class="t2-cover-letters" aria-hidden="true"><span>م</span><span class="t2-cover-rule"></span><span>د</span></span>
+          <span class="t2-cover-names" lang="en" dir="ltr">Mohammad &amp; Dima</span>
+          <span class="t2-cover-date" lang="en" dir="ltr">10.10.2026</span>
+          <span class="t2-cover-hint">اضغطي لفتح الدعوة</span>
         </span>
-        <span class="t2-poster-names">Mohammad &amp; Dima</span>
-        <span class="t2-poster-hint">Play Invitation</span>
       </span>
     </button>
 
     <main class="invitation" id="invitation">
+      <section class="t2-letter-page" aria-label="ديما">
+        <p class="t2-glyph">د</p>
+        <p class="t2-caption">ديما</p>
+      </section>
+      <section class="t2-letter-page" aria-label="محمد">
+        <p class="t2-glyph">م</p>
+        <p class="t2-caption">محمد</p>
+      </section>
       <section class="mono-page" aria-label="محمد و ديما">
         <div class="mono-brand">
           <span class="mono-meem">م</span>
+          <span class="mono-rule" aria-hidden="true"></span>
           <span class="mono-dal">د</span>
         </div>
         <p class="mono-date">10.10.2026</p>
@@ -327,10 +338,15 @@
 
   function setTheme2Frame() {
     var floral = document.getElementById("floral-bg");
-    if (!floral) return;
-    floral.style.background =
-      'url("' + assetUrl("images/theme2-frame.png") + '") center / cover no-repeat';
-    floral.classList.add("is-on");
+    var face = document.getElementById("t2-book-face");
+    var frame = 'url("' + assetUrl("images/theme2-frame.png") + '") center / cover no-repeat';
+    if (face) face.style.background = frame;
+    if (floral) {
+      floral.style.background = document.body.classList.contains("is-book-open")
+        ? frame
+        : "#eef3f8";
+      floral.classList.add("is-on");
+    }
   }
 
   if (theme === "2") setTheme2Frame();
@@ -460,48 +476,67 @@
     raf = requestAnimationFrame(step);
   }
 
-  function runTheme2Intro(done) {
-    var show = document.getElementById("t2-show");
-    var glyph = document.getElementById("t2-glyph");
-    var caption = document.getElementById("t2-caption");
-    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!show || reduce) {
-      if (show) show.hidden = true;
-      done();
-      return;
+  function markLines(page) {
+    var nodes = page.querySelectorAll(
+      "p, h2, li, blockquote, .invite-hosts, .names-arch, .mono-brand, .mono-date, .countdown, .calendar, .map-card, .gift-btn, .reception-card, .t2-glyph, .t2-caption"
+    );
+    var n = 0;
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      if (el.closest(".invite-hosts") && !el.classList.contains("invite-hosts")) continue;
+      if (el.closest(".names-arch") && !el.classList.contains("names-arch")) continue;
+      if (el.closest(".reception-card") && !el.classList.contains("reception-card")) continue;
+      if (el.closest(".countdown") && !el.classList.contains("countdown")) continue;
+      if (el.closest(".calendar") && !el.classList.contains("calendar")) continue;
+      if (el.closest("li") && el.tagName !== "LI") continue;
+      if (el.closest(".mono-brand") && !el.classList.contains("mono-brand")) continue;
+      el.classList.remove("t2-line");
+      el.style.removeProperty("--d");
     }
-    document.body.classList.add("is-locked");
-    show.hidden = false;
-    show.classList.add("is-on");
-    if (glyph) glyph.textContent = "د";
-    if (caption) caption.textContent = "ديما";
-    window.setTimeout(function () {
-      show.classList.add("is-swap");
-      window.setTimeout(function () {
-        if (glyph) glyph.textContent = "م";
-        if (caption) caption.textContent = "محمد";
-        show.classList.remove("is-swap");
-      }, 320);
-    }, 2600);
-    window.setTimeout(function () {
-      show.classList.add("is-swap");
-      window.setTimeout(function () {
-        if (glyph) {
-          glyph.innerHTML = '<span>م</span><span>د</span>';
-          glyph.classList.add("is-both");
-        }
-        if (caption) caption.textContent = "10.10.2026";
-        show.classList.remove("is-swap");
-      }, 320);
-    }, 5200);
-    window.setTimeout(function () {
-      show.classList.add("is-out");
-      window.setTimeout(function () {
-        show.hidden = true;
-        document.body.classList.remove("is-locked");
-        done();
-      }, 800);
-    }, 7800);
+    void page.offsetWidth;
+    for (var j = 0; j < nodes.length; j++) {
+      var node = nodes[j];
+      if (node.closest(".invite-hosts") && !node.classList.contains("invite-hosts")) continue;
+      if (node.closest(".names-arch") && !node.classList.contains("names-arch")) continue;
+      if (node.closest(".reception-card") && !node.classList.contains("reception-card")) continue;
+      if (node.closest(".countdown") && !node.classList.contains("countdown")) continue;
+      if (node.closest(".calendar") && !node.classList.contains("calendar")) continue;
+      if (node.closest("li") && node.tagName !== "LI") continue;
+      if (node.closest(".mono-brand") && !node.classList.contains("mono-brand")) continue;
+      node.classList.add("t2-line");
+      node.style.setProperty("--d", 0.18 + n * 0.58 + "s");
+      n += 1;
+    }
+    return n;
+  }
+
+  var bookPages = [];
+  var bookIndex = 0;
+  var bookTimer = 0;
+
+  function showBookPage(index) {
+    if (!bookPages.length) return;
+    if (index >= bookPages.length) return;
+    bookIndex = index;
+    for (var i = 0; i < bookPages.length; i++) {
+      bookPages[i].classList.toggle("is-page", i === index);
+    }
+    var count = markLines(bookPages[index]);
+    var wait = Math.min(12000, Math.max(2800, 1600 + count * 720));
+    window.clearTimeout(bookTimer);
+    if (index < bookPages.length - 1) {
+      bookTimer = window.setTimeout(function () {
+        showBookPage(index + 1);
+      }, wait);
+    }
+  }
+
+  function startTheme2Book() {
+    document.body.classList.add("is-book-open", "is-locked");
+    setTheme2Frame();
+    var invite = document.getElementById("invitation");
+    bookPages = invite ? [].slice.call(invite.children) : [];
+    showBookPage(0);
   }
 
   function onOpened() {
@@ -514,10 +549,9 @@
     playMusic();
     var floral = document.getElementById("floral-bg");
     if (theme === "2") {
-      setTheme2Frame();
-      runTheme2Intro(function () {
-        window.setTimeout(autoScroll, 700);
-      });
+      var cover = document.getElementById("t2-book-cover");
+      if (cover) cover.classList.add("is-open");
+      window.setTimeout(startTheme2Book, 1150);
       return;
     }
     if (floral) {
@@ -547,6 +581,16 @@
     });
   }
 
+  var invitationEl = document.getElementById("invitation");
+  if (invitationEl && theme === "2") {
+    invitationEl.addEventListener("click", function (event) {
+      if (event.target.closest("button, a")) return;
+      if (!document.body.classList.contains("is-book-open")) return;
+      window.clearTimeout(bookTimer);
+      showBookPage(bookIndex + 1);
+    });
+  }
+
   var musicBtn = document.getElementById("music-btn");
   if (musicBtn) musicBtn.onclick = toggleMusic;
 
@@ -557,6 +601,7 @@
   if (giftBtn) {
     giftBtn.onclick = function () {
       haltScroll();
+      window.clearTimeout(bookTimer);
       document.getElementById("wish-modal").hidden = false;
     };
   }
