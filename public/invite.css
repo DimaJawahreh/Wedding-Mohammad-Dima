@@ -1156,7 +1156,7 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
 }
 
 .mono-combined {
-  font-family: "Aref Ruqaa", "Traditional Arabic", serif;
+  font-family: "Noto Naskh Arabic", "Traditional Arabic", serif;
   font-size: min(38vw, 9rem);
   color: #1c2620;
   line-height: 1;
@@ -1166,7 +1166,37 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
 }
 
 .mono-stylized {
-  padding: 1rem 0;
+  padding: 2rem 0;
+}
+
+.mono-stacked {
+  position: relative;
+  display: inline-block;
+  width: min(55vw, 14rem);
+  height: min(55vw, 14rem);
+}
+
+.mono-top,
+.mono-bottom {
+  position: absolute;
+  font-family: "Noto Naskh Arabic", "Traditional Arabic", serif;
+  font-weight: 600;
+  color: #1c2620;
+  line-height: 1;
+}
+
+.mono-top {
+  font-size: min(42vw, 11rem);
+  top: 0;
+  right: 10%;
+  z-index: 2;
+}
+
+.mono-bottom {
+  font-size: min(38vw, 10rem);
+  bottom: 5%;
+  left: 15%;
+  z-index: 1;
 }
 
 .host-separator {
@@ -1319,6 +1349,12 @@ html[data-theme="2"] .mono-combined {
   font-size: min(42vw, 10rem);
   transform: rotate(-10deg);
   text-shadow: 2px 4px 8px rgba(61, 90, 122, 0.15);
+}
+
+html[data-theme="2"] .mono-top,
+html[data-theme="2"] .mono-bottom {
+  color: #3d5a7a;
+  text-shadow: 2px 4px 12px rgba(61, 90, 122, 0.2);
 }
 
 html[data-theme="2"] .mono-rule {
