@@ -460,44 +460,32 @@ a {
 
 .invite-intro-simple,
 .invite-honors-simple,
-.invite-line-simple {
-  font-family: "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
-  font-size: 1rem;
+.invite-line-simple,
+.invite-hosts-simple {
+  font-family: var(--font-ui);
+  font-style: normal;
+  font-weight: 400;
   color: var(--ink);
-  line-height: 2;
   text-align: center;
   unicode-bidi: isolate;
   direction: rtl;
-  font-weight: 400;
-  font-style: normal;
+}
+
+.invite-intro-simple,
+.invite-honors-simple,
+.invite-line-simple {
+  font-size: 0.95rem;
+  line-height: 2.05;
 }
 
 .invite-honors-simple {
-  font-size: 1.1rem;
-  margin: 0.8rem 0 0.4rem;
-  font-style: normal;
+  margin: 0.5rem 0 0.25rem;
 }
 
 .invite-hosts-simple {
-  font-family: "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
-  font-size: 0.92rem;
-  color: var(--ink);
-  line-height: 1.8;
-  text-align: center;
-  margin: 0.3rem 0 0.8rem;
-  unicode-bidi: isolate;
-  direction: rtl;
-  font-weight: 500;
-  font-style: normal;
-}
-
-html[data-theme="2"] .invite-intro-simple,
-html[data-theme="2"] .invite-honors-simple,
-html[data-theme="2"] .invite-line-simple,
-html[data-theme="2"] .invite-hosts-simple {
-  font-family: "Noto Sans Arabic", sans-serif;
-  font-style: normal;
-  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 2.05;
+  margin: 0.15rem 0 0.35rem;
 }
 
 .invite-hosts-stacked {
