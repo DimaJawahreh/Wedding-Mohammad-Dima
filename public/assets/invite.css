@@ -1460,46 +1460,25 @@ html[data-theme="2"] .mono-dal {
   font-size: min(23vw, 5.8rem);
 }
 
-html[data-theme="2"] .monogram-text {
-  position: relative;
+html[data-theme="2"] .monogram-sign,
+.monogram-sign {
   display: block;
-  width: min(46vw, 9.2rem);
-  height: min(50vw, 10rem);
-  margin: 0.6rem auto 0;
-  direction: rtl;
+  width: min(52vw, 11rem);
+  height: auto;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
-html[data-theme="2"] .monogram-text .mono-meem,
-html[data-theme="2"] .monogram-text .mono-dal {
-  position: absolute;
+.monogram-sign text {
   font-family: "Aref Ruqaa", "Amiri", serif;
-  font-weight: 400;
-  color: #2a4a6a;
-  line-height: 0.8;
-}
-
-html[data-theme="2"] .monogram-text .mono-meem {
-  right: 6%;
-  bottom: 2%;
-  font-size: min(28vw, 6rem);
-  margin: 0;
-  transform: rotate(-13deg);
-  z-index: 1;
-}
-
-html[data-theme="2"] .monogram-text .mono-dal {
-  left: 14%;
-  top: 0;
-  font-size: min(24vw, 5.1rem);
-  margin: 0;
-  transform: rotate(-9deg);
-  z-index: 2;
+  fill: #2a4a6a;
 }
 
 html[data-theme="2"] .mono-date {
   position: relative;
   z-index: 3;
-  margin-top: 1.35rem;
+  margin-top: 1rem;
 }
 
 html[data-theme="2"] .blessing {

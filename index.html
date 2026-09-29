@@ -152,9 +152,12 @@
       <section class="mono-page" aria-label="محمد و ديما">
         <p class="t2-mono-kicker">The Wedding Of</p>
         <div class="mono-brand mono-stylized">
-          <div class="monogram-text">
-            <span class="mono-meem">م</span><span class="mono-dal">د</span>
-          </div>
+          <svg class="monogram-sign" viewBox="0 0 200 200" role="img" aria-label="م د">
+            <g transform="rotate(-8 100 100)">
+              <text x="120" y="118" text-anchor="middle" font-size="150">م</text>
+              <text x="70" y="90" text-anchor="middle" font-size="130">د</text>
+            </g>
+          </svg>
         </div>
         <p class="mono-date">10.10.2026</p>
       </section>
@@ -398,7 +401,7 @@
 
   var sheet = document.createElement("link");
   sheet.rel = "stylesheet";
-  sheet.href = assetUrl("invite.css") + "?v=t2sign3";
+  sheet.href = assetUrl("invite.css") + "?v=t2sign4";
   document.head.appendChild(sheet);
 
   function guests() {
