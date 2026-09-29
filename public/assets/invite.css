@@ -1227,7 +1227,7 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
 }
 
 .monogram-image {
-  width: min(70vw, 16rem);
+  width: min(55vw, 13rem);
   height: auto;
   display: block;
   margin: 0 auto;
@@ -1418,7 +1418,7 @@ html[data-theme="2"] .mono-dal {
 }
 
 html[data-theme="2"] .mono-date {
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 html[data-theme="2"] .blessing {
