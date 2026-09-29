@@ -1155,6 +1155,26 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
   margin-bottom: -0.15rem;
 }
 
+.mono-combined {
+  font-family: "Aref Ruqaa", "Traditional Arabic", serif;
+  font-size: min(38vw, 9rem);
+  color: #1c2620;
+  line-height: 1;
+  display: inline-block;
+  transform: rotate(-8deg);
+  letter-spacing: 0.02em;
+}
+
+.mono-stylized {
+  padding: 1rem 0;
+}
+
+.host-separator {
+  color: var(--sage);
+  margin: 0 0.5em;
+  font-weight: 300;
+}
+
 .mono-date {
   margin-top: 1.2rem;
   color: #1c2620;
@@ -1292,6 +1312,13 @@ html[data-theme="2"] .mono-meem,
 html[data-theme="2"] .mono-dal,
 html[data-theme="2"] .mono-date {
   color: #3d5a7a;
+}
+
+html[data-theme="2"] .mono-combined {
+  color: #3d5a7a;
+  font-size: min(42vw, 10rem);
+  transform: rotate(-10deg);
+  text-shadow: 2px 4px 8px rgba(61, 90, 122, 0.15);
 }
 
 html[data-theme="2"] .mono-rule {

@@ -444,6 +444,12 @@ a {
   direction: rtl;
 }
 
+.host-separator {
+  color: var(--sage);
+  margin: 0 0.5em;
+  font-weight: 300;
+}
+
 .host-and {
   color: var(--sage);
   font-size: 1.05rem;

@@ -12,7 +12,7 @@ export function InvitationCard() {
 
           <p className="invite-honors">{wedding.copy.invitation.honors}</p>
           <p className="invite-hosts-inline">
-            {wedding.hosts.first} <span className="host-and">و</span> {wedding.hosts.second}
+            {wedding.hosts.first} <span className="host-separator">—</span> {wedding.hosts.second}
           </p>
 
           <p className="invite-line">{wedding.copy.invitation.inviteLine1}</p>

@@ -7,7 +7,7 @@ export const wedding = {
     displayEn: "Mohammad & Dima",
     displayAr: "محمد و ديما",
     displayArInvite: "محمد و ديما",
-    initials: "مد",
+    initials: "M & D",
   },
   date: {
     iso: "2026-10-10T20:00:00+03:00",
@@ -48,7 +48,7 @@ export const wedding = {
     quranVerse:
       "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً",
     invitation: {
-      intro: "بكل الحب والسرور،",
+      intro: "بكل الحب والسرور",
       honors: "يتشرف",
       inviteLine1: "بدعوتكم لمشاركتهم فرحتهم",
       inviteLine2: "وحضور حفل زفاف",
