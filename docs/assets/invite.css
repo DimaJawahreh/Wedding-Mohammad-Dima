@@ -1185,11 +1185,9 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
 
 .mono-stacked {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: min(52vw, 13rem);
-  height: min(52vw, 13rem);
+  display: inline-block;
+  width: min(60vw, 15rem);
+  height: min(50vw, 12rem);
 }
 
 .mono-top,
@@ -1197,24 +1195,24 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
   position: absolute;
   font-family: "Amiri", "Traditional Arabic", serif;
   font-weight: 700;
-  line-height: 1;
+  line-height: 0.8;
   color: #3d5a7a;
 }
 
 .mono-top {
-  font-size: min(36vw, 9rem);
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
+  font-size: min(50vw, 12rem);
+  top: -5%;
+  right: 15%;
+  z-index: 1;
+  transform: rotate(-12deg);
 }
 
 .mono-bottom {
-  font-size: min(32vw, 8rem);
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
+  font-size: min(45vw, 11rem);
+  bottom: -10%;
+  left: 10%;
+  z-index: 2;
+  transform: rotate(8deg);
 }
 
 .host-separator {

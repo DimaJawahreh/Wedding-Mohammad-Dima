@@ -11,10 +11,9 @@ export function InvitationCard() {
           <p className="invite-intro">{wedding.copy.invitation.intro}</p>
 
           <p className="invite-honors">{wedding.copy.invitation.honors}</p>
-          <div className="invite-hosts-stacked">
-            <span className="invite-host-line">{wedding.hosts.first}</span>
-            <span className="invite-host-line">{wedding.hosts.second}</span>
-          </div>
+          <p className="invite-hosts-inline">
+            {wedding.hosts.first} &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp; {wedding.hosts.second}
+          </p>
 
           <p className="invite-line">{wedding.copy.invitation.inviteLine1}</p>
           <p className="invite-line">{wedding.copy.invitation.inviteLine2}</p>
