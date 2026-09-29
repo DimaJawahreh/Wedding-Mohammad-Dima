@@ -1,17 +1,7 @@
-import { useEffect, useState } from "react";
 import { wedding } from "../config";
-import { formatGuestCountNote, parseGuestCount } from "../guestCount";
 import { Reveal } from "./Reveal";
 
 export function InvitationCard() {
-  const [guestCount, setGuestCount] = useState(() => parseGuestCount());
-
-  useEffect(() => {
-    const sync = () => setGuestCount(parseGuestCount());
-    window.addEventListener("popstate", sync);
-    return () => window.removeEventListener("popstate", sync);
-  }, []);
-
   return (
     <section className="section invite-card-section" id="invitation" aria-label="Invitation">
       <Reveal>
@@ -21,11 +11,9 @@ export function InvitationCard() {
           <p className="invite-intro">{wedding.copy.invitation.intro}</p>
 
           <p className="invite-honors">{wedding.copy.invitation.honors}</p>
-          <div className="invite-hosts">
-            <p className="invite-host-name">{wedding.hosts.first}</p>
-            <span className="host-and">و</span>
-            <p className="invite-host-name">{wedding.hosts.second}</p>
-          </div>
+          <p className="invite-hosts-inline">
+            {wedding.hosts.first} <span className="host-and">و</span> {wedding.hosts.second}
+          </p>
 
           <p className="invite-line">{wedding.copy.invitation.inviteLine1}</p>
           <p className="invite-line">{wedding.copy.invitation.inviteLine2}</p>
@@ -46,7 +34,6 @@ export function InvitationCard() {
           <p className="invite-place" lang="en" dir="ltr">
             {wedding.venue.name}
           </p>
-          <p className="invite-guests">{formatGuestCountNote(guestCount)}</p>
         </article>
       </Reveal>
     </section>

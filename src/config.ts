@@ -7,7 +7,7 @@ export const wedding = {
     displayEn: "Mohammad & Dima",
     displayAr: "محمد و ديما",
     displayArInvite: "محمد و ديما",
-    initials: "M & D",
+    initials: "مد",
   },
   date: {
     iso: "2026-10-10T20:00:00+03:00",
@@ -67,13 +67,13 @@ export const wedding = {
     wishingWellHint: "Tap to open",
     wishingWellMessage: "Your presence would mean the world to us.",
     wishingWellMessageAr: "حضوركم هو أغلى هدية",
-    childrenTitle: "تنويه",
+    childrenTitle: "",
     childrenNote:
       "يسعدنا حضوركم واحتفالكم معنا، ونرجو الالتزام بعدم اصطحاب الأطفال.",
     guestCount: 1,
     guestCountNote: "عدد الحضور لهذه البطاقة: 1",
     closing: "Together",
-    credit: "By Pride",
+    credit: "",
   },
   timeline: [
     { time: "8:00 PM", title: "Arrival & Welcome" },

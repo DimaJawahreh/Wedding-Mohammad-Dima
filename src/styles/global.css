@@ -434,6 +434,16 @@ a {
   margin: 0 0 1.2rem;
 }
 
+.invite-hosts-inline {
+  font-size: 1.05rem;
+  color: var(--ink);
+  line-height: 1.85;
+  text-align: center;
+  margin: 0 0 1.2rem;
+  unicode-bidi: isolate;
+  direction: rtl;
+}
+
 .host-and {
   color: var(--sage);
   font-size: 1.05rem;
