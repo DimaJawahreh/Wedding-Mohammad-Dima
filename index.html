@@ -95,12 +95,12 @@
         <span class="envelope" aria-hidden="true">
           <span class="envelope-back"></span>
           <span class="envelope-letter">
-            <span class="envelope-letter-names">M &amp; D</span>
+            <span class="envelope-letter-names">مد</span>
             <span class="envelope-letter-date">10.10.2026</span>
           </span>
           <span class="envelope-body"></span>
           <span class="envelope-flap"></span>
-          <span class="envelope-seal">M &amp; D</span>
+          <span class="envelope-seal">مد</span>
         </span>
         <span class="envelope-hint">Open Invitation</span>
       </span>
@@ -172,11 +172,7 @@
           <p class="eyebrow">Wedding Invitation</p>
           <p class="invite-intro">بكل الحب والسرور،</p>
           <p class="invite-honors">تتشرف</p>
-          <div class="invite-hosts">
-            <p class="invite-host-name">حرم السيد سلطان أكرم سلطان</p>
-            <span class="host-and">و</span>
-            <p class="invite-host-name">حرم السيد ناجح محمد جواهرة</p>
-          </div>
+          <p class="invite-hosts-inline">حرم السيد سلطان أكرم سلطان <span class="host-and">و</span> حرم السيد ناجح محمد جواهرة</p>
           <p class="invite-line">بدعوتكم لمشاركتهم فرحتهم</p>
           <p class="invite-line">وحضور حفل زفاف</p>
           <h2 class="invite-couple">
@@ -190,7 +186,6 @@
           <p class="invite-time">8:00 مساءً</p>
           <p class="invite-place-label">المكان</p>
           <p class="invite-place" lang="en" dir="ltr">Sheraton Amman Hotel</p>
-          <p class="invite-guests" id="guest-note">عدد الحضور لهذه البطاقة: 1</p>
         </article>
       </section>
 
@@ -311,7 +306,6 @@
       </section>
 
       <section class="section children-note">
-        <p class="children-title">تنويه</p>
         <p class="children-text">يسعدنا حضوركم واحتفالكم معنا، ونرجو الالتزام بعدم اصطحاب الأطفال.</p>
       </section>
 
@@ -322,7 +316,6 @@
       </section>
 
       <footer class="footer">
-        <p class="credit">By Pride</p>
       </footer>
     </main>
 
@@ -525,8 +518,6 @@
     raf = requestAnimationFrame(step);
   }
 
-  var note = document.getElementById("guest-note");
-  if (note) note.textContent = "عدد الحضور لهذه البطاقة: " + guests();
   tickCountdown();
   window.setInterval(tickCountdown, 1000);
 
