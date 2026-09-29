@@ -458,6 +458,36 @@ a {
   direction: rtl;
 }
 
+.invite-intro-simple,
+.invite-honors-simple,
+.invite-line-simple {
+  font-family: "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  font-size: 1rem;
+  color: var(--ink);
+  line-height: 2;
+  text-align: center;
+  unicode-bidi: isolate;
+  direction: rtl;
+  font-weight: 400;
+}
+
+.invite-honors-simple {
+  font-size: 1.1rem;
+  margin: 0.8rem 0 0.4rem;
+}
+
+.invite-hosts-simple {
+  font-family: "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  font-size: 0.92rem;
+  color: var(--ink);
+  line-height: 1.8;
+  text-align: center;
+  margin: 0.3rem 0 0.8rem;
+  unicode-bidi: isolate;
+  direction: rtl;
+  font-weight: 500;
+}
+
 .invite-hosts-stacked {
   text-align: center;
   margin: 0 0 1.2rem;
