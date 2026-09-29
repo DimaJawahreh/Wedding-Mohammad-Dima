@@ -1227,10 +1227,11 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
 }
 
 .monogram-image {
-  width: min(70vw, 16rem);
+  width: min(75vw, 18rem);
   height: auto;
   display: block;
   margin: 0 auto;
+  mix-blend-mode: multiply;
 }
 
 .host-separator {
