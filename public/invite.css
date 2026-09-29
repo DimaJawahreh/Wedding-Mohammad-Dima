@@ -1226,70 +1226,11 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
   height: auto;
 }
 
-.monogram-wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem 0;
-  color: #2a4a6a;
-}
-
-.mono-diamond-top,
-.mono-diamond-bottom {
-  font-size: 0.8rem;
-  opacity: 0.8;
-}
-
-.mono-leaf-top {
-  font-size: 2.5rem;
-  margin: -0.5rem 0;
-  transform: rotate(-45deg) scaleX(-1);
-}
-
-.mono-letters {
-  position: relative;
-  width: 10rem;
-  height: 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mono-meem {
-  position: absolute;
-  font-family: "Amiri", serif;
-  font-weight: 700;
-  font-size: 9rem;
-  line-height: 1;
-  color: #2a4a6a;
-  top: -1rem;
-  right: 0.5rem;
-  transform: rotate(-15deg);
-  z-index: 2;
-}
-
-.mono-dal {
-  position: absolute;
-  font-family: "Amiri", serif;
-  font-weight: 700;
-  font-size: 8rem;
-  line-height: 1;
-  color: #2a4a6a;
-  bottom: -0.5rem;
-  left: 0.5rem;
-  transform: rotate(10deg);
-  z-index: 1;
-}
-
-.mono-flourish {
-  font-size: 2rem;
-  margin-top: 2rem;
-  transform: scaleX(-1);
-}
-
-.mono-diamond-bottom {
-  margin-top: 0.3rem;
+.monogram-image {
+  width: min(70vw, 16rem);
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .host-separator {
