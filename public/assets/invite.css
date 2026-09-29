@@ -483,9 +483,10 @@ a {
 }
 
 .invite-hosts-simple {
-  font-size: 0.95rem;
-  line-height: 2.05;
+  font-size: clamp(0.62rem, 2.65vw, 0.82rem);
+  line-height: 1.7;
   margin: 0.15rem 0 0.35rem;
+  white-space: nowrap;
 }
 
 .invite-hosts-stacked {
@@ -1457,6 +1458,37 @@ html[data-theme="2"] .mono-meem {
 html[data-theme="2"] .mono-dal {
   margin-bottom: 0;
   font-size: min(23vw, 5.8rem);
+}
+
+html[data-theme="2"] .monogram-text {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  direction: rtl;
+  transform: rotate(-7deg);
+}
+
+html[data-theme="2"] .monogram-text .mono-meem,
+html[data-theme="2"] .monogram-text .mono-dal {
+  font-family: "Amiri", serif;
+  font-weight: 700;
+  color: #2a4a6a;
+  line-height: 0.8;
+  display: inline-block;
+}
+
+html[data-theme="2"] .monogram-text .mono-meem {
+  font-size: min(36vw, 8.6rem);
+  margin-inline-end: -0.48em;
+  transform: rotate(-10deg);
+  z-index: 2;
+}
+
+html[data-theme="2"] .monogram-text .mono-dal {
+  font-size: min(32vw, 7.6rem);
+  margin-bottom: 0.12em;
+  transform: rotate(8deg);
+  z-index: 1;
 }
 
 html[data-theme="2"] .mono-date {
