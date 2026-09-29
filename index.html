@@ -173,7 +173,10 @@
           <p class="eyebrow">Wedding Invitation</p>
           <p class="invite-intro">بكل الحب والسرور</p>
           <p class="invite-honors">تتشرف</p>
-          <p class="invite-hosts-inline">حرم السيد سلطان أكرم سلطان <span class="host-separator">—</span> حرم السيد ناجح محمد جواهرة</p>
+          <div class="invite-hosts-stacked">
+            <span class="invite-host-line">حرم السيد سلطان أكرم سلطان</span>
+            <span class="invite-host-line">حرم السيد ناجح محمد جواهرة</span>
+          </div>
           <p class="invite-line">بدعوتكم لمشاركتهم فرحتهم</p>
           <p class="invite-line">وحضور حفل زفاف</p>
           <h2 class="invite-couple">
@@ -450,7 +453,7 @@
     style.textContent =
         '@font-face{font-family:"Aref Ruqaa";font-style:normal;font-weight:400;font-display:swap;src:url("' + assetUrl("fonts/aref-ruqaa-400.woff2") + '") format("woff2")}' +
       '@font-face{font-family:"Great Vibes";font-style:normal;font-weight:400;font-display:swap;src:url("' + assetUrl("fonts/great-vibes.woff2") + '") format("woff2")}' +
-      '@import url("https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&display=swap")';
+      '@import url("https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap")';
     document.head.appendChild(style);
   }
 

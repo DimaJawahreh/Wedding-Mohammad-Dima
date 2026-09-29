@@ -450,11 +450,25 @@ a {
 .invite-hosts-inline {
   font-size: 1.05rem;
   color: var(--ink);
-  line-height: 1.85;
+  line-height: 2.2;
   text-align: center;
   margin: 0 0 1.2rem;
   unicode-bidi: isolate;
   direction: rtl;
+}
+
+.invite-hosts-stacked {
+  text-align: center;
+  margin: 0 0 1.2rem;
+  unicode-bidi: isolate;
+  direction: rtl;
+}
+
+.invite-host-line {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--ink);
+  line-height: 2;
 }
 
 .host-and {
@@ -1174,56 +1188,33 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: min(70vw, 18rem);
-  height: min(70vw, 18rem);
-  background: radial-gradient(circle at 50% 50%, rgba(61, 90, 122, 0.03) 0%, transparent 70%);
-}
-
-.mono-stacked::before {
-  content: "";
-  position: absolute;
-  width: 85%;
-  height: 85%;
-  border: 2px solid rgba(61, 90, 122, 0.15);
-  border-radius: 50%;
-}
-
-.mono-stacked::after {
-  content: "";
-  position: absolute;
-  width: 95%;
-  height: 95%;
-  border: 1px solid rgba(61, 90, 122, 0.08);
-  border-radius: 50%;
+  width: min(52vw, 13rem);
+  height: min(52vw, 13rem);
 }
 
 .mono-top,
 .mono-bottom {
   position: absolute;
-  font-family: "Noto Naskh Arabic", "Traditional Arabic", serif;
+  font-family: "Amiri", "Traditional Arabic", serif;
   font-weight: 700;
   line-height: 1;
-  text-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.1),
-    0 4px 12px rgba(61, 90, 122, 0.15);
+  color: #3d5a7a;
 }
 
 .mono-top {
-  font-size: min(48vw, 12rem);
-  color: #3d5a7a;
-  top: 8%;
-  right: 18%;
+  font-size: min(36vw, 9rem);
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2;
-  transform: rotate(-5deg);
 }
 
 .mono-bottom {
-  font-size: min(44vw, 11rem);
-  color: #4a6b8a;
-  bottom: 12%;
-  left: 22%;
+  font-size: min(32vw, 8rem);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1;
-  transform: rotate(3deg);
 }
 
 .host-separator {
@@ -1378,26 +1369,9 @@ html[data-theme="2"] .mono-combined {
   text-shadow: 2px 4px 8px rgba(61, 90, 122, 0.15);
 }
 
-html[data-theme="2"] .mono-stacked::before {
-  border-color: rgba(61, 90, 122, 0.2);
-}
-
-html[data-theme="2"] .mono-stacked::after {
-  border-color: rgba(61, 90, 122, 0.1);
-}
-
-html[data-theme="2"] .mono-top {
-  color: #3d5a7a;
-  text-shadow: 
-    0 3px 6px rgba(61, 90, 122, 0.2),
-    0 6px 20px rgba(61, 90, 122, 0.15);
-}
-
+html[data-theme="2"] .mono-top,
 html[data-theme="2"] .mono-bottom {
-  color: #4a6b8a;
-  text-shadow: 
-    0 3px 6px rgba(61, 90, 122, 0.2),
-    0 6px 20px rgba(61, 90, 122, 0.15);
+  color: #3d5a7a;
 }
 
 html[data-theme="2"] .mono-rule {
