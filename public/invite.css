@@ -1463,9 +1463,9 @@ html[data-theme="2"] .mono-dal {
 html[data-theme="2"] .monogram-text {
   position: relative;
   display: block;
-  width: min(56vw, 11.5rem);
-  height: min(40vw, 8.6rem);
-  margin-inline: auto;
+  width: min(46vw, 9.2rem);
+  height: min(50vw, 10rem);
+  margin: 0.6rem auto 0;
   direction: rtl;
 }
 
@@ -1475,29 +1475,31 @@ html[data-theme="2"] .monogram-text .mono-dal {
   font-family: "Aref Ruqaa", "Amiri", serif;
   font-weight: 400;
   color: #2a4a6a;
-  line-height: 0.75;
+  line-height: 0.8;
 }
 
 html[data-theme="2"] .monogram-text .mono-meem {
-  right: 0;
-  bottom: -0.08em;
-  font-size: min(34vw, 7.4rem);
+  right: 6%;
+  bottom: 2%;
+  font-size: min(28vw, 6rem);
   margin: 0;
-  transform: rotate(-11deg);
+  transform: rotate(-13deg);
   z-index: 1;
 }
 
 html[data-theme="2"] .monogram-text .mono-dal {
-  left: 2%;
-  top: -0.12em;
-  font-size: min(30vw, 6.4rem);
+  left: 14%;
+  top: 0;
+  font-size: min(24vw, 5.1rem);
   margin: 0;
-  transform: rotate(-8deg);
+  transform: rotate(-9deg);
   z-index: 2;
 }
 
 html[data-theme="2"] .mono-date {
-  margin-top: 2rem;
+  position: relative;
+  z-index: 3;
+  margin-top: 1.35rem;
 }
 
 html[data-theme="2"] .blessing {
