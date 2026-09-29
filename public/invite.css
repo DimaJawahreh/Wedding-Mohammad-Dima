@@ -1216,12 +1216,14 @@ body:has(.open-toggle:not(:checked)):not(.is-open) {
   transform: rotate(10deg) translateY(-20%);
 }
 
-.monogram-image {
-  width: min(75vw, 18rem);
-  height: auto;
+.monogram-elegant {
+  width: min(70vw, 16rem);
   margin: 0 auto;
-  display: block;
-  object-fit: contain;
+}
+
+.monogram-svg {
+  width: 100%;
+  height: auto;
 }
 
 .host-separator {
